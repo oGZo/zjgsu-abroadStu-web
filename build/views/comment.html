@@ -1,0 +1,48 @@
+<div class="g-page-area">
+    <div class="yb-page-title">
+        <span class="icon"><i class="yb-sprites-location"></i></span>
+        <span class="module">用户管理</span>
+        <span class="arrow">&gt;</span>
+        <span class="page">评论列表</span>
+    </div>
+</div>
+<div class="data-area p-comment">
+    <div class="yb-view-title">
+        <span class="title">评论列表</span>
+    </div>
+    <div class="data-container">
+    <div class="table-area">
+        <table class="table table-striped">
+            <thead>
+                <th>评论ID</th>
+                <th>评论时间</th>
+                <th>服务Id</th>
+                <th>类型</th>
+                <th>医生</th>
+                <th>助理</th>
+                <th>评价星级</th>
+                <th>用户Id</th>
+                <th>用户名</th>
+                <th>操作人</th>
+                <th>评论内容</th>
+            </thead>
+            <tbody>
+            <tr ng-repeat="row in rows">
+                <td>{{row.commentId}}</td>
+                <td >{{ row.createTime|date:'yyyy.MM.dd'}}</td>
+                <td >{{row.commodityId}}</td>
+                <td >{{row.commodityType}}</td>
+                <td >{{row.doctorName}}</td>
+                <td >{{row.brokerName}}</td>
+                <td >{{row.brokerStar}}</td>
+                <td >{{row.customerId}}</td>
+                <td >{{row.customerName}}</td>
+                <td >{{row.operator}}</td>
+                <td >{{row.comments}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" ng-change="pageChanged(page)" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages"></pagination>
+    </div>
+    </div>

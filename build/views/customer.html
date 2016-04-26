@@ -1,0 +1,99 @@
+<div class="g-page-area">
+    <div class="yb-page-title">
+        <span class="icon"><i class="yb-sprites-location"></i></span>
+        <span class="module">用户管理</span>
+        <span class="arrow">&gt;</span>
+        <span class="page">用户管理</span>
+    </div>
+</div>
+<div class="data-area p-customer">
+    <div class="yb-view-title">
+        <span class="title">用户列表</span>
+    </div>
+    <div class="data-container">
+        <div class="yb-search-group" id="customerSearchForm">
+            <span class="yb-form-condition">
+                用户名
+                <label>
+                    <input type="text" class="form-control" name="customerName" placeholder="请输入"/>
+                </label>
+            </span>
+            <span class="yb-form-condition">
+                手机号
+                <label>
+                    <input type="text" class="form-control" name="mobile" placeholder="请输入" maxlength="11"/>
+                </label>
+            </span>
+            <span class="yb-form-condition">
+                注册时间
+                <label>
+                    <input type="text" class="form-control" name="startTime" id="customerMinDate"
+                           onclick="WdatePicker({errDealMode:1,maxDate:'#F{$dp.$D(\'customerMaxDate\')||\'%y-%M-%d\'}'})"
+                           placeholder="请选择"/>
+                </label>
+                -
+                <label>
+                    <input type="text" class="form-control" id="customerMaxDate" name="endTime"
+                           onclick="WdatePicker({errDealMode:1,minDate:'#F{$dp.$D(\'customerMinDate\')}',maxDate:'%y-%M-%d'})"
+                           placeholder="请选择"/>
+                </label>
+            </span>
+            <button ng-click="query()" class="btn btn-sm btn-search">查询</button>
+        </div>
+        <div class="table-area">
+            <table class="table customer-table" ng-hide="!rows">
+                <thead>
+                <th class="th-1">用户ID</th>
+                <th class="th-2">用户名</th>
+                <th class="th-3">性别</th>
+                <th class="th-4">微信号</th>
+                <th class="th-5">手机</th>
+                <th class="th-6">注册日期</th>
+                <th class="th-7">患者数</th>
+                <th class="th-8">预约数</th>
+                <th class="th-9">评价数</th>
+                <th class="th-10">邀请数</th>
+                <th class="th-11">在线咨询数</th>
+                <th class="th-12">电话咨询数</th>
+                <th class="th-13">会员卡数</th>
+                <th class="th-14">优惠数</th>
+                <th class="th-15">关注</th>
+                <th class="th-16">是否服务过</th>
+                </thead>
+                <tbody>
+                <tr ng-repeat="row in rows|sexFun">
+                    <td>{{row.customerId||1 }}</td>
+                    <td>{{row.customerName}}</td>
+                    <td>{{row.sexText}}</td>
+                    <td>{{row.wxName}}</td>
+                    <td>{{row.mobile}}</td>
+                    <td>{{row.createTime|date:'yyyy.MM.dd HH:mm:ss'}}</td>
+                    <td ng-click="goOtherPage('patient',row,row.patientNum)"><span class="tr-operate-area">{{row.patientNum||0}}</span>
+                    </td>
+                    <td ng-click="goOtherPage('order',row,row.orderNum)"><span
+                        class="tr-operate-area">{{row.orderNum}}</span></td>
+                    <td ng-click="goOtherPage('comment',row,row.commentNum)"><span class="tr-operate-area">{{row.commentNum}}</span>
+                    </td>
+                    <td ng-click="goOtherPage('invite',row,row.inviteNum)"><span class="tr-operate-area">{{row.inviteNum}}</span>
+                    </td>
+                    <td>{{row.onlineConsultNum||0}}</td>
+                    <td ng-click="goOtherPage('consultPhone',row,row.phoneConsultNum)"><span class="tr-operate-area">{{row.phoneConsultNum||0}}</span>
+                    </td>
+                    <td ng-click="goOtherPage('memberCard',row,row.memberNum)"><span class="tr-operate-area">{{row.memberNum||0}}</span>
+                    </td>
+                    <td ng-click="goOtherPage('coupon',row,row.couponNum)"><span class="tr-operate-area">{{row.couponNum||0}}</span>
+                    </td>
+                    <td>{{row.assistantName}}</td>
+                    <td ng-class="{'green-color':row.isService}">{{row.isService?'是':'否'}}</td>
+                </tr>
+                <tr ng-if="!rows.length">
+                    <td colspan="16">无数据</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize"
+                    ng-change="pageChanged(page)" class="pagination-sm" boundary-links="true" rotate="false"
+                    num-pages="numPages"></pagination>
+    </div>
+</div>

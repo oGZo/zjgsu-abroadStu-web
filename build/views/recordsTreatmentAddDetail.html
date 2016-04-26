@@ -1,0 +1,82 @@
+<div class="p-recordsTreatmentAddDetail">
+    <div class="g-page-area">
+        <div class="yb-page-title">
+            <span class="icon"><i class="yb-sprites-location"></i></span>
+            <span class="module">患者资料</span>
+            <span class="arrow">&gt;</span>
+            <span class="page">添加就诊记录</span>
+        </div>
+    </div>
+    <div class="data-area">
+        <div class="yb-view-title">
+            <span class="title ">
+                <span class="mr-d">添加就诊记录</span>
+                <span class="">
+                    <span class="mr-d">{{formData.longVisitTime|date:'yyyy年MM月dd号'}}</span>
+                    <span class="mr-d">医生:{{formData.doctorName}}</span>
+                    <span ng-show="formData.orderId" ng-click="goOrderDetail(formData)" class="order-detail-hover">订单详情:<span>{{formData.orderSn}}</span></span>
+                </span>
+            </span>
+
+            <div class="fr">
+                <button class="btn btn-edit mr-d" ng-click="addTreatment()">确认保存</button>
+                <span class="cursor-p" ng-click="cancel()">取消</span>
+            </div>
+        </div>
+        <div class="data-container">
+            <div class="order-list">
+                <div class="order-list-title">基本信息</div>
+                <ul class="order-list-con">
+                    <table class="form-table">
+                        <tbody>
+                        <tr>
+                            <td class="min-li">
+                                <span class="form-tit">所属病程</span>
+                                <label><select class="form-control" ng-model="formData.pathogenesisId">
+                                    <option ng-repeat="pathogenesis in pathogenesisList"  value="{{pathogenesis.id}}" ng-selected="pathogenesis.id== formData.pathogenesisId" >{{(pathogenesis.beginDateTimeStamp|date:'yyyy-MM-dd')+' '+pathogenesis.name}}</option>
+                                </select></label>
+                                <button ng-click="addPathogenesis()" class="btn btn-edit">添加新病程</button>
+                            </td>
+                            <td>
+                                <span class="form-tit">就诊类型</span>
+                                <label>
+                                    <select class="form-control" ng-disabled="formData.orderId&&formData.type==1||formData.type==2||formData.type==5" ng-model="formData.subType">
+                                        <option value=""  ng-selected="formData.type!=1&&formData.type!=2&&formData.type!=5"></option>
+                                        <option ng-repeat="subTypeObj in subTypeList" value="{{subTypeObj.id}}" ng-selected="subTypeObj.id==formData.type">{{subTypeObj.text}}</option>
+                                    </select>
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <span class="form-tit">病程描述</span>
+                                <span class="form-con">{{formData.pathogenesis.desc}}</span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <hr class="g-border-top-dashed"/>
+                    <table class="form-table">
+                        <tbody>
+                        <tr>
+                            <td>
+                                <span class="form-tit">就诊时间</span>
+                                <span class="form-content" >
+                                    <span ng-show="formData.visitTimeFlag">{{formData.visitTime|date:'yyyy-MM-dd'}}</span>
+                                    <span ng-show="!formData.visitTimeFlag"><label ><input type="text" class="form-control" my97datepicker placeholder="请选择就诊时间" ng-model="formData.visitTime" value="{{formData.visitTime|date:'yyyy-MM-dd'}}"/></label></span>
+                                </span>
+                            </td>
+                            <td><span class="form-tit">医       生</span><span class="form-content">{{formData.doctorName}}</span></td>
+                            <td><span class="form-tit">科       室</span><span class="form-content">{{formData.item}}</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="form-tit">医       院</span><span class="form-content">{{formData.hospitalName}}</span></td>
+                            <td colspan="2"><span class="form-tit">出诊地点</span><span class="form-content">{{formData.treatmentAddress}}</span></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

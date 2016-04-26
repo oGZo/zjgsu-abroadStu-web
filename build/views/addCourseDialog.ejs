@@ -1,0 +1,22 @@
+<div class="m-dialog">
+    <form class="J_addTaskForm">
+        <input type="hidden" value="<%= patientId %>" name="patientId">
+        <div class="head">
+            <input type="text" name="pathogenesis" maxlength="25" class="input" placeholder="病程名称">
+        </div>
+        <div class="body">
+            <textarea name="desc" class="textarea" placeholder="病程描述" maxlength="1000"></textarea>
+            <div class="cell">
+                <div class="title">开始时间</div>
+                <div class="content">
+                    <input type="text" name="startTime" value="<%= time %>"
+                           class="input J_addCourseTime form-control" readonly>
+                </div>
+            </div>
+        </div>
+        <div class="foot">
+            <button type="submit" class="confirm-btn">确定</button>
+            <button type="button" class="cancel-btn J_cancel">取消</button>
+        </div>
+    </form>
+</div>

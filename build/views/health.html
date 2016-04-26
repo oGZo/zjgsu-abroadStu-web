@@ -1,0 +1,184 @@
+<div class="p-healthFile p-health">
+    <div class="g-page-area">
+        <div class="yb-page-title">
+            <span class="icon"><i class="yb-sprites-location"></i></span>
+            <span class="module">健康档案</span>
+            <span class="arrow">&gt;</span>
+            <span class="page">用户名：<span ng-bind="userListMap[currentPatientId].customerUserName"></span></span>
+            <div class="user-operate-area">
+                <span ng-mouseenter="userListFlag=true ">切换到新用户</span>
+                <ul ng-show="userListFlag" ng-mouseleave="userListFlag=false" >
+                    <li ng-repeat="user in userList" ng-click="changeUser(user)" ng-class="{current: currentPatientId == user.patientId}">{{user.customerUserName}}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="J_health" ng-controller="HealthModuleViewController"></div>
+    <div class="data-area">
+        <div class="yb-view-title">
+            <span class="title">病程列表</span>
+            <div class="right">
+                <button class="button blue low" ng-click="addCourse()" type="button">添加新病程</button>
+                <!--<button class="button white low" type="button" ng-mouseover="showToggleMenu()">切换排序</button>-->
+                <button class="button white low course-tab" type="button" ng-click="reverseCourseList($event)">切换排序</button>
+            </div>
+        </div>
+        <!--<ul class="menu" ng-if="isShowToggleMenu">-->
+        <!--<li class="item" ng-click="sortCourseList(1)">时间正序排列</li>-->
+        <!--<li class="item" ng-click="sortCourseList(2)">时间倒序排列</li>-->
+        <!--</ul>-->
+        <div class="course-list">
+            <div class="course" ng-repeat="course in courseList track by $index">
+                <div class="course_head" >
+                    开始时间:
+                    <span ng-bind="course.startTime" ng-if="!isModifyCourse[$index]"></span>
+                    <input type="text" class="input" readonly ng-if="isModifyCourse[$index]"
+                           ng-model="tempCourseList[$index].startTime" ng-click="selectTime($event,$index)">
+                    <span class="course-title">病程名:<span ng-bind="course.pathogenesis" ng-click="openPage(course)" ng-if="!isModifyCourse[$index]"></span></span>
+                    <span  ng-show="course.patientId!=currentPatientId" class="fr ">来自另一位用户：<span class="other-user-name">{{userListMap[course.patientId].customerUserName}}</span></span>
+                    <input type="text" class="input pathogenesis-name" ng-if="isModifyCourse[$index]"
+                           ng-model="tempCourseList[$index].pathogenesis" maxlength="25">
+                    <div class="right" ng-if="course.athogenesisRecordDTOList.length && !isModifyCourse[$index]&&course.patientId==currentPatientId">
+                        <button type="button" ng-click="preModifyCourse($index)" class="button grey">
+                            <i class="icon yb-sprites-modify"></i> 修改
+                        </button>
+                    </div>
+                    <div class="right" ng-if="!course.athogenesisRecordDTOList.length && !isModifyCourse[$index]&&course.patientId==currentPatientId">
+                        <span  ng-mouseleave="hideMenu($event, isShowOperationMenu, $index)"
+                                ng-mouseover="showMenu(isShowOperationMenu, $index)"
+                                class="process-edit J_in">选项
+                        </span>
+                    </div>
+                    <div class="menu operation-menu J_in"
+                         ng-if="isShowOperationMenu[$index]"
+                         ng-mouseleave="hideMenu($event, isShowOperationMenu, $index)" >
+
+                        <ul class="list J_in">
+                            <li class="item J_in" ng-click="preModifyCourse($index)">编辑</li>
+                            <li class="item J_in" ng-click="preDeleteCourse($index)">删除</li>
+                        </ul>
+                    </div>
+                    <div class="right" ng-if="isModifyCourse[$index]">
+                        <button type="button" ng-click="confirmModifyCourse($index)" class="button blue">保存</button>
+                        <button type="button" ng-click="cancelModifyCourse($index)" class="button grey">取消</button>
+                    </div>
+                </div>
+                <div class="info">
+                    <div class="high">
+                        病程描述:
+                        <span ng-bind="course.desc" ng-if="!isModifyCourse[$index]"></span>
+                        <textarea class="textarea" ng-if="isModifyCourse[$index]" athogenesisRecordDTOList="2"
+                                  cols="100" maxlength="1000" ng-model="tempCourseList[$index].desc"></textarea>
+                    </div>
+                    <div class="item">诊断结论: <span ng-bind="course.treatmentresult"></span></div>
+                    <div class="item">治疗效果: <span ng-bind="course.treatmentEffect"></span></div>
+                    <div class="item">总费用: <span ng-bind="course.totalFee"></span></div>
+                </div>
+                <div class="record-list">
+                    <div class="record-list_head">
+                        <span class="title">健康记录一览</span>
+                        <div class="right">
+                            <button class="button white add-record" type="button" ng-mouseover="showMenu(isShowAddMenu, $index)" ng-show="course.patientId==currentPatientId"
+                                    ng-mouseleave="hideMenu($event, isShowAddMenu, $index)">添加健康记录
+                            </button>
+                            <span class="icon yb-sprites-list-icon" ng-click="selectRecordListShowMode($index, 2)"
+                                  ng-class="{'select':recordListShowMode[$index] == 2}"></span>
+                            <span class="icon yb-sprites-calender-icon" ng-click="selectRecordListShowMode($index, 1)"
+                                  ng-class="{'select':recordListShowMode[$index] == 1}"></span>
+                        </div>
+                        <div class="menu add-menu J_in" ng-if="isShowAddMenu[$index]"
+                             ng-mouseleave="hideMenu($event, isShowAddMenu, $index)">
+                            <ul class="list J_in">
+                                <li class="item J_in" ng-click="addRecord($index, 1)">就诊记录</li>
+                                <li class="item J_in" ng-click="addRecord($index, 2)">随访记录</li>
+                                <li class="item J_in" ng-click="addRecord($index, 3)">咨询记录</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--记录时间轴-->
+                    <div class="record-list_body" ng-if="recordListShowMode[$index] == 1">
+                        <div ng-if="course.athogenesisRecordDTOListTable.length">
+                            <div class="slide-btn prev" ng-click="prev($index)"><i
+                                class="icon yb-sprites-arrow_left"></i>
+                            </div>
+                            <div class="slide-btn next" ng-click="next($index)"><i
+                                class="icon yb-sprites-arrow_right"></i>
+                            </div>
+                            <div class="line"></div>
+
+                            <div class="axis-area">
+                                <div class="axis" ng-style="course.style">
+                                    <div class="record" ng-class="record.class"
+                                         ng-repeat="record in course.athogenesisRecordDTOList track by $index">
+                                        <div class="circle" ng-click="goRecord(record)" ng-bind="record.typeName"></div>
+                                        <div class="dot"></div>
+                                        <div class="text" ng-bind="record.visitTime | date: 'yyyy-MM-dd' "></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center" ng-if="!course.athogenesisRecordDTOListTable.length">没有记录</div>
+                    </div>
+                    <!--记录表格-->
+                    <div class="table-box" ng-if="recordListShowMode[$index] == 2" data-pathogenesisId="{{course.id}}">
+                        <table class="yb-table">
+                            <thead>
+                            <tr>
+                                <th>发生时间</th>
+                                <th>订单</th>
+                                <th>类型</th>
+                                <th>医院</th>
+                                <th>医生</th>
+                                <th>检查检验</th>
+                                <th>诊断结果</th>
+                                <th>治疗效果</th>
+                                <th>跟踪人</th>
+                                <th>完整度</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="link"
+                                ng-repeat="record in course.athogenesisRecordDTOListTable track by $index">
+                                <td ng-bind="record.visitTime | date: 'yyyy-MM-dd' "></td>
+                                <td ng-bind="record.orderId"></td>
+                                <td ng-bind="record.typeName" class="record-type_{{record.type}}"></td>
+                                <td ng-bind="record.hospitalName"></td>
+                                <td ng-bind="record.doctorName"></td>
+                                <td>
+                                    <div ng-repeat="check in record.checkList track by $index" ng-bind="check"></div>
+                                </td>
+                                <td>
+                                    <span ng-bind="record.treatmentresult"></span>
+                                </td>
+                                <td ng-bind="record.treatmentEffect"></td>
+                                <td ng-bind="record.lastOperateUserName"></td>
+                                <td ng-bind="record.type==1?(record.integrity.toFixed(2)*100+'%'):'-'"></td>
+                                <td ><span class="tr-operate-area" ng-click="goRecord(record)" >查看详情</span></td>
+                            </tr>
+                            <tr ng-if="!course.athogenesisRecordDTOListTable.length">
+                                <td colspan="11">没有记录</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <pagination total-items="course.paginationTable.bigTotalItems"
+                                    ng-model="course.paginationTable.bigCurrentPage"
+                                    max-size="course.paginationTable.maxSize"
+                                    ng-change="pageChanged($index,$event)" class="pagination-sm" boundary-links="true"
+                                    rotate="false" num-pages="numPages"></pagination>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/ng-template" id="J_deleteCourse">
+    <div class="m-dialog">
+        <div class="body">确定删除该病程?</div>
+        <div class="foot">
+            <button type="button" class="confirm-btn J_confirm">确定</button>
+            <button type="button" class="cancel-btn J_cancel">取消</button>
+        </div>
+    </div>
+</script>

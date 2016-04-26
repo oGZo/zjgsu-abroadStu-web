@@ -1,0 +1,43 @@
+<div class="m-dialog process-add-dialog">
+    <form class="J_taskDetailForm">
+        <div class="head">
+            检查检验-张三
+        </div>
+        <div class="body">
+            <div>
+                <div class="cell">
+                    <div class="title high">检查时间</div>
+                    <div class="content">
+                        <label><input type="text" name="date" value="" class="form-control" placeholder="检查时间" onclick="WdatePicker({errDealMode:1,dateFmt:'yyyy-MM-dd'})" data-require="检查时间不能为空" /></label>
+                    </div>
+                </div>
+                <div class="cell">
+                    <div class="title high">检查类型</div>
+                    <div class="content">
+                        <label ><select class="form-control" name="type">
+                                <option value="1">影像学</option>
+                                <option value="2">实验学</option>
+                                <option value="3">化验学</option>
+                            </select></label>
+                    </div>
+                </div>
+                <div class="cell">
+                    <div class="title high">检查名</div>
+                    <div class="content">
+                        <label><input type="text" name="name" value="" class="form-control" placeholder="检查名"  data-require="检查名不能为空" /></label>
+                    </div>
+                </div>
+                <div class="cell">
+                    <div class="title high">报告结果</div>
+                    <div class="content">
+                        <label><textarea name="reportResult" class="form-control" placeholder="报告结果" maxlength="1000" data-require="报告结果不能为空" ></textarea></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="foot">
+            <button type="button" class="confirm-btn" >确定</button>
+            <button type="button" class="cancel-btn J_cancel">取消</button>
+        </div>
+    </form>
+</div>

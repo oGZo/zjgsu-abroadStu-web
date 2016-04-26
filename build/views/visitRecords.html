@@ -1,0 +1,127 @@
+<!--<div class="data-area  pr">-->
+    <div class="yb-view-title">
+        <div ><span class="title"><span ng-bind="visitData.followupTimeStamp|date:'yyyy-MM-dd'"></span> 随访</span>
+            <div class="fr edit-area">
+                <span class="btn-edit-module" ng-show="!updateVisitDataEditFlag" ng-click="updateVisitDataInfo()"><i class="yb-sprites-modify"></i>修改</span>
+                <!--<span  ng-show="!updateVisitDataEditFlag" ng-click="deleteRecord()">删除</span>-->
+                <button class="btn btn-edit" ng-show="updateVisitDataEditFlag" ng-click="saveUpdateVisitDataInfo()">保存</button>
+                <button class="btn btn-cancel" ng-show="updateVisitDataEditFlag" ng-click="cancelUpdateVisitDataInfo()">取消</button>
+            </div>
+        </div>
+    </div>
+    <div class="data-container visit-record-area pr form-edit-form" id="mainVisitArea">
+        <div class="order-list" data-anchor="1" ng-show="!updateVisitDataEditFlag">
+            <ul class="order-list-con">
+                <li class="min-li"><span class="tit">病   程</span><span class="con" ng-bind="(visitData.pathogenesis.beginDateTimeStamp|date:'yyyy-MM-dd') + ' '+ visitData.pathogenesis.name"></span></li>
+                <li><span class="tit">跟踪人</span><span class="con" ng-bind="visitData.lastOperateUserName"></span></li>
+            </ul>
+            <div class="order-list-con">
+                <span class="tit">病程描述</span><span class="con" ng-bind="visitData.pathogenesis.desc"></span>
+            </div>
+            <ul class="order-list-con">
+                <li><span class="tit">随访时间</span><span class="con" ng-bind="visitData.followupTimeStamp|date:'yyyy-MM-dd HH:mm'"></span></li>
+            </ul>
+            <div class="order-list-con">
+                <span class="tit">随访说明</span><span class="con" ng-bind="visitData.followupDesc"></span>
+            </div>
+            <div class="order-list-con">
+                <span class="tit">治疗效果</span><span class="con" ng-bind="visitData.treatmentEffect"></span>
+            </div>
+            <div class="order-list-con">
+                <span class="tit">随访过程记录</span><span class="con" ng-bind="visitData.followupDetail"></span>
+            </div>
+            <div class="order-list-con">
+                <span class="tit img-area-tit">图片资料</span>
+                <div class="img-list-area">
+                    <div class="img-operate-area" ng-show="visitData.imageInfoDTOList.length">
+                        <span class="left-btn"><i class="yb-sprites-calender-left"></i></span>
+                        <span class="right-btn"><i class="yb-sprites-calender-right"></i></span>
+                    </div>
+                    <div class="all-img-list" data-current="0" ng-show="visitData.imageInfoDTOList.length">
+                        <ul class="img-list" >
+                            <li ng-repeat="img in visitData.imageInfoDTOList"><img src="{{img.miniImageUrl}}" data-bigSrc="{{img.imageUrl}}"/></li>
+                        </ul>
+                    </div>
+                    <div class="no-img" ng-show="!visitData.imageInfoDTOList.length">
+                        <img class="img" src="images/no-img.png"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="order-list form-edit-area" data-anchor="1" ng-show="updateVisitDataEditFlag">
+            <ul class="order-list-con">
+                <li class="min-li"><span class="tit">病   程</span>
+                    <label class="mr-d"><select class="form-control" name="pathogenesisId" ng-model="updateVisitData.pathogenesisId">
+                        <option ng-repeat="pathogenesis in updateVisitData.pathogenesisList" value="{{pathogenesis.id}}"  ng-selected="pathogenesis.id==updateVisitData.pathogenesisId">{{(pathogenesis.beginDateTimeStamp|date:'yyyy-MM-dd') +' ' +pathogenesis.name }}</option>
+                    </select></label>
+                    <button class="btn btn-edit hide"  ng-click="addPathogenesis()">添加新病程</button>
+                </li>
+                <li><span class="tit">跟踪人</span><span class="con" ng-bind="updateVisitData.lastOperateUserName"></span></li>
+            </ul>
+            <div class="order-list-con">
+                <span class="tit">病程描述</span>
+                <div class="con">
+                    {{updateVisitData.pathogenesis.desc}}
+                    <!--<textarea class="form-control" value="{{updateVisitData.pathogenesis.desc}}" ng-model="updateVisitData.pathogenesis.desc"></textarea></label>-->
+                </div>
+            </div>
+            <ul class="order-list-con">
+                <li>
+                    <span class="tit">随访时间</span>
+                    <span class="con">{{updateVisitData.followupTimeStamp|date:'yyyy-MM-dd HH:mm'}}</span>
+                        <!--<label>-->
+                            <!--<input type="text" class="form-control" placeholder="请选择随访时间" my97datepicker datefmt="yyyy-MM-dd HH:mm" mindate="%y-%M-%d %H:%m" value="{{updateVisitData.followupTimeStamp}}" ng-model="updateVisitData.followupTimeStamp"/>-->
+                        <!--</label>-->
+                </li>
+            </ul>
+            <div class="order-list-con">
+                <span class="tit">随访说明</span>
+                <div class="con">
+                    <!--<label >-->
+                        <textarea class="form-control" rows="10" maxlength="1000" ng-focus="focusDefaultValue($event,updateVisitData,'followupDesc')" placeholder="XXX（诊断治疗）发生了XXX（时间）后，提醒病人注意XXX；询问病人XXXX（病情、药物反应等）。" ng-model="updateVisitData.followupDesc">{{updateVisitData.followupDesc}}</textarea>
+                    <!--</label>-->
+                </div>
+            </div>
+            <div class="order-list-con">
+                <span class="tit">治疗效果</span>
+                <!--<div class="con">-->
+                    <label >
+                        <select class="form-control" ng-model="updateVisitData.treatmentEffect">
+                            <option ng-repeat="row in treatResult" value="{{row.id}}" ng-selected="updateVisitData.treatmentEffect==row.id">{{row.text}}</option>
+                        </select>
+                        <!--<textarea class="form-control" rows="10" maxlength="1000" placeholder="请添加治疗效果" ng-model="updateVisitData.treatmentEffect">{{updateVisitData.treatmentEffect}}</textarea>-->
+                    </label>
+                <!--</div>-->
+            </div>
+            <div class="order-list-con">
+                <span class="tit important-inp-tit">随访过程记录</span>
+                <div class="con">
+                    <!--<label >-->
+                        <textarea class="form-control" rows="10" maxlength="1000"  ng-focus="focusDefaultValue($event,updateVisitData,'followupDetail')"  placeholder="提醒病人注意＊；询问病人＊（病情、药物反应等），病人回答＊；用户提问＊，助理回答＊。" ng-model="updateVisitData.followupDetail">{{updateVisitData.followupDetail}}</textarea>
+                    <!--</label>-->
+                </div>
+            </div>
+            <div class="order-list-con">
+                <span class="tit img-area-tit">图片资料</span>
+                <div class="img-list-area">
+                    <div class="img-operate-area" ng-show="updateVisitData.imageInfoDTOList.length">
+                        <span class="left-btn"><i class="yb-sprites-calender-left"></i></span>
+                        <span class="right-btn"><i class="yb-sprites-calender-right"></i></span>
+                    </div>
+                    <div class="all-img-list" data-current="0">
+                        <ul class="img-list" data-flag="1">
+                            <li class="addImg" ng-click="addImg($event,updateVisitData)"><img class="img" src="images/select-img.png"/></li>
+                            <li ng-repeat="img in updateVisitData.imageInfoDTOList">
+                                <div class="yb-icon-area " ng-click="removeImg(updateVisitData.imageInfoDTOList,$index)">
+                                    <i class="yb-sprites-del-img"></i>
+                                </div>
+                                <img src="{{img.miniImageUrl}}" data-bigSrc="{{img.imageUrl}}"/>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+</div>
+<!--</div>-->

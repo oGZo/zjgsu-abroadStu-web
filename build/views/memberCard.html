@@ -1,0 +1,56 @@
+<div class="g-page-area">
+    <div class="yb-page-title">
+        <span class="icon"><i class="yb-sprites-location"></i></span>
+        <span class="module">用户管理</span>
+        <span class="arrow">&gt;</span>
+        <span class="page">会员卡列表</span>
+    </div>
+</div>
+<div class="data-area p-memberCard">
+    <div class="yb-view-title">
+        <span class="title">会员卡列表</span>
+    </div>
+    <div class="data-container">
+        <div class="table-area">
+            <table class="table table-striped">
+                <thead>
+                    <th>卡类型</th>
+                    <th>卡号</th>
+                    <th>会员名</th>
+                    <th>会员电话</th>
+                    <th>购买用户名</th>
+                    <th>购买者电话</th>
+                    <th>购买渠道</th>
+                    <th>激活码</th>
+                    <th>优惠码</th>
+                    <th>助理名称</th>
+                    <th>购买日期</th>
+                    <th>激活日期</th>
+                    <th>有效期</th>
+                    <th>暂停期</th>
+                    <th>激活状态</th>
+                </thead>
+                <tbody>
+                <tr ng-repeat="row in rows">
+                    <td>{{row.memberType}}</td>
+                    <td >{{row.cardId}}</td>
+                    <td >{{row.memberName}}</td>
+                    <td >{{row.memberPhone}}</td>
+                    <td >{{row.purchaserName}}</td>
+                    <td >{{row.purchaserPhone}}</td>
+                    <td >{{row.purchaserChannel}}</td>
+                    <td>{{row.activationCode}}</td>
+                    <td >{{row.couponCode}}</td>
+                    <td >{{row.sellerName}}</td>
+                    <td >{{row.createTime|date:'yyyy.MM.dd'}}</td>
+                    <td >{{row.activeTime|date:'yyyy.MM.dd'}}</td>
+                    <td >{{row.validityDate|date:'yyyy.MM.dd' + '-'+ (row.inValidityDate|date:'yyyy.MM.dd')}}</td>
+                    <td >{{row.pauseStartTime|date:'yyyy.MM.dd' + '-'+ (row.pauseEndTime|date:'yyyy.MM.dd')}}</td>
+                    <td ng-class="{'green-color':row.status=='激活'}">{{row.status}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" ng-change="pageChanged(page)" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages"></pagination>
+    </div>
+</div>

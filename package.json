@@ -1,0 +1,40 @@
+{
+  "name": "zjgsu-abroadStu-web",
+  "version": "1.0.0",
+  "description": "zjgsu-abroadStu-web",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "error": "echo \"Error: no test specified\" && exit 1",
+    "devolop": "gulp",
+    "test": "gulp test && gulp htmlone && gulp min",
+    "online": "gulp online && gulp htmlone && gulp min"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-base64": "^0.1.3",
+    "gulp-clean": "~0.3.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-htmlone": "^0.1.9",
+    "gulp-jshint": "^2.0.0",
+    "gulp-less": "^3.0.5",
+    "gulp-minify-css": "~1.1.1",
+    "gulp-plumber": "^1.0.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-smushit": "^1.1.0",
+    "gulp-uglify": "~1.2.0",
+    "jshint": "^2.8.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "sanqi.zgz",
+  "license": "ISC",
+  "dependencies": {
+    "gulp-ejs": "^1.1.1",
+    "path": "^0.12.7"
+  }
+}

@@ -1,0 +1,44 @@
+<div class="g-page-area">
+    <div class="yb-page-title">
+        <span class="icon"><i class="yb-sprites-location"></i></span>
+        <span class="module">用户管理</span>
+        <span class="arrow">&gt;</span>
+        <span class="page">会员卡列表</span>
+    </div>
+</div>
+<div class="data-area p-coupon">
+    <div class="yb-view-title">
+        <span class="title">优惠券列表</span>
+    </div>
+    <div class="data-container">
+        <div class="table-area">
+            <table class="table table-striped">
+                <thead>
+                    <th>优惠券名</th>
+                    <th>优惠券类型</th>
+                    <th>金额/折扣</th>
+                    <th>领取时间</th>
+                    <th>开始时间</th>
+                    <th>截止时间</th>
+                    <th>使用状态</th>
+                    <th>使用时间</th>
+                    <!--<th>使用详情</th>-->
+                </thead>
+                <tbody>
+                <tr ng-repeat="row in rows">
+                    <td>{{row.title}}</td>
+                    <td >{{row.couponTypeName}}</td>
+                    <td >{{row.couponNum}}</td>
+                    <td >{{row.createTime|date:'yyyy.MM.dd'}}</td>
+                    <td >{{row.startTime|date:'yyyy.MM.dd'}}</td>
+                    <td >{{row.endTime|date:'yyyy.MM.dd'}}</td>
+                    <td  ng-class="{'green-color':row.isUsed}">{{row.isUsed?'已使用':'未使用'}}</td>
+                    <td >{{(row.isUsed&&row.usingTime&&row.usingTime|date:'yyyy.MM.dd hh:MM:ss')||''}}</td>
+                    <!--<td >{{row.name}}</td>-->
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" ng-change="pageChanged(page)" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages"></pagination>
+    </div>
+</div>

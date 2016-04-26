@@ -1,0 +1,70 @@
+<div class="p-recordsConsult ">
+    <div class="g-page-area">
+        <div class="yb-page-title">
+            <span class="icon"><i class="yb-sprites-location"></i></span>
+            <span class="module cursor-p" ng-click="goHealthFilePage()">健康档案</span>
+            <span class="arrow">&gt;</span>
+            <span class="page">咨询记录</span>
+        </div>
+    </div>
+    <div class="J_health" ng-controller="HealthModuleViewController"></div>
+    <div class="data-area pr J_consult-records" ng-controller="ConsultRecordsModuleViewController"></div>
+    <!--<div class="data-area pr">-->
+        <!--<div class="yb-view-title">-->
+            <!--<span class="title">{{consultInfoData.consultTimeStamp|date:'yyyy-MM-dd'}} 咨询</span>-->
+            <!--<div class="fr edit-area">-->
+                <!--<span class="btn-edit-module" ng-show="!updateConsultDataEditFlag" ng-click="updateConsultDataInfo()"><i class="yb-sprites-modify"></i>修改</span>-->
+                <!--&lt;!&ndash;<span  ng-show="!updateConsultDataEditFlag" ng-click="deleteRecord()">删除</span>&ndash;&gt;-->
+                <!--<button class="btn btn-edit" ng-show="updateConsultDataEditFlag" ng-click="saveUpdateConsultDataInfo()">保存</button>-->
+                <!--<button class="btn btn-default" ng-show="updateConsultDataEditFlag" ng-click="cancelUpdateConsultDataInfo()">取消</button>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="data-container pr form-edit-form">-->
+            <!--<div class="order-list" >-->
+                <!--<ul class="order-list-con">-->
+                    <!--<li ng-show="!updateConsultDataEditFlag" class="min-li"><span class="tit">病   程</span><span class="con" ng-bind="(consultInfoData.pathogenesis.beginDateTimeStamp|date:'yyyy-MM-dd') + ' '+ consultInfoData.pathogenesis.name"></span></li>-->
+                    <!--<li ng-show="updateConsultDataEditFlag" class="min-li"><span class="tit">病   程</span>-->
+                        <!--<label class="mr-d">-->
+                            <!--<select class="form-control" name="pathogenesisId" ng-model="updateConsultData.pathogenesisId">-->
+                                <!--<option ng-repeat="pathogenesis in updateConsultData.pathogenesisList" value="{{pathogenesis.id}}"  ng-selected="pathogenesis.id==updateConsultData.pathogenesisId">{{(pathogenesis.beginDateTimeStamp|date:'yyyy-MM-dd') +' ' +pathogenesis.name}}</option>-->
+                            <!--</select>-->
+                        <!--</label>-->
+                        <!--<button class="btn btn-edit"  ng-click="addPathogenesis()">添加新病程</button>-->
+                    <!--</li>-->
+                    <!--<li><span class="tit">跟踪人</span><span class="con" ng-bind="consultInfoData.lastOperateUserName"></span></li>-->
+                <!--</ul>-->
+                <!--<div class="order-list-con" ng-show="!updateConsultDataEditFlag">-->
+                    <!--<span class="tit">病程描述</span><span class="con" ng-bind="consultInfoData.pathogenesis.desc"></span>-->
+                <!--</div>-->
+                <!--<div class="order-list-con" ng-show="updateConsultDataEditFlag">-->
+                    <!--<span class="tit">病程描述</span><span class="con">{{updateConsultData.pathogenesis.desc}}</span>-->
+                <!--</div>-->
+                <!--<ul class="order-list-con" ng-show="!updateConsultDataEditFlag">-->
+                    <!--<li><span class="tit">咨询时间</span><span class="con" ng-bind="consultInfoData.consultTimeStamp|date:'yyyy-MM-dd HH:mm'"></span></li>-->
+                <!--</ul>-->
+                <!--<div class="order-list-con" ng-show="updateConsultDataEditFlag">-->
+                    <!--<span class="tit">咨询时间</span><span class="con" ng-bind="consultInfoData.consultTimeStamp|date:'yyyy-MM-dd HH:mm'"></span>-->
+                    <!--&lt;!&ndash;<label><input type="text" class="form-control" my97datepicker mindate="%y-%M-%d %H:%m" ng-model="updateConsultData.consultTimeStamp"  datefmt="yyyy-MM-dd HH:mm" value="{{updateConsultData.consultTimeStamp|date:'yyyy-MM-dd HH:mm'}}"/></label>&ndash;&gt;-->
+                <!--</div>-->
+                <!--<div class="order-list-con" ng-show="!updateConsultDataEditFlag">-->
+                    <!--<span class="tit">患者病情</span><span class="con" ng-bind="consultInfoData.question"></span>-->
+                <!--</div>-->
+                <!--<div class="order-list-con" ng-show="updateConsultDataEditFlag">-->
+                    <!--<span class="tit">患者病情</span><span class="con"><textarea class="form-control" placeholder="请输入患者病情" maxlength="1000" ng-model="updateConsultData.question" value="{{updateConsultData.question}}"></textarea></span>-->
+                <!--</div>-->
+                <!--<div class="order-list-con" ng-show="!updateConsultDataEditFlag">-->
+                    <!--<span class="tit">患者问题</span><span class="con" ng-bind="consultInfoData.question"></span>-->
+                <!--</div>-->
+                <!--<div class="order-list-con" ng-show="updateConsultDataEditFlag">-->
+                    <!--<span class="tit">患者问题</span><span class="con"><textarea class="form-control" placeholder="请输入患者问题" maxlength="1000" ng-model="updateConsultData.question" value="{{updateConsultData.question}}"></textarea></span>-->
+                <!--</div>-->
+                <!--<div class="order-list-con" ng-show="!updateConsultDataEditFlag">-->
+                    <!--<span class="tit">助理回答</span><span class="con" ng-bind="consultInfoData.answer"></span>-->
+                <!--</div>-->
+                <!--<div class="order-list-con" ng-show="updateConsultDataEditFlag">-->
+                    <!--<span class="tit">助理回答</span><span class="con"><textarea class="form-control" placeholder="请输入助理回答" maxlength="1000" ng-model="updateConsultData.answer" value="{{updateConsultData.answer}}"></textarea></span>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+</div>

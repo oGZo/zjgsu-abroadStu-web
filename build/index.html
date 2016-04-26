@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:ng="http://angularjs.org">
+    <head>
+        <meta charset="utf-8">
+        <title>壹宝私人助理</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link rel="stylesheet" href="styles/artDialog.css"/>
+        <link href="images/favicon.ico" rel="shortcut icon" />
+        <!--<link rel="stylesheet" href="plugin/swiper/css/swiper.css">-->
+        <link rel="stylesheet" href="styles/app.css"/>
+        <link rel="stylesheet" href="styles/health-print.css" media="print" keeplive/>
+        <script>
+            var _hmt = _hmt || [];
+            (function() {
+                var hm = document.createElement("script");
+                hm.src = "//hm.baidu.com/hm.js?5327d6f2ba16b2c1ee366bd1b17d80ad";
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(hm, s);
+            })();
+        </script>
+
+        <!--[if lte IE 8]>
+        <script>
+            document.createElement('accordion');
+            document.createElement('accordion-group');
+            document.createElement('accordion-heading');
+            document.createElement('article');
+            document.createElement('aside');
+            document.createElement('header');
+            document.createElement('ng-include');
+            document.createElement('ng-pluralize');
+            document.createElement('ng-view');
+            // Optionally these for CSS
+            document.createElement('ng:include');
+            document.createElement('ng:pluralize');
+            document.createElement('ng:view');
+        </script>
+        <![endif]-->
+    </head>
+    <body>
+        <div ui-view class="yb-container"></div>
+        <div class="loading-area">
+            <div class="loading-cover"></div>
+            <table >
+                <tbody >
+                    <tr>
+                        <td>
+                            <div class="loading-content-area">
+                                <p><img src="images/loading.gif" alt="加载图片"/></p>
+                                <p>正在加载中...</p>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <script type="text/javascript" src="plugin/My97Datepicker/WdatePicker.js" keeplive></script>
+        <script type="text/javascript" src="plugin/spark-md5.js" ></script>
+        <script type="text/javascript" src="lib/angular.js" ></script>
+        <script type="text/javascript" src="lib/jquery.js" ></script>
+        <script type="text/javascript" src="plugin/jquery.toJSON.js" ></script>
+        <script type="text/javascript" src="plugin/ejs.js" ></script>
+        <script type="text/javascript" src="plugin/jquery.artDialog.js" ></script>
+        <script type="text/javascript" src="plugin/plupload/plupload.full.min.js"></script>
+        <script type="text/javascript" src="plugin/bootstrap.js" ></script>
+        <script type="text/javascript" src="plugin/ui-bootstrap-tpls.js" ></script>
+        <script type="text/javascript" src="plugin/angular-animate.js" ></script>
+        <script type="text/javascript" src="plugin/angular-cookies.js" ></script>
+        <script type="text/javascript" src="plugin/angular-route.js" ></script>
+        <script type="text/javascript" src="plugin/angular-ui-router.js" ></script>
+        <script type="text/javascript" src="lib/require.js"  keeplive></script>
+        <script type="text/javascript" src="scripts/current.js"></script>
+        <script type="text/javascript" src="scripts/common.js"></script>
+        <script type="text/javascript" src="scripts/main.js"></script>
+        <script type="text/x-handlebars-template" id="imgTemplate">
+            <li data-key="[%= imageKey %]" data-id="[%= id %]" data-imageUrl="[%= imageUrl %]" data-status="[%= status %]">
+                <span class="yb-icon-area J_delImg">
+                    <span class="yb-sprites-del-img"></span>
+                </span>
+                <div class="img-area">
+                    <img src="[%= miniImageUrl %]" class="img" alt="" />
+                </div>
+            </li>
+        </script>
+    </body>
+</html>

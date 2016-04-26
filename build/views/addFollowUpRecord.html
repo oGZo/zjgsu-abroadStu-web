@@ -1,0 +1,74 @@
+<div class="p-addRecord">
+    <div class="g-page-area">
+        <div class="yb-page-title">
+            <span class="icon"><i class="yb-sprites-location"></i></span>
+            <span class="module">添加记录</span>
+            <span class="arrow">&gt;</span>
+            <span class="page">添加随访记录</span>
+        </div>
+    </div>
+    <div class="data-area">
+        <div class="yb-view-title">
+            <span class="title">添加随访记录</span>
+            <div class="btn-area">
+                <button class="button blue" ng-click="confirm()">确认保存</button>
+                <button class="button white" ng-click="cancel()">取消</button>
+            </div>
+        </div>
+        <div class="data-container">
+            <div class="block">
+                <div class="head">基础信息</div>
+                <div class="body">
+                    <div class="cell">
+                        <div class="title">病<span class="place">病病</span>程</div>
+                        <div class="content">
+                            <select class="select" ng-model="course"
+                                    ng-options="course as course.text for course in courseList"></select>
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <div class="title">病程描述</div>
+                        <div class="content high" ng-bind="course.desc"></div>
+                    </div>
+                    <div class="cell">
+                        <div class="title">随访时间</div>
+                        <div class="item">
+                            <input type="text" class="input" ng-click="selectTime($event)"
+                                   ng-model="followUpRecord.followupTime" readonly>
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <div class="title">随访说明</div>
+                        <div class="content">
+                            <textarea class="textarea" ng-model="followUpRecord.followupDesc" ng-focus="focusDefaultValue($event,followUpRecord,'followupDesc')" placeholder="＊诊断治疗发生了＊时间后，提醒病人注意＊；询问病人＊（病情、药物反应等）。" maxlength="1000"></textarea>
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <div class="title">治疗效果</div>
+                        <div class="content">
+                            <select ng-model="followUpRecord.treatmentEffect"
+                                    ng-options="treatmentEffect.name as treatmentEffect.name for treatmentEffect in treatmentEffectList"
+                                    class="select"></select>
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <div class="title important-inp-tit">过程记录</div>
+                        <div class="content">
+                            <textarea class="textarea" ng-model="followUpRecord.followupDetail" ng-focus="focusDefaultValue($event,followUpRecord,'followupDetail')"  placeholder="提醒病人注意＊；询问病人＊（病情、药物反应等），病人回答＊；用户提问＊，助理回答＊。" maxlength="1000"></textarea>
+                        </div>
+                    </div>
+                    <div class="cell">
+                        <div class="title">图片</div>
+                        <div class="content" id="imgArea">
+                            <button class="add-btn" type="button" ng-click="addImg($event)"><img src="images/select-img.png" alt=""/></button>
+                            <div class="img-box" ng-repeat="img in followUpRecord.imageKeyList" >
+                                <img ng-src="{{img.miniImageUrl}}" alt="随访图片" data-bigsrc="{{img.imageUrl}}">
+                                <span class="del-btn yb-sprites-del-img" ng-click="removeImg($index)"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

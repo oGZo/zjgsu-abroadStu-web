@@ -1,0 +1,54 @@
+<div class="g-page-area">
+    <div class="yb-page-title">
+        <span class="icon"></span>
+        <span class="module">用户管理</span>
+        <span class="arrow">&gt;</span>
+        <span class="page">申请列表</span>
+    </div>
+</div>
+<div class="data-area">
+    <div class="yb-search-group" id="applySearchForm">
+        <span class="yb-form-condition">用户名 <label><input type="text" class="form-control" name="userName" placeholder="请输入用户名"/></label></span>
+        <span class="yb-form-condition">申请类型 <label><select class="form-control" name="applyType">
+            <option value="3">代问诊</option>
+            <option value="4">手术</option>
+            <option value="5">住院</option>
+        </select></label></span>
+        <span class="yb-form-condition">注册时间
+            <label><input type="text" class="form-control" name="startDate" id="customerMinDate"  onclick="WdatePicker({errDealMode:1,maxDate:'#F{$dp.$D(\'customerMaxDate\')||\'%y-%M-%d\'}'})" placeholder="请选择开始时间"/></label>-
+            <label><input type="text" class="form-control" id="customerMaxDate" name="endDate" onclick="WdatePicker({minDate:'#F{$dp.$D(\'customerMinDate\')}',maxDate:'%y-%M-%d'})" placeholder="请选择开始时间" /></label></span>
+        </span>
+        <button ng-click="query()" class="btn btn-sm btn-info btn-search">查询</button>
+    </div>
+    <div class="table-area">
+        <table class="table table-striped">
+            <thead>
+                <th>申请ID</th>
+                <th>用户姓名</th>
+                <th>用户手机</th>
+                <th>患者姓名</th>
+                <th>申请类型</th>
+                <th>申请时间</th>
+                <th>申请状态</th>
+                <th>助理姓名</th>
+                <th>纪经人</th>
+                <th>操作</th>
+            </thead>
+            <tbody>
+            <tr ng-repeat="row in rows">
+                <td>{{row.applyId}}</td>
+                <td >{{row.customerName}}</td>
+                <td >{{row.customerPhone}}</td>
+                <td >{{row.patientName}}</td>
+                <td >{{row.applyTypeStr}}</td>
+                <td >{{row.createTimeStr}}</td>
+                <td >{{row.applyStatusStr}}</td>
+                <td >{{row.brokerName}}</td>
+                <td >{{row.brokerName}}</td>
+                <td ng-click="applyInfo(row)"><span class="tr-operate-area">{{row.operate }}</span></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" ng-change="pageChanged(page)" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages"></pagination>
+</div>

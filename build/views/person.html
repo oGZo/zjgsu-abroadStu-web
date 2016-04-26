@@ -1,0 +1,90 @@
+<div class="p-person">
+    <div class="g-page-area">
+        <div class="yb-page-title">
+            <span class="icon"><i class="yb-sprites-location"></i></span>
+            <span class="module">个人管理</span>
+            <span class="arrow">&gt;</span>
+            <span class="page">个人资料</span>
+        </div>
+    </div>
+    <div class="info data-area">
+        <div class="yb-view-title">
+            <span class="title">个人资料修改</span>
+        </div>
+        <div class="info_picture">
+            <div class="img-box">
+                <img src="{{imgPath}}" alt="助理头像" class="assistant-photo">
+            </div>
+            <button class="button" type="button" id="updatePhoto">修改头像</button>
+        </div>
+        <form action="">
+            <div class="info_cell">
+                <div class="title">账号</div>
+                <div class="" ng-bind="brokerPhone"></div>
+            </div>
+            <div class="info_cell">
+                <div class="title">昵称</div>
+                <span class="display-inline-block">
+                    <input type="text" ng-model="nickname" class="form-control name-input" maxlength="10"></span>
+            </div>
+            <div class="info_cell">
+                <div class="title">性别</div>
+                <input type="radio" name="sex" value="1" ng-model="sex"> 男
+                <input type="radio" name="sex" value="2" ng-model="sex"> 女
+            </div>
+            <div class="info_cell">
+                <div class="title">所在地</div>
+                <span class="display-inline-block"><select name="" ng-model="province" class="form-control"
+                        ng-options="province.provinceId as province.name for province in provinceList"></select></span><span class="display-inline-block">
+                <select name="" class="form-control" ng-model="city" ng-options="city.cityId as city.name for city in cityList"></select></span>
+            </div>
+            <div class="info_cell">
+                <div class="title">医院偏好</div>
+                <div class="content">
+                    <span class="display-inline-block"><select ng-model="PCHProvince" class="form-control"
+                            ng-options="PCHProvince.name for PCHProvince in PCHProvinceList"></select></span>
+                    <span class="display-inline-block"><select name="" ng-model="PCHCity" class="form-control" ng-options="PCHCity.name for PCHCity in PCHCityList"></select></span>
+                    <button type="button" ng-click="selectPCHHospital()" class="info_cell_select-btn">医院</button>
+                </div>
+            </div>
+            <div class="info_cell">
+                <div class="title">科室偏好</div>
+                <div class="content">
+                    <span class="display-inline-block"><select name="" ng-model="firstItem" class="form-control"
+                            ng-options="firstItem.name for firstItem in firstItemList"></select></span>
+                    <!--<select name="" ng-model="secondItem"-->
+                            <!--ng-options="secondItem.name for secondItem in secondItemList"></select>-->
+                    <button type="button" ng-click="selectItem()" class="info_cell_select-btn">科室</button>
+                </div>
+            </div>
+            <div class="info_cell">
+                <div class="title">服务标签</div>
+                <div class="content">
+                    <div class="info_cell_tag-area">
+                        <div class="tag" ng-repeat=" tag in tagList track by tag.tagId">
+                            <span ng-bind="tag.name"></span>
+                            <div class="delete-btn" ng-click="deleteTag($index)">&times;</div>
+                        </div>
+                        <input ng-show="tagList.length < 5" type="text" class="input" maxlength="4" placeholder="最多4个字" ng-model="customTag">
+                    </div>
+                    <div class="info_cell_tag-tip">标签上限为5个<span class="hide">(多个分类之间用","分隔)</span></div>
+                    <div class="info_cell_choice-area">
+                        <div ng-repeat="choice in choiceList" ng-click="selectTag($index)"
+                             class="choice" ng-bind="choice.name"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="info_cell">
+                <div class="title">简要介绍</div>
+                <div class="content">
+                    <span class="display-inline-block"><textarea name="" class="info_cell_desc form-control" ng-bind="desc" ng-model="desc"
+                              maxlength="{{maxDescLength}}" placeholder="不超过{{maxDescLength}}个字符的个人介绍"></textarea></span>
+                    <div class="info_cell_desc-tip">还可以输入 <span ng-bind="descLength" class="num"></span> 字符</div>
+                </div>
+            </div>
+            <div class="info_button-area">
+                <button class="submit-btn" type="button" ng-click="submitInfo()">确定</button>
+            </div>
+        </form>
+    </div>
+</div>

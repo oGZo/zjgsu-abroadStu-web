@@ -1,0 +1,117 @@
+<div class="g-page-area">
+    <div class="yb-page-title">
+        <span class="icon"><i class="yb-sprites-location"></i></span>
+        <span class="module">用户管理</span>
+        <span class="arrow">&gt;</span>
+        <span class="page">电话咨询列表</span>
+    </div>
+</div>
+<div class="data-area p-consultPhone">
+    <div class="yb-view-title">
+        <span class="title">电话咨询列表</span>
+    </div>
+    <div class="data-container">
+        <div class="table-area">
+            <table class="table table-striped">
+                <thead>
+                <th>用户ID</th>
+                <th>用户名</th>
+                <th>电话号码</th>
+                <th>咨询内容</th>
+                <th>申请时间</th>
+                <th>咨询状态</th>
+                <th>操作</th>
+                </thead>
+                <tbody>
+                <tr ng-repeat="row in rows">
+                    <td>{{row.customerUserId}}</td>
+                    <td>{{row.customerName}}</td>
+                    <td>{{row.customerPhone}}</td>
+                    <td class="max-width">{{row.desc}}</td>
+                    <td>{{row.createTime|date:'yyyy.MM.dd'}}</td>
+                    <td ng-class="{'red-color':row.status==1,'green-color':row.status>1}">{{row.statusStr}}</td>
+                    <td><span ng-click="operatePhone(row)" class="tr-operate-area">{{row.operateStr}}</span></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize"
+                    ng-change="pageChanged(page)" class="pagination-sm" boundary-links="true" rotate="false"
+                    num-pages="numPages"></pagination>
+    </div>
+</div>
+<script type="text/ng-template" id="consultPhoneDetail">
+    <div class="m-dialog dialog-min-width">
+        <div class="head">咨询详情</div>
+        <div class="body">
+            <dl class="cell border-bottom">
+                <dt class="title">用户名</dt>
+                <dd class="content high">[%= phoneDetail.customerName %]</dd>
+            </dl>
+            <dl class="cell border-bottom">
+                <dt class="title">问题描述</dt>
+                <dd class="content high">[%= phoneDetail.desc %]</dd>
+            </dl>
+            <dl class="cell border-bottom hide">
+                <dt class="title">会员问题</dt>
+                <dd class="content high">[%= phoneDetail.question %]</dd>
+            </dl>
+            <dl class="cell border-bottom">
+                <dt class="title">回答描述</dt>
+                <dd class="content high">[%= phoneDetail.answer %]</dd>
+            </dl>
+        </div>
+        <div class="foot">
+            <button type="button" class="cancel-btn-dark J_cancelDetail" ng-click="closeThisDialog()">关闭</button>
+        </div>
+    </div>
+
+</script>
+<script type="text/ng-template" id="consultPhoneInfo">
+    <div class="m-dialog dialog-min-width">
+        <form id="J_consultPhoneInfoForm" data-id="[%= phoneDetail.id %]">
+            <div class="head">咨询详情</div>
+            <div class="body">
+                <dl class="cell border-bottom">
+                    <dt class="title">用户名</dt>
+                    <dd class="content high">[%= phoneDetail.customerName %]</dd>
+                </dl>
+                <dl class="cell border-bottom">
+                    <dt class="title">问题描述</dt>
+                    <dd class="content high">[%= phoneDetail.desc %]</dd>
+                </dl>
+                <dl class="cell border-bottom hide">
+                    <dt class="title">会员问题</dt>
+                    <dd class="content">
+                        <textarea name="question" class="form-control" cols="30"
+                                  rows="4">[%= phoneDetail.question %]</textarea>
+                    </dd>
+                </dl>
+                <dl class="cell border-bottom">
+                    <dt class="title">回答描述</dt>
+                    <dd class="content">
+                            <textarea name="answer" class="form-control" cols="30"
+                                      rows="4">[%= phoneDetail.answer %]</textarea>
+                    </dd>
+                </dl>
+                <dl class="cell border-bottom">
+                    <dt class="title">咨询记录</dt>
+                    <dd class="content high">
+                        [% if(phoneDetail.patientId){ %]
+                        <label>
+                            <input type="checkbox" name="addRecord" value=true>
+                            将此次咨询添加到健康档案中
+                        </label>
+                        [% } else { %]
+                        该咨询没有患者,无法添加咨询记录
+                        [% } %]
+                    </dd>
+                </dl>
+            </div>
+            <div class="foot">
+                <button type="submit" class="confirm-btn">确定</button>
+                <button type="button" class="cancel-btn-dark J_cancelInfo">关闭</button>
+            </div>
+        </form>
+    </div>
+</script>

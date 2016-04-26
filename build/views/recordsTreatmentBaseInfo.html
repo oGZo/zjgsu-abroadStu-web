@@ -1,0 +1,25 @@
+<div >
+    <ul class="order-list-con">
+        <li><span class="tit">病   程</span><span class="con" ><label><select class="form-control" >
+            <option ng-repeat="pathogenesis in pathogenesisList" value="{{pathogenesis.id}}"  ng-selected="pathogenesis.id==pathogenesisId">{{pathogenesis.name + pathogenesis.beginDate }}</option>
+        </select></label></span></li>
+        <li><span class="tit">类   型</span><span class="con" ><label><select class="form-control">
+            <option value="1" ng-selected="subType==1">门诊</option>
+            <option value="2" ng-selected="subType==2">检查</option>
+            <option value="5" ng-selected="subType==5">住院</option>
+        </select></label></span></li>
+        <li><span class="tit">跟踪人</span><span class="con" ng-bind="basicInfo.operatorName"></span></li>
+    </ul>
+    <div class="order-list-con">
+        <span class="tit textarea-title">病程描述</span><span class="con" ><label ><textarea class="form-control">{{currentPathogenesis.desc}}</textarea></label></span>
+    </div>
+</div>
+<ul class="order-list-con">
+    <li><span class="tit">就诊时间</span><span class="con" ng-bind="basicInfo.visitTime|date:'yyyy-MM-dd'"></span></li>
+    <li data-id="{{basicInfo.doctorId}}"><span class="tit">医生</span><span class="con" ng-bind="basicInfo.doctorName"></span></li>
+    <li><span class="tit">科室</span><span class="con" ng-bind="basicInfo.item"></span></li>
+</ul>
+<ul class="order-list-con">
+    <li data-id="{{basicInfo.hospitalId}}"><span class="tit">医院</span><span class="con" ng-bind="basicInfo.hospitalName"></span></li>
+    <li><span class="tit">出诊地点</span><span class="con" ng-bind="basicInfo.treatmentAddress"></span></li>
+</ul>

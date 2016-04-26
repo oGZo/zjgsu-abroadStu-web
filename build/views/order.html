@@ -1,0 +1,101 @@
+<div class="p-order ">
+    <div class="g-page-area">
+        <div class="yb-page-title">
+            <span class="icon"><i class="yb-sprites-location"></i></span>
+            <span class="module">预约管理</span>
+            <span class="arrow">&gt;</span>
+            <span class="page">预约资料</span>
+        </div>
+    </div>
+
+    <div class="data-area">
+        <div class="yb-view-title">
+            <span class="title">预约列表</span>
+        </div>
+        <div class="data-container">
+            <div class="yb-search-group" id="customerSearchForm">
+                <span class="yb-form-condition">用户名<label><input type="text" class="form-control" name="customerName"
+                                                                 placeholder="请输入"/></label></span><span class="yb-form-condition">患者姓名<label><input type="text" class="form-control" name="patientName"
+                                                                  placeholder="请输入"/></label></span><span class="yb-form-condition">就诊时间<label><input type="text" class="form-control" name="visitStartTime" id="treatmentMinDate"
+                                  onclick="WdatePicker({errDealMode:1,maxDate:'#F{$dp.$D(\'treatmentMAxDate\')}'})"
+                                  placeholder="请选择"/></label>-<label><input type="text" class="form-control" id="treatmentMAxDate" name="visitEndTime"
+                                  onclick="WdatePicker({errDealMode:1,minDate:'#F{$dp.$D(\'treatmentMinDate\')}'})"
+                                  placeholder="请选择"/></label></span>
+                </span><span class="yb-form-condition">预约类型 <label><select class="form-control" name="commodityType" placeholder="请选择">
+                    <option value="">全部</option>
+                    <option value="1">门诊</option>
+                    <option value="2">检查</option>
+                    <!--<option value="3">代问诊</option>-->
+                    <!--<option value="4">手术</option>-->
+                    <!--<option value="5">住院</option>-->
+                </select></label></span><span class="yb-form-condition">预约时间<label><input type="text" class="form-control" name="saveOrderStartTime" id="orderMinDate"
+                                  onclick="WdatePicker({errDealMode:1,maxDate:'#F{$dp.$D(\'orderMaxDate\')}'})"
+                                  placeholder="请选择"/></label>-<label><input type="text" class="form-control" id="orderMaxDate" name="saveOrderEndTime"
+                                  onclick="WdatePicker({errDealMode:1,minDate:'#F{$dp.$D(\'orderMinDate\')}'})"
+                                  placeholder="请选择"/></label></span>
+                </span>
+                <button ng-click="query()" class="btn btn-sm btn-search">查询</button>
+
+            </div>
+            <div class="table-area">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>订单号</th>
+                        <th>用户姓名</th>
+                        <th>用户手机</th>
+                        <th>患者姓名</th>
+                        <th>预约类型</th>
+                        <th>所在医院</th>
+                        <th>服务内容</th>
+                        <th>就诊时间</th>
+                        <th>下单时间</th>
+                        <th>支付金额</th>
+                        <th>预约状态</th>
+                        <th>助理姓名</th>
+                        <th>经纪人</th>
+                        <!--<th>就诊记录</th>-->
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="row in rows">
+                        <td ng-bind="row.orderSn"></td>
+                        <td ng-bind="row.customerName"></td>
+                        <td ng-bind="row.customerPhone"></td>
+                        <td >
+                            <a href="javascript:void(0)" ng-click="goOtherPage('healthFile',row)">
+                                {{row.patientName}}
+                            </a>
+                        </td>
+                        <td ng-bind="row.type"></td>
+                        <td>
+                            <span  ng-bind="row.hospitalName"></span>
+                        </td>
+                        <td ng-bind="row.content"></td>
+                        <td ng-bind="row.visitTime|date:'yyyy.MM.dd'"></td>
+                        <td ng-bind="row.createTime|date:'yyyy.MM.dd'"></td>
+                        <td ng-bind="row.orderAmount"></td>
+                        <td ng-bind="row.status"></td>
+                        <td >{{row.assistantName}}</td>
+                        <td ng-bind="row.brokerName"></td>
+                        <td>
+                            <a href="javascript:void(0)" ng-click="goOtherPage('orderDetail',row)">明细日志</a>
+                            <a  ng-show="row.status=='待安排'||row.status=='待就诊'" href="javascript:void(0)" ng-click="changeAssistant(row)">更换助理</a>
+                            <a href="javascript:void(0)" ng-show="row.recordId" ng-click="goOtherPage('recordsTreatment',row)">查看就诊记录</a>
+                            <a href="javascript:void(0)" ng-show="!row.recordId&&(row.status=='待安排'||row.status=='待就诊'||row.status=='待评价'||row.status=='已完成')" ng-click="goOtherPage('recordsTreatmentAddDetail',row)">添加就诊记录</a>
+                        </td>
+                    </tr>
+                    <tr ng-if="!rows.length">
+                        <td colspan="14">暂无订单</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize"
+                        ng-change="pageChanged(page)" class="pagination-sm" boundary-links="true" rotate="false"
+                        num-pages="numPages"></pagination>
+        </div>
+        <!--</div>-->
+    </div>
+</div>

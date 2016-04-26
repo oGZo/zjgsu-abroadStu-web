@@ -1,0 +1,25 @@
+<div class="m-dialog J_selectHospitalDialog">
+    <form class="J_selectHospitalForm">
+        <div class="head">偏好医院</div>
+        <div class="body">
+            <% for( var i = 0, len = PCHHospitalList.length; i < len; i++){ %>
+            <% var item = PCHHospitalList[i]; %>
+            <div class="cell">
+                <label>
+                    <input type="checkbox" value="<%= i %>" class="J_checkbox"
+                            <% if(item.isChecked){ %>
+                           checked
+                            <% } %>
+                    >
+                    &nbsp;
+                    <span><%= item.name %></span>
+                </label>
+            </div>
+            <% } %>
+        </div>
+        <div class="foot">
+            <button type="submit" class="confirm-btn">提交</button>
+            <button type="button" class="cancel-btn J_cancel">取消</button>
+        </div>
+    </form>
+</div>

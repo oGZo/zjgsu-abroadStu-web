@@ -1,0 +1,27 @@
+<div class="m-dialog ">
+    <form class="J_assistantListForm ">
+        <div class="head">
+            请选择助理
+        </div>
+        <div class="body">
+            <form >
+                <div class="cell">
+                    <ul>
+
+                    <% for(var i = 0,brokerListLength = brokerList.length; i < brokerListLength; i++){ %>
+                        <% var item = brokerList[i]; %>
+                        <li>
+                            <label ><input  type="radio" name="assistantUserId" value="<%= item.userId %>"  <% if (item.userId == assistUserId) { %> checked="checked" <% } %> /> <%= item.nickName %></label>
+                        </li>
+                    <% } %>
+                    </ul>
+                </div>
+
+            </form>
+        </div>
+        <div class="foot">
+            <button type="button" class="confirm-btn" >确定</button>
+            <button type="button" class="cancel-btn J_cancel">取消</button>
+        </div>
+    </form>
+</div>

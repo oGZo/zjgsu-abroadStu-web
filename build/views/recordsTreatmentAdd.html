@@ -1,0 +1,101 @@
+<div class="p-recordsTreatmentAdd">
+    <div class="g-page-area">
+        <div class="yb-page-title">
+            <span class="icon"><i class="yb-sprites-location"></i></span>
+            <span class="module">患者资料</span>
+            <span class="arrow">&gt;</span>
+            <span class="page">添加就诊记录</span>
+        </div>
+    </div>
+    <div class="data-area">
+        <div class="yb-view-title">
+            <span class="title">添加就诊记录</span>
+            <div class="fr">
+                <button class="btn btn-edit mr-d" ng-click="addTreatment()">确认保存</button>
+                <span class="cursor-p" ng-click="cancel()">取消</span>
+            </div>
+        </div>
+        <div class="data-container order-data-list">
+            <div class="form-row"><span class="form-tit">关联订单</span> <label ><input type="text" class="form-control"  id="orderStartDate" maxDate="#F{$dp.$D('orderEndDate')}" my97datepicker ng-model="beginDate"   placeholder="请选择起始时间"/></label>
+                <label>
+                <input type="text" class="form-control" my97datepicker ng-model="endDate" id="orderEndDate" minDate="#F{$dp.$D('orderStartDate')}" placeholder="请选择结束时间" />
+            </label>
+                <button ng-click="queryOrder(1);" class="btn btn-edit">查找</button>
+            </div>
+            <div class="table-area">
+                <form action="">
+                <table class="table customer-table" ng-hide="!rows">
+                    <thead>
+                    <th class="first-th" >选择</th>
+                    <th class="th-2">服务类型</th>
+                    <th class="th-3">就诊时间</th>
+                    <th class="th-4">订单状态</th>
+                    <th class="th-5">导诊人员</th>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="row in rows">
+                        <td  ng-click="checkedRow($event,row)"> <input type="radio" name="orderIdCheckbox" class="{{ row.isAdd == 0?'':'hide' }}" value="{{row.orderId}}" /></label></td>
+                        <td ><span class="type-name" ng-click="goOrderDetail(row)">{{row.typeName}}</span></td>
+                        <td >{{row.visitTime|date:'yyyy.MM.dd'}}</td>
+                        <td >{{row.status}}</td>
+                        <td >{{row.operatorChName}}</td>
+                    </tr>
+                    <tr ng-if="!rows.length">
+                        <td colspan="5">无相关订单数据</td>
+                    </tr>
+                    </tbody>
+                </table>
+                </form>
+            </div>
+            <div ng-show="orderShowFlag">
+                <pagination  total-items="bigTotalItems" ng-model="bigCurrentPage" items-per-page="itemsPerPage" max-size="maxSize" ng-change="pageChanged(page)" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages"></pagination>
+            </div>
+        </div>
+        <div class="data-container">
+            <div class="order-list">
+                <div class="order-list-title">基本信息</div>
+                <div class="order-list-con">
+                    <table class="form-table">
+                        <tbody>
+                        <tr>
+                            <td class="min-li"><span class="form-tit">所属病程</span><label class="mr-d"><select class="form-control" id="pathogenesisIdOption"  ng-model="formData.pathogenesisId">
+                                <option ng-repeat="pathogenesis in pathogenesisList"  value="{{pathogenesis.id}}" ng-selected="pathogenesis.id== formData.pathogenesisId" >{{(pathogenesis.beginDateTimeStamp|date:'yyyy-MM-dd')+' '+pathogenesis.name}}</option>
+                            </select></label><button ng-click="addPathogenesis()" class="btn btn-edit">添加新病程</button></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><span class="form-tit">病程描述</span><div class="form-con">{{formData.pathogenesis.desc}}</div></td>
+                        </tr>
+                        <tr>
+                            <td><span class="form-tit">就诊类型</span><label><select class="form-control" ng-disabled="formData.orderId&&formData.type==1||formData.type==2||formData.type==5" ng-model="formData.subType">
+                                <option value=""  ng-selected="formData.type!=1&&formData.type!=2&&formData.type!=5"></option>
+                                <option ng-repeat="subTypeObj in subTypeList" value="{{subTypeObj.id}}" ng-selected="subTypeObj.id==formData.type">{{subTypeObj.text}}</option>
+                            </select></label></td>
+                            <td><span class="form-tit">就诊时间</span><label><input type="text" class="form-control"  name="visitTime" ng-disabled="formData.orderId&&formData.visitTime" my97datepicker placeholder="请选择就诊时间" ng-model="formData.visitTime" value="{{formData.visitTime|date:'yyyy-MM-dd'}}"/></label>
+                            </td>
+                        </tr>
+                        <!--<tr>-->
+                            <!-- -->
+                        <!--</tr>-->
+                        <tr>
+                            <td ng-show="false"><span class="form-tit">跟踪人</span><label>
+                                <!--<label><select class="form-control" ng-model="formData.lastOperateUserId" ng-disabled="formData.orderId" placeholder="跟踪人不能为空">-->
+                                <!--<option value="1">三七</option></select></label>-->
+                                <input type="text" class="form-control" placeholder="请输入跟踪人" ng-model="formData.lastOperateUserName" ng-disabled="formData.orderId&&formData.lastOperateUserName"/></label>
+                            </td>
+                            <td><span class="form-tit">科室</span><label><input class="form-control" maxlength="10" placeholder="请输入科室" ng-model="formData.item" value="{{formData.itemName}}" ng-disabled="formData.orderId"/></label></td>
+                        </tr>
+                        <tr>
+                            <td><span class="form-tit">医生</span><label><input type="text" maxlength="10" class="form-control" placeholder="请输入医生" value="{{formData.doctorName}}" ng-model="formData.doctorName" ng-disabled="formData.orderId" /></label></td>
+                            <td><span class="form-tit">医院</span><label><input class="form-control"  maxlength="20" ng-model="formData.hospitalName" placeholder="请输入医院" value="{{formData.hospitalName}}" ng-disabled="formData.orderId"/></label></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><span class="form-tit">出诊地点</span><label><textarea placeholder="请输入出诊地点" maxlength="100" class="form-control" value="{{formData.treatmentAddress}}" ng-model="formData.treatmentAddress" ng-disabled="formData.orderId" ></textarea></label></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+        </div>
+    </div>
+</div>
+</div>

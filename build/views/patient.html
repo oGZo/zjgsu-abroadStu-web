@@ -1,0 +1,38 @@
+<div class="g-page-area">
+    <div class="yb-page-title">
+        <span class="icon"><i class="yb-sprites-location"></i></span>
+        <span class="module">用户管理</span>
+        <span class="arrow">&gt;</span>
+        <span class="page">患者列表</span>
+    </div>
+</div>
+<div class="data-area p-patient">
+    <div class="yb-view-title">
+        <span class="title">患者列表</span>
+    </div>
+    <div class="data-container">
+        <div class="table-area">
+            <table class="table table-striped">
+                <thead>
+                    <th>用户ID</th>
+                    <th>患者姓名</th>
+                    <th>会员身份</th>
+                    <th>添加日期</th>
+                    <!--<th>联系电话</th>-->
+                    <!--<th>健康档案</th>-->
+                </thead>
+                <tbody>
+                <tr ng-repeat="row in rows">
+                    <td>{{row.customerId}}</td>
+                    <td ng-click="goHealthFile(row)" class="link">{{row.name}}</td>
+                    <td >{{row.membershipType}}</td>
+                    <td >{{row.createTime|date:'yyyy.MM.dd'}}</td>
+                    <!--<td >{{}}</td>-->
+                    <!--<td ><span class="tr-operate-area">查看档案</span></td>-->
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" ng-change="pageChanged(page)" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages"></pagination>
+    </div>
+</div>

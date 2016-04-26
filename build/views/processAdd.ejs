@@ -1,0 +1,34 @@
+<div class="m-dialog process-add-dialog">
+    <form class="J_taskDetailForm">
+        <div class="head">
+            添加病程
+        </div>
+        <div class="body">
+            <!--自定义任务-->
+            <div>
+                <div class="cell">
+                    <div class="title high">病程名称</div>
+                    <div class="content">
+                        <label ><input type="text" name="pathogenesis" value="" placeholder="病程名称" class="form-control" maxlength="10" data-require="病程名不能为空" ></label>
+                    </div>
+                </div>
+                <div class="cell">
+                    <div class="title high">病程时间</div>
+                    <div class="content">
+                        <label><input type="text" name="startDate" value="" class="form-control" placeholder="病程时间" onclick="WdatePicker({errDealMode:1,dateFmt:'yyyy-MM-dd'})" data-require="开始时间不能为空" /></label>
+                    </div>
+                </div>
+                <div class="cell">
+                    <div class="title high">病程描述</div>
+                    <div class="content">
+                        <label><textarea name="desc" class="form-control" placeholder="针对这该疾病，多次就诊、咨询、随访情况的概述" maxlength="1000" data-require="病程描述不能为空" ></textarea></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="foot">
+            <button type="button" class="confirm-btn" >确定</button>
+            <button type="button" class="cancel-btn J_cancel">取消</button>
+        </div>
+    </form>
+</div>

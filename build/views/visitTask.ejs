@@ -1,0 +1,54 @@
+<div class="m-dialog ">
+    <form class="J_taskDetailForm visit-task-dialog">
+        <div class="head">
+            <input type="text" name="name" class="input J_name" placeholder="随访任务" maxlength="10" value="<%= task.name %>" data-empty="随访任务不能为空">
+        </div>
+        <div class="body">
+            <textarea name="comment" class="textarea" placeholder="任务描述" maxlength="1000" data-empty="任务描述不能为空"><%= task.comment %></textarea>
+            <div>
+                <div class="cell">
+                    <div class="title high">跟踪人</div>
+                    <div class="content">
+                        <label ><select name="assistUserId" class="form-control" data-empty="跟踪人不能为空">
+                                <% for(var i = 0; i < brokerListLength; i++){ %>
+                                <% var item = brokerList[i]; %>
+                                <option value="<%= item.userId %>"
+                                        <% if (item.userId == task.assistUserId||item.userId==assistantUserId) { %>
+                                        selected
+                                        <% } %>
+                                        ><%= item.nickName %></option>
+                                <% } %>
+                            </select></label>
+                    </div>
+                </div>
+                <% if(task.id){%>
+                <div class="cell">
+                    <div class="title high">状态</div>
+                    <div class="content">
+                        <label ><select name="status" class="form-control" data-empty="状态不能为空" >
+                                <% for(var i = 0,statusLength = taskStatusList.length; i < statusLength; i++){ %>
+                                <% var item = taskStatusList[i]; %>
+                                <option value="<%= item.id %>"
+                                        <% if (item.id == task.status) { %>
+                                        selected
+                                        <% } %>
+                                        ><%= item.text %></option>
+                                <% } %>
+                            </select></label>
+                    </div>
+                </div>
+                <%}%>
+                <div class="cell">
+                    <div class="title high">时间</div>
+                    <div class="content">
+                        <label><input type="text" class="form-control" name="date" value="<%= task.time %>" onclick="WdatePicker({startDate:'%y-%M-%d 18:00:00',errDealMode:1,minDate:'%y-%M-%d',dateFmt:'yyyy-MM-dd HH:mm'})" data-empty="随访时间不能为空"/></label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="foot">
+            <button type="button" class="confirm-btn" >确定</button>
+            <button type="button" class="cancel-btn J_cancel">取消</button>
+        </div>
+    </form>
+</div>

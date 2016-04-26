@@ -1,0 +1,25 @@
+<div class="p-course">
+    <div class="g-page-area">
+        <div class="yb-page-title">
+            <span class="icon"><i class="yb-sprites-location"></i></span>
+            <span class="module">健康档案</span>
+            <span class="arrow">&gt;</span>
+            <span class="page">病程</span>
+        </div>
+    </div>
+    <div class="J_health" ng-controller="HealthModuleViewController"></div>
+    <div class="data-area pr">
+        <div class="yb-view-title">
+            <span class="title" ng-bind="(pathogenesis.beginDate|date:'yyyy-MM-dd')+' 病程名：'+pathogenesis.name">{{pathogenesis.beginDate|date:'yyyy-MM-dd'}} {{pathogenesis.name}}</span>
+        </div>
+        <ul class="record-nav" ng-show="currentType">
+            <li ng-repeat="record in records" ng-click="changeRecord(record,$event)" ng-class="{current: currentRecordId==record.recordId}" data-id="{{record.recordId}}"><p>{{(record.visitTime|date:'yyyy-MM-dd')}} {{record.typeName}}</p></li>
+        </ul>
+        <div class="data-area data-module-area pr J_medical-records" ng-show="currentType==1" ng-controller="MedicalRecordsModuleViewController"></div>
+        <div class="data-area data-module-area pr J_visit-records" ng-show="currentType==2" ng-controller="VisitRecordsModuleViewController"></div>
+        <div class="data-area data-module-area pr J_consult-records" ng-show="currentType==3" ng-controller="ConsultRecordsModuleViewController"></div>
+        <div class="no-record" ng-show="!currentType">
+            该病程暂无健康记录
+        </div>
+    </div>
+    </div>

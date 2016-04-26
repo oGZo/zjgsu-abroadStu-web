@@ -1,0 +1,29 @@
+//{{ version }}
+//{{ hash }}	Hash of the sprite
+//{{ name }}	Name of the sprite
+//{{ sprite_path }}	Sprite path
+//{{ sprite_filename }}	Sprite filename
+//{{ width }}	Sprite width
+//{{ height }}	Sprite height
+//{{ ratio }}	Sprite height
+
+[class*='yb-sprites-']{
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    font-size: 0;
+    background-size: {{ width }}px {{ height }}px;
+    background-repeat: no-repeat;
+    background-image:url('../images/sprites.png');
+}
+
+
+{% for image in images %}
+    .{{ image.label }}{{ image.pseudo }}{
+        background-position:{{ image.x ~ ('px' if image.x) }} {{ image.y ~ ('px' if image.y) }};
+        width:{{ image.width }}px;
+        height:{{ image.height }}px;
+    }
+{% endfor %}
+
+

@@ -1,0 +1,21 @@
+<div class="preview-dialog">
+    <span class="close-preview close-btn"><i class="yb-sprites-preview-close"></i></span>
+    <div class="preview-operate">
+        <span class="prev-preview left-btn" title="上一张"><i class="yb-sprites-large-left"></i></span>
+        <span class="next-preview right-btn" title="下一张"><i class="yb-sprites-large-right"></i></span>
+    </div>
+    <div class="preview-img-list">
+        <ul>
+            <% $.each(arr,function(i,v){%>
+                <li class="<%= current==i?'':'hide' %>"><div class="img-main-area"><div class="img-area"><img src="images/loading.gif" alt="" data-src="<%= v.src %>" data-flag/></div></div></li>
+            <% }) %>
+        </ul>
+    </div>
+    <div class="preview-bottom-operate ">
+        <span class="prev-preview" title="上一张"><i class="yb-sprites-little-left"></i></span>
+        <span class="next-preview" title="下一张"><i class="yb-sprites-little-right"></i></span>
+        <span class="left-preview" title="左翻转"><i class="yb-sprites-rotate-left"></i></span>
+        <span class="right-preview" title="右翻转"><i class="yb-sprites-rotate-right"></i></span>
+        <span class="close-preview" ><i class="yb-sprites-preview-close"></i></span>
+    </div>
+</div>

@@ -1,0 +1,218 @@
+<div class="p-orderDetail ">
+    <div class="g-page-area">
+        <div class="yb-page-title">
+            <span class="icon"><i class="yb-sprites-location"></i></span>
+            <span class="module">预约管理</span>
+            <span class="arrow">&gt;</span>
+            <span class="page">预约资料</span>
+        </div>
+    </div>
+    <div class="data-area">
+        <div class="yb-view-title">
+            <span class="title">预约详情</span>
+        </div>
+        <div class="data-container">
+            <div class="order-list">
+                <div class="order-list-title">用户信息</div>
+                <ul class="order-list-con">
+                    <li><span class="tit">用户ID</span><span class="con" ng-bind="order.customerId"></span></li>
+                    <li><span class="tit">用户姓名</span><span class="con" ng-bind="order.customerName"></span></li>
+                    <li><span class="tit">用户手机</span><span class="con" ng-bind="order.customerPhone"></span></li>
+                    <li><span class="tit">所在城市</span><span class="con" ng-bind="order.customerCity"></span></li>
+                </ul>
+            </div>
+            <div class="order-list">
+                <div class="order-list-title">服务信息</div>
+                <ul class="order-list-con">
+                    <li><span class="tit">服务ID</span><span class="con" ng-bind="order.commodityId"></span></li>
+                    <li><span class="tit">服务价格</span><span class="con" ng-bind="order.commodityPrice"></span></li>
+                    <li><span class="tit">就诊时间</span><span class="con" ng-bind="order.visitTime+' 周'+ order.weekText + ' ' + order.periodText "></span></li>
+                    <li><span class="tit">出诊地点</span><span class="con" ng-bind="order.location"></span></li>
+                </ul>
+            </div>
+            <div class="order-list" ng-show="order.type==1">
+                <div class="order-list-title">医生信息</div>
+                <ul class="order-list-con">
+                    <li><span class="tit">医生ID</span><span class="con" ng-bind="order.doctorId"></span></li>
+                    <li><span class="tit">医生姓名</span><span class="con" ng-bind="order.doctorName"></span></li>
+                    <li><span class="tit">所在类目</span><span class="con" ng-bind="order.itemName"></span></li>
+                    <li><span class="tit">医生职称</span><span class="con" ng-bind="order.doctorTitle"></span></li>
+                    <li><span class="tit">所在医院</span><span class="con" ng-bind="order.hospitalName"></span></li>
+                </ul>
+            </div>
+            <div class="order-list">
+                <div class="order-list-title">经纪人信息</div>
+                <ul class="order-list-con">
+                    <li><span class="tit">经纪人ID</span><span class="con" ng-bind="order.brokerId"></span></li>
+                    <li><span class="tit">经济人姓名</span><span class="con" ng-bind="order.brokerName"></span></li>
+                    <li><span class="tit">经纪人电话</span><span class="con" ng-bind="order.brokerPhone"></span></li>
+                    <li><span class="tit">经纪人昵称</span><span class="con" ng-bind="order.brokerNickName"></span></li>
+                </ul>
+            </div>
+            <div class="order-list">
+                <div class="order-list-title">订单信息</div>
+                <ul class="order-list-con">
+                    <li><span class="tit">订单ID</span><span class="con" ng-bind="order.orderId"></span></li>
+                    <li><span class="tit">下单时间</span><span class="con" ng-bind="order.createTime"></span></li>
+                    <li><span class="tit">订单状态</span><span class="con" ng-bind="order.orderStatusText"></span></li>
+                </ul>
+            </div>
+            <div class="order-list">
+                <div class="order-list-title">助理安排信息</div>
+                <ul class="order-list-con">
+                    <li>
+                        <p><span class="tit">导诊人员</span><span class="con" ng-bind="order.operatorChName"></span></p>
+                        <p><span class="tit">注意事项</span><span class="con" ng-bind="order.tips"></span></p>
+                    </li>
+                    <li>
+                        <p><span class="tit">助理电话</span><span class="con" ng-bind="order.operatorPhone"></span></p>
+                    </li>
+                    <li>
+                        <p><span class="tit">取号方式</span><span class="con" ng-bind="order.wayOfTakenNo"></span></p>
+                    </li>
+                    <li>
+                        <p><span class="tit">预约就诊时间</span><span class="con" ng-bind="order.estimateTime|date:'yy.MM.dd HH:mm:ss'"></span></p>
+                    </li>
+                </ul>
+            </div>
+            <div class="order-list">
+                <div class="order-list-title">患者信息</div>
+                <ul class="order-list-con">
+                    <li>
+                        <p><span class="tit">患者ID</span><span class="con" ng-bind="order.patientId"></span></p>
+                        <p><span class="tit">身份证号</span><span class="con" ng-bind="order.patientIdcard"></span></p>
+                        <p><span class="tit">会员类型</span><span class="con" ng-bind="order.memberShipTypeName"></span></p>
+                    </li>
+                    <li>
+                        <p><span class="tit">患者姓名</span><span class="con" ng-bind="order.patientName"></span></p>
+                        <p><span class="tit">医保号</span><span class="con" ng-bind="order.patientInsuranceNo"></span></p>
+                        <p><span class="tit">症状描述</span><span class="con" ng-bind="order.patientSymptom"></span></p>
+                    </li>
+                    <li>
+                        <p><span class="tit">患者性别</span><span class="con" ng-bind="order.patientSexText"></span></p>
+                        <p><span class="tit">联系人</span><span class="con" ng-bind="order.consignee"></span></p>
+                    </li>
+                    <li>
+                        <p><span class="tit">患者年龄</span><span class="con" ng-bind="order.patientAge"></span></p>
+                        <p><span class="tit">联系电话</span><span class="con" ng-bind="order.consigneePhone"></span></p>
+                    </li>
+                </ul>
+            </div>
+            <table class="order-table">
+                <thead>
+                <tr>
+                    <th>服务价格</th>
+                    <th>优惠金额</th>
+                    <th>活动优惠类型</th>
+                    <th>会员权益类型</th>
+                    <th>优惠支付类型</th>
+                    <th>实际支付</th>
+                    <th>退款金额</th>
+                    <th>经纪人结算</th>
+                    <th>经纪人实际收益</th>
+                    <th>入账流水</th>
+                    <th>结算流水</th>
+                    <th>资金状态</th>
+                    <th class="last-th">操作人</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td ng-bind="order.commodityPrice"></td>
+                    <td ng-bind="order.commodityPrice-order.orderAmount">order.commodityPrice-order.orderAmount</td>
+                    <td ng-bind="orderFavorableInfo.activityType">orderFavorableInfo.activityType</td>
+                    <td ng-bind="orderFavorableInfo.memberBenefitsType">orderFavorableInfo.memberBenefitsType</td>
+                    <td ng-bind="orderFavorableInfo.couponType">orderFavorableInfo.couponType</td>
+                    <td ng-bind="order.orderAmount" class="green-color">order.orderAmount</td>
+                    <td ng-bind="order.settlementSum" class="red-color">order.settlementSum</td>
+                    <td ng-bind="order.commodityPrice">order.commodityPrice</td>
+                    <td ng-bind="order.settlementSum">order.commodityPrice-order.settlementSum</td>
+                    <td ng-bind="order.paySn">order.wayOfTakenNo</td>
+                    <td ng-bind="order.settlementRecord">order.settlementRecord</td>
+                    <td ng-bind="order.capitalStatusStr">order.refundStatusText</td>
+                    <td ng-bind="order.operator"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="data-area">
+        <div class="yb-view-title">
+            <span class="title">订单状态</span>
+        </div>
+        <div class="data-container">
+            <table class="order-table">
+                <thead>
+                    <tr>
+                        <th>状态</th>
+                        <th>内容</th>
+                        <th>操作人</th>
+                        <th class="last-th">操作时间</th>
+                    </tr>
+                </thead>
+                <tbody >
+                    <tr ng-repeat="row in OrderStatusList">
+                        <td ng-bind="row.statusStr"></td>
+                        <td ng-bind="row.logMsg">100</td>
+                        <td ng-bind="row.operator">orderFavorableInfo.activityType</td>
+                        <td ng-bind="row.createTime|date:'yyyy.MM.dd HH:mm:ss'">orderFavorableInfo.memberBenefitsType</td>
+                    </tr>
+                    <tr ng-show="!OrderStatusList.length"><td colspan="4">暂无状态变化</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="data-area">
+        <div class="yb-view-title">
+            <span class="title">订单变更</span>
+        </div>
+        <div class="data-container">
+            <table class="order-table">
+                <thead>
+                <tr>
+                    <th>变更项目</th>
+                    <th>变更内容</th>
+                    <th>操作人</th>
+                    <th class="last-th">操作时间</th>
+                </tr>
+                </thead>
+                <tbody >
+                <tr ng-repeat="row in OrderChangeList">
+                    <td ng-bind="row.statusStr"></td>
+                    <td ng-bind="row.logMsg">100</td>
+                    <td ng-bind="row.operator">orderFavorableInfo.activityType</td>
+                    <td ng-bind="row.createTime|date:'yyyy.MM.dd HH:mm:ss'">orderFavorableInfo.memberBenefitsType</td>
+                </tr>
+                <tr ng-show="!OrderChangeList.length"><td colspan="4">无变更</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="data-area">
+        <div class="yb-view-title">
+            <span class="title">订单备注</span>
+            <div class="edit-area">
+                <button class="btn btn-default"  ng-click="addLogInfo(OrderRemarkList)">添加备注</button>
+            </div>
+        </div>
+        <div class="data-container">
+            <table class="order-table">
+                <thead>
+                <tr>
+                    <th>备注内容</th>
+                    <th>备注人</th>
+                    <th class="last-th">备注时间</th>
+                </tr>
+                </thead>
+                <tbody >
+                <tr ng-repeat="row in OrderRemarkList">
+                    <td ng-bind="row.logMsg"></td>
+                    <td ng-bind="row.operator"></td>
+                    <td ng-bind="row.createTime|date:'yyyy.MM.dd HH:mm:ss'"></td>
+                </tr>
+                <tr ng-show="!OrderRemarkList.length"><td colspan="3">无备注</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

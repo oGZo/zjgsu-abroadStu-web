@@ -1,0 +1,14 @@
+{
+    "develop": {
+        "url": "t."
+    },
+    "test": {
+        "url": "t."
+    },
+    "launch": {
+        "url": "t."
+    },
+    "online": {
+        "url": ""
+    }
+}

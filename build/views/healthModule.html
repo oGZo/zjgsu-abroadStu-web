@@ -1,0 +1,486 @@
+<div class="m-health" xmlns="http://www.w3.org/1999/html">
+    <div class="data-area">
+        <div class="yb-view-title">
+            <span class="title">患者信息</span>
+            <div class="right no-print">
+                <div  ng-if="!isModifyBaseInfo">
+                    <button type="button" ng-click="preModifyBaseInfo()" class="button white">
+                        <i class="icon yb-sprites-modify"></i>
+                        修改
+                    </button>
+                </div>
+                <div ng-if="isModifyBaseInfo">
+                    <button type="button" class="button blue low" ng-click="confirmModifyBaseInfo()">确定</button>
+                    <button type="button" class="button white low" ng-click="cancelModifyBaseInfo()">取消</button>
+                </div>
+            </div>
+        </div>
+        <div class="body">
+            <div ng-show="!isModifyBaseInfo">
+                <div class="show-row">
+                    <span class="text" ng-bind="patient.name"></span>
+                    <span class="text" ng-bind="patient.sexText"></span>
+                    <span class="text" ng-show="patient.age"><span  ng-bind="patient.age"></span>岁</span>
+                    <span class="text" ng-show="patient.domicileProvince"><span ng-bind="patient.domicileProvince"></span><span ng-bind="patient.domicileCity"></span><span ng-bind="patient.domicileAddress"></span></span>
+                    <span class="text" ng-if="patient.isMembership">
+                        <span ng-bind="patient.cardType"></span>
+                        <span ng-bind="patient.membershipId"></span>
+                    </span>
+                    <span class="text" ng-repeat="insurance in patient.insuranceList">
+                        <span ng-if="$index != 0">,</span>
+                        <span ng-bind="insurance.typeName" ng-if="insurance.typeId != 1"></span>
+                        <span ng-bind="insurance.area" ng-if="insurance.typeId == 3"></span>
+                        <span ng-bind="insurance.insuranceName" ng-if="insurance.typeId == 4"></span>
+                        <span ng-if="insurance.typeId != 1&&insurance.insuranceNo">/</span>
+                        <span ng-bind="insurance.insuranceNo" ng-if="insurance.typeId != 1"></span>
+                    </span>
+                    <span class="text" ng-show="patient.maritalStatus">婚姻状况：<span class="text" ng-bind="maritalStatusMap[patient.maritalStatus]"></span></span>
+                    <span class="text" ng-show="patient.idcard">身份证号：<span class="text" ng-bind="patient.idcard"></span></span>
+                </div>
+                <div class="show-row">
+                    <span  class="text" ng-show="patient.phone">电话号码：<span ng-bind="patient.phone"></span></span>
+                    <span class="text" ng-show="patient.wechatsn">微信号：<span ng-bind="patient.wechatsn"></span></span>
+                    <span class="text" ng-show="patient.emergencyContactPhone">紧急联系人：<span ng-bind="patient.emergencyContact"></span>/<span ng-bind="patient.emergencyContactPhone"></span></span>
+                </div>
+                <div class="show-row" ng-show="patient.remarks">
+                    <span class="text" ng-show="patient.remarks">备注信息：<span ng-bind="patient.remarks"></span></span>
+                </div>
+            </div>
+            <table class="base-info" ng-show="isModifyBaseInfo">
+                <tr>
+                    <td>
+                        <span class="icon yb-sprites-patient"></span>
+                        <span class="tit">患者<span class="place">L</span>I<span class="place">L</span>D</span>
+                        <span class="text" ng-bind="patient.id"></span>
+                    </td>
+                    <td>
+                        <i class="icon yb-sprites-patientName"></i>
+                        <span class="tit">患者姓名</span>
+                        <span class="text" ng-bind="patient.name"></span>
+                    </td>
+                    <td>
+                        <i class="icon yb-sprites-sex"></i>
+                        <span class="tit">性<span class="place">别别别</span>别</span>
+                        <span class="text" ng-bind="patient.sexText"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="icon yb-sprites-birthday"></i>
+                        <span class="tit">出生年月</span>
+                        <span class="text" ng-bind="patient.birthday"></span>
+                        (<span class="text" ng-bind="patient.age"></span>)
+                    </td>
+                    <td>
+                        <i class="icon yb-sprites-idcard"></i>
+                        <span class="tit">身份证号</span>
+                        <span class="text" ng-bind="patient.idcard"></span>
+                    </td>
+                    <td>
+                        <i class="icon yb-sprites-patientPhone"></i>
+                        <span class="tit">手<span class="place">机</span>机<span class="place">机</span>号</span>
+                        <span class="text" ng-if="!isModifyBaseInfo" ng-bind="patient.phone"></span>
+                        <input ng-if="isModifyBaseInfo" type="text" class="input" maxlength="11"
+                               ng-model="tempPatient.phone">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="icon yb-sprites-wechatsn"></i>
+                        <span class="tit">微<span class="place">L</span>信<span class="place">L</span>号</span>
+                        <span class="text" ng-if="!isModifyBaseInfo" ng-bind="patient.wechatsn"></span>
+                        <input ng-if="isModifyBaseInfo" type="text" class="input" ng-model="tempPatient.wechatsn"
+                               maxlength="20">
+                    </td>
+                    <td>
+                        <i class="icon yb-sprites-emergencyContact"></i>
+                        <span class="tit">紧急联<span class="place hide">L</span>系<span class="place hide">L</span>人</span>
+                        <span class="text" ng-if="!isModifyBaseInfo" ng-bind="patient.emergencyContact"></span>
+                        <input ng-if="isModifyBaseInfo" type="text" class="input"
+                               ng-model="tempPatient.emergencyContact" maxlength="10">
+                    </td>
+                    <td>
+                        <i class="icon yb-sprites-emergencyContactPhone"></i>
+                        <span class="tit">紧急联系人电话</span>
+                        <span class="text" ng-if="!isModifyBaseInfo" ng-bind="patient.emergencyContactPhone"></span>
+                        <input ng-if="isModifyBaseInfo" type="text" class="input"
+                               ng-model="tempPatient.emergencyContactPhone" maxlength="11">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <i class="icon yb-sprites-marriage"></i>
+                        <span class="tit">婚姻状况</span>
+                        <span ng-if="isModifyBaseInfo">
+                            <select class="select"
+                                    ng-model="tempPatient.maritalStatus">
+                                <option value=""></option>
+                                <option value="1">未婚</option>
+                                <option value="2">已婚</option>
+                                <option value="3">保密</option>
+                            </select>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <i class="icon yb-sprites-memberCard"></i>
+                        <span class="tit">会员类型<span class="place">L</span>/<span class="place">L</span>卡号</span>
+                        <span class="text">
+                            <span ng-if="patient.isMembership">
+                                <span ng-bind="patient.cardType"></span>
+                                <span ng-bind="patient.membershipId"></span>
+                            </span>
+                            <span ng-if="!patient.isMembership">无</span>
+                        </span>
+                    </td>
+                    <td colspan="2">
+                        <i class="icon yb-sprites-domicile"></i>
+                        <span class="tit">居<span class="place">L</span>住<span class="place">L</span>地</span>
+                        <span class="text" ng-if="!isModifyBaseInfo">
+                            <span ng-bind="patient.domicileProvince"></span>
+                            <span ng-bind="patient.domicileCity"></span>
+                            <span ng-bind="patient.domicileAddress"></span>
+                        </span>
+                        <span ng-if="isModifyBaseInfo">
+                            <select class="select" ng-change="selectProvince()"
+                                    ng-model="tempPatient.domicileProvinceId"
+                                    ng-options="province.provinceId as province.name for province in provinceList"></select>
+                            <select class="select" ng-model="tempPatient.domicileCityId"
+                                    ng-options="city.cityId as city.name for city in cityList"></select>
+                            <input type="text" class="input" size="40" placeholder="详细地址"
+                                   ng-model="tempPatient.domicileAddress">
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <span class="tit left">
+                            <i class="icon yb-sprites-insurance"></i>
+                            保险类型/保险号
+                        </span>
+                        <span class="text insurance-text" ng-if="!isModifyBaseInfo">
+                            <span ng-repeat="insurance in patient.insuranceList">
+                                <span ng-if="$index != 0">; </span>
+                                <span ng-bind="insurance.typeName"></span>
+                                <span ng-bind="insurance.area" ng-if="insurance.typeId == 3"></span>
+                                <span ng-bind="insurance.insuranceName" ng-if="insurance.typeId == 4"></span>
+                                <span ng-if="insurance.typeId != 1">/</span>
+                                <span ng-bind="insurance.insuranceNo" ng-if="insurance.typeId != 1"></span>
+                            </span>
+                        </span>
+                        <div ng-if="isModifyBaseInfo" class="left">
+                            <div ng-repeat="insurance in tempPatient.insuranceList track by $index"
+                                 ng-class="{'padding-top': $index!=0}">
+                                <select class="select" ng-options="v.id as v.typeName for v in insuranceList"
+                                        ng-model="insurance.typeId">
+                                </select>
+                                <input type="text" class="input" placeholder="医保区域" ng-model="insurance.area"
+                                       ng-if="insurance.typeId == 3" maxlength="50" size="40">
+                                <input type="text" class="input" placeholder="医保名称" ng-model="insurance.insuranceName"
+                                       ng-if="insurance.typeId == 4" maxlength="50" size="40">
+                                <input type="text" class="input" placeholder="医保号" maxlength="50" size="17"
+                                       ng-model="insurance.insuranceNo" ng-if="insurance.typeId != 1">
+                                <button type="button" ng-if="$index == 0" class="button grey" ng-click="addInsurance()">
+                                    添加
+                                </button>
+                                <button type="button" ng-if="$index != 0" class="button del"
+                                        ng-click="deleteInsurance($index)">删除
+                                </button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <span class="tit left">
+                            <i class="icon yb-sprites-remark"></i>
+                            备注
+                        </span>
+
+                        <span >
+                            <textarea name="" class="input long-text" ng-model="tempPatient.remarks" maxlength="1000" placeholder="患者来源、社会背景、文化层次等"></textarea>
+                        </span>
+                    </td>
+                </tr>
+            </table>
+            <div>
+                <!--<div>-->
+                    <!--<span ng-show="healthCondition.height"><span>身高：</span><span ng-bind="healthCondition.height"></span>cm</span>-->
+                    <!--<span ng-show="healthCondition.weight"><span>体重：</span><span ng-bind="healthCondition.weight"></span>kg</span>-->
+                    <!--<span ng-show="healthCondition.bloodType"><span>血型：</span><span ng-bind="healthCondition.bloodType"></span>型</span>-->
+                    <!--<span ng-show="healthCondition.allergicHistory"><span>过敏史：</span><span ng-bind="healthCondition.allergicHistory.split(';').join('|')"></span></span>-->
+                    <!--<span ng-show="healthCondition.physicalExamination"><span>体检：</span><span ng-bind="healthCondition.physicalExamination"></span></span>-->
+                    <!--<span ng-show="healthCondition.operationHistory"><span>手术史：</span><span ng-bind="healthCondition.operationHistory.split(';').join('/')"></span></span>-->
+                <!--</div>-->
+                <!--<div>-->
+                    <!--<span ng-show="healthCondition.anamnesis"><span>既往病史：</span><span ng-bind="healthCondition.anamnesis.join('|')"></span></span>-->
+                    <!--<span ng-show="healthCondition.lifeStyle"><span>生活方式：</span><span ng-bind="healthCondition.lifeStyle.join('|')"></span></span>-->
+                    <!--<span ng-show=""><span>运动：</span><span ng-bind=""></span></span>-->
+                    <!--<span ng-show="tempealthCondition.operationHistory"><span>手术史：</span><span ng-bind="tempealthCondition.operationHistory"></span></span>-->
+                <!--</div>-->
+                <!--<div>-->
+                    <!--<span ng-show="healthCondition.familyHistory"><span>家族病史：</span><span ng-bind="healthCondition.familyHistory"></span></span>-->
+                <!--</div>-->
+            </div>
+            <table class="state">
+                <thead>
+                <tr>
+                    <td colspan="2">个人健康状况
+                        <div class="right no-print">
+                            <div ng-if="!isModifyState">
+                                <span  ng-click="preModifyState()"  class="button">
+                                    <i class="icon yb-sprites-modify"></i>
+                                    修改
+                                </span>
+                            </div>
+                            <div ng-if="isModifyState">
+                                <button type="button" class="button blue" ng-click="confirmModifyState()">确定</button>
+                                <span class="button" ng-click="cancelModifyState()">取消</span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                </thead>
+                <tbody ng-if="!isModifyState">
+                <tr ng-show="healthCondition.height||healthCondition.weight||healthCondition.bloodType||healthCondition.allergicHistory.length||healthCondition.physicalExamination||healthCondition.operationHistory.length||healthCondition.anamnesis.length||healthCondition.lifeStyle.length||tempealthCondition.operationHistory||healthCondition.familyHistory">
+                    <td colspan="2">
+                        <div class="show-row" ng-show="healthCondition.height||healthCondition.weight||healthCondition.bloodType||healthCondition.allergicHistory||healthCondition.physicalExamination||healthCondition.operationHistory">
+                            <span class="text" ng-show="healthCondition.height"><span>身高：</span><span ng-bind="healthCondition.height"></span>cm</span>
+                            <span class="text" ng-show="healthCondition.weight"><span>体重：</span><span ng-bind="healthCondition.weight"></span>kg</span>
+                            <span class="text" ng-show="healthCondition.bloodType"><span>血型：</span><span ng-bind="healthCondition.bloodType"></span>型
+                                <span ng-if="healthCondition.bmi">
+                                    (<span ng-bind="healthCondition.bmi"></span>
+                                    <span ng-bind="healthCondition.bmiText"></span>)二头肌腱
+                                </span>
+                            </span>
+                            <span class="text" ng-show="healthCondition.allergicHistory"><span>过敏史：</span><span ng-bind="healthCondition.allergicHistory.split(';').join('|')"></span></span>
+                            <span class="text" ng-show="healthCondition.physicalExamination"><span>体检：</span><span ng-bind="healthCondition.physicalExamination"></span></span>
+                            <span class="text" ng-show="healthCondition.operationHistory"><span>手术史：</span><span ng-bind="healthCondition.operationHistory.split(';').join('/')"></span></span>
+                        </div>
+                        <div class="show-row" ng-show="healthCondition.anamnesis.length||healthCondition.lifeStyle.length||tempealthCondition.operationHistory.length">
+                            <span class="text" ng-show="healthCondition.anamnesis"><span>既往病史：</span><span ng-repeat="anamnesis in healthCondition.anamnesis" ng-bind="(!anamnesis?'其他':anamnesis)+($index+1===healthCondition.anamnesis.length?'':'|')"></span></span>
+                            <span class="text" ng-show="healthCondition.lifeStyle"><span>生活方式：</span><span ng-repeat="lifeStyle in healthCondition.lifeStyle" ng-bind="(!lifeStyle?'其他':lifeStyle)+($index+1===healthCondition.lifeStyle.length?'':'|')"></span></span>
+                            <span class="text" ng-show=""><span>运动：</span><span ng-bind=""></span></span>
+                            <!--<span class="text" ng-show="tempealthCondition.operationHistory"><span>手术史：</span><span ng-bind="tempealthCondition.operationHistory"></span></span>-->
+                        </div>
+                        <div class="show-row" ng-show="healthCondition.familyHistory">
+                            <span class="text" ng-show="healthCondition.familyHistory"><span>家族病史：</span><span ng-repeat="family in healthCondition.familyHistory" ng-bind="(family[2]===':'?family.slice(3):family)+(($index===healthCondition.familyHistory.length-1)?'':'|')"></span></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr ng-show="!healthCondition.height&&!healthCondition.weight&&!healthCondition.bloodType&&!healthCondition.allergicHistory.length&&!healthCondition.physicalExamination&&!healthCondition.operationHistory.length&&!healthCondition.anamnesis.length&&!healthCondition.lifeStyle.length&&!tempealthCondition.operationHistory&&!healthCondition.familyHistory">
+                    <td colspan="2">
+                        <div class="show-row">
+                            个人健康状况信息暂时为空
+                        </div>
+
+                    </td>
+                </tr>
+                </tbody>
+                <!--查看健康状况-->
+                <tbody ng-if="!isModifyState" class=" hide notModifyState">
+                <tr>
+                    <td>
+                        <div class="title">
+                            <i class="icon yb-sprites-height"></i>
+                            身高/体重/血型
+                        </div>
+                        <div class="content">
+                            <span ng-if="healthCondition.height" ng-bind="healthCondition.height"></span>
+                            <span ng-if="healthCondition.height">cm</span>
+                            <span ng-if="!healthCondition.height">暂无</span>
+                            /
+                            <span ng-if="healthCondition.weight" ng-bind="healthCondition.weight"></span>
+                            <span ng-if="healthCondition.weight">kg</span>
+                            <span ng-if="!healthCondition.weight">暂无</span>
+                            /
+                            <span ng-bind="healthCondition.bloodType"></span>
+                            <span ng-if="healthCondition.bloodType">型</span>
+                            <span ng-if="!healthCondition.bloodType">暂无</span>
+                            <span ng-if="healthCondition.bmi">
+                                (<span ng-bind="healthCondition.bmi"></span>
+                                <span ng-bind="healthCondition.bmiText"></span>)
+                            </span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="title">
+                            <i class="icon yb-sprites-allergicHistory"></i>
+                            过<span class="place">L</span>敏<span class="place">L</span>史
+                        </div>
+                        <div class="content">
+                            <span ng-if="!healthCondition.allergicHistory.length">暂无</span>
+                            <span ng-if="healthCondition.allergicHistory.length"
+                                  ng-bind="healthCondition.allergicHistory.split(';').join('|')"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="title">
+                            <i class="icon yb-sprites-physicalExamination"></i>
+                            体<span class="place">体体</span>检
+                        </div>
+                        <div class="content">
+                            <span ng-if="!healthCondition.physicalExamination">暂无</span>
+                            <span ng-if="healthCondition.physicalExamination"
+                                  ng-bind="healthCondition.physicalExamination"></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="title">
+                            <i class="icon yb-sprites-operationHistory"></i>
+                            手<span class="place">L</span>术<span class="place">L</span>史
+                        </div>
+                        <div class="content">
+                            <span ng-if="!healthCondition.operationHistory.length">暂无</span>
+                            <span ng-if="healthCondition.operationHistory.length"
+                                  ng-bind="healthCondition.operationHistory.split(';').join('|')"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="title">
+                            <i class="icon yb-sprites-anamnesis"></i>
+                            既往病史
+                        </div>
+                        <div class="content">
+                            <span ng-if="!healthCondition.anamnesis.length">暂无</span>
+                            <span ng-if="healthCondition.anamnesis.length"
+                                  ng-bind="healthCondition.anamnesis[0]===''?('其他'+healthCondition.anamnesis.join('|')):healthCondition.anamnesis.join('|')"></span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="title">
+                            <i class="icon yb-sprites-lifeStyle"></i>
+                            生活方式
+                        </div>
+                        <div class="content">
+                            <span ng-if="!healthCondition.lifeStyle.length">暂无</span>
+                            <span ng-if="healthCondition.lifeStyle.length"
+                                  ng-bind="healthCondition.lifeStyle[0]===''?('其他'+healthCondition.lifeStyle.join('|')):healthCondition.lifeStyle.join('|')"></span>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+                <!--修改健康状况-->
+                <tbody ng-if="isModifyState" class="isModifyState">
+                <tr>
+                    <td>
+                        <i class="icon yb-sprites-height"></i>
+                        <span class="tit first">身高(cm)</span>
+                        <input type="text" class="input" size="3" maxlength="3" ng-keyup="inputHeight($event)"
+                               ng-model="tempealthCondition.height">
+                        <span class="tit">体重(kg)</span>
+                        <input type="text" class="input" size="3" maxlength="3" ng-model="tempealthCondition.weight">
+                        <span class="tit">血型</span>
+                        <select class="select" ng-model="tempealthCondition.bloodType"
+                                ng-options="bloodType.name as bloodType.name for bloodType in ConstTypeList.bloodTypeList">
+                            <option value>不明</option>
+                        </select>
+                    </td>
+                    <td>
+                        <div class="title">
+                            <i class="icon yb-sprites-allergicHistory"></i>
+                            过<span class="place">L</span>敏<span class="place">L</span>史
+                        </div>
+                        <div class="content">
+                            <input type="text" class="input" maxlength="100"
+                                   ng-model="tempealthCondition.allergicHistory" size="30">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="title">
+                            <i class="icon yb-sprites-physicalExamination"></i>
+                            体<span class="place">体体</span>检
+                        </div>
+                        <div class="content">
+                            <select class="select" ng-model="tempealthCondition.physicalExamination"
+                                    ng-options="examinationType.name as examinationType.name for examinationType in ConstTypeList.examinationTypeList">
+                                <option value></option>
+                            </select>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="title">
+                            <i class="icon yb-sprites-operationHistory"></i>
+                            手<span class="place">L</span>术<span class="place">L</span>史
+                        </div>
+                        <div class="content">
+                            <input type="text" class="input" ng-model="tempealthCondition.operationHistory"
+                                   maxlength="100" size="30">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="title">
+                            <i class="icon yb-sprites-anamnesis"></i>
+                            既往病史
+                        </div>
+                        <div class="content">
+                            <label ng-repeat="anamnesisType in ConstTypeList.anamnesisTypeList">
+                                <input type="checkbox"
+                                       ng-model="tempealthCondition.anamnesisTypeMap[anamnesisType.name]">
+                                <span ng-bind="anamnesisType.name"></span>
+                                &nbsp;
+                            </label>
+                            <br>
+                            <label><input type="checkbox" ng-model="checkboxModel.checkAnamnesisType"> 其他</label>
+                            <input type="text" ng-if="checkboxModel.checkAnamnesisType" class="input"
+                                   maxlength="100" ng-model="tempealthCondition.otherAnamnesis">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="title">
+                            <i class="icon yb-sprites-lifeStyle"></i>
+                            生活方式
+                        </div>
+                        <div class="content">
+                            <label ng-repeat="lifeStyle in ConstTypeList.lifeStyleList">
+                                <input type="checkbox" value="lifeStyle.name"
+                                       ng-model="tempealthCondition.lifeStyleMap[lifeStyle.name]">
+                                <span ng-bind="lifeStyle.name"></span>
+                                &nbsp;
+                            </label>
+                            <br>
+                            <label><input type="checkbox" ng-model="checkboxModel.checkLifeStyle"> 其他</label>
+                            <input type="text" ng-if="checkboxModel.checkLifeStyle" class="input"
+                                   maxlength="100" ng-model="tempealthCondition.otherLifeStyle">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div class="title">
+                            <i class="icon yb-sprites-familyHistory"></i>
+                            家族病史
+                        </div>
+                        <div class="content">
+                            <label ng-repeat="familyType in ConstTypeList.familyList" ng-if="familyType.id!=3">
+
+                                <input type="checkbox"
+                                       ng-model="tempealthCondition.familyHistoryMap[familyType.name]" value="{{familyType.id}}">
+                                <span ng-bind="familyType.name"></span>
+                                &nbsp;
+                            </label>
+                            <br>
+                            <label><input type="checkbox" ng-model="tempealthCondition.familyHistoryMap['肿瘤']"  /> 肿瘤</label>
+                            <textarea  ng-if="tempealthCondition.familyHistoryMap['肿瘤']" class="input long-text"
+                                   maxlength="100" ng-model="tempealthCondition.familyHistoryOther['3']" ></textarea>
+                            <br>
+                            <label><input type="checkbox" ng-model="tempealthCondition.familyHistoryMap['其他']" /> 其他</label>
+                            <textarea  ng-if="tempealthCondition.familyHistoryMap['其他']" class="input long-text"
+                                   maxlength="100" ng-model="tempealthCondition.familyHistoryOther['-1']" ></textarea>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+<div class="g-page-area">
+    <div class="g-page-title">
+        <span class="icon"></span>
+        <span class="module">用户管理</span>
+        <span class="arrow">&gt;</span>
+        <span class="page">电话咨询列表</span>
+    </div>
+</div>
+<div class="data-area">
+    <div class="table-area">
+        <table class="table table-striped">
+            <thead>
+                <th>用户ID</th>
+                <th>用户名</th>
+                <th>电话号码</th>
+                <th>评论内容</th>
+                <th>申请时间</th>
+                <th>咨询状态</th>
+                <th>操作</th>
+            </thead>
+            <tbody>
+            <tr ng-repeat="row in rows">
+                <td>{{row.name}}</td>
+                <td >{{row.name}}</td>
+                <td >{{row.name}}</td>
+                <td >{{row.name}}</td>
+                <td >{{row.name}}</td>
+                <td >{{row.name}}</td>
+                <td >{{row.name}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" ng-change="pageChanged(page)" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages"></pagination>
+</div>

@@ -1,0 +1,34 @@
+<div class="g-page-area">
+    <div class="yb-page-title">
+        <span class="icon"><i class="yb-sprites-location"></i></span>
+        <span class="module">用户管理</span>
+        <span class="arrow">&gt;</span>
+        <span class="page">邀请列表</span>
+    </div>
+</div>
+<div class="data-area p-invite">
+    <div class="yb-view-title">
+        <span class="title">邀请列表</span>
+    </div>
+    <div class="data-container">
+    <div class="table-area">
+        <table class="table table-striped">
+            <thead>
+                <th>邀请日期</th>
+                <th>用户</th>
+                <th>患者人数</th>
+                <th>预约次数</th>
+            </thead>
+            <tbody>
+            <tr ng-repeat="row in rows">
+                <td>{{row.invitationTime|date:'yyyy.MM.dd'}}</td>
+                <td >{{row.customerName}}</td>
+                <td >{{row.patientNum}}</td>
+                <td >{{row.orderNum}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" ng-change="pageChanged(page)" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages"></pagination>
+    </div>
+</div>

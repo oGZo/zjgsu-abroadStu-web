@@ -1,0 +1,39 @@
+<header class="header no-print">
+    <div class="header_logo"><img src="images/logo.png" alt=""/></div>
+    <div class="header_title">私人助理后台</div>
+    <div class="header_item" ng-click="logout()">
+        <div class="icon"><i class="yb-sprites-logout"></i></div>
+        <div class="sub-text">退出登录</div>
+    </div>
+    <div class="header_item border-left">
+        <a href="/#/customer">
+            <div class="text">{{privateAssistentAttentionNum}}</div>
+            <div class="sub-text">关注</div>
+        </a>
+    </div>
+    <div class="header_item border-left">
+        <a href="javascript:void(0);" ng-click="goConsultPhone()">
+            <div class="text">{{privateAssitentSatisfiedDegree}}%</div>
+            <div class="sub-text">满意度</div>
+        </a>
+    </div>
+    <div class="header_user">
+        <a href="/#/person">
+            <span class="photo-area"><img src="{{imgPath}}" alt="" class="assistant-photo"/></span>
+            <span class="text">{{nickname}}</span>
+        </a>
+    </div>
+</header>
+<aside class="side-bar no-print">
+    <div ng-repeat="menu in menus" class="item" data-id='{{menu.id}}' ng-click="setView(menu)"
+         ui-sref="app.{{menu.moduleId}}" ng-class='{active: currentView==menu.moduleId}'>
+        <span class="icon"><i class="yb-sprites-{{menu.icon}}{{currentView==menu.moduleId?'-hover':''}}"></i></span>
+        <span class="text">{{menu.name}}</span>
+    </div>
+    <div>
+    </div>
+</aside>
+<article ui-view class="yb-page" id="containerArea"></article>
+
+
+

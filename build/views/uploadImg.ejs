@@ -1,0 +1,28 @@
+<div class="m-dialog upload-img-dialog">
+    <div class="head">
+        上传图片
+    </div>
+    <div class="body">
+        <div class="cell">
+            <ul class="upload-img-list" id="fileImgList">
+                <li id="updatePhoto" data-flag="1" class="select-btn">
+                    <img src="images/select-img.png" alt=""/>
+                </li>
+                <% $.each(imageList,function(i,v){ %>
+                <li data-key="<%= v.imageKey %>" data-imageUrl="<%= v.imageUrl %>">
+                    <span class="yb-icon-area J_delImg">
+                        <span class="yb-sprites-del-img"></span>
+                    </span>
+                    <div class="img-area">
+                        <img src="<%= v.miniImageUrl %>" class="img" alt="" />
+                    </div>
+                </li>
+                <%})%>
+            </ul>
+        </div>
+    </div>
+    <div class="foot">
+        <button type="button" class="confirm-btn" >确定</button>
+        <button type="button" class="cancel-btn J_cancel">取消</button>
+    </div>
+</div>

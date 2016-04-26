@@ -1,0 +1,669 @@
+<div class="yb-view-title">
+    <span class="title"><span ng-bind="basicInfo.visitTime|date:'yyyy-MM-dd'"></span><span ng-bind="subTypeName"></span> </span>
+    <div class="fr edit-area">
+        <span class="order-detail-hover mr-d " ng-show="recordDataOver" >记录完整度：<span ng-bind="(((patientPresentDTO.patientPresent.mainSymptom&&patientPresentDTO.patientPresent.requirement?1:0)+(medicalRecordDTO.detailSymptom&&medicalRecordDTO.doctorAdvice?1:0)+((checkDTOs.length&&checkNoEmpty||checkNoFlag)?1:0)+(conclusionsDTO.conclusionList.length?1:0)+(treatmentPrescriptionDTO.treatmentPrescription?1:0)+(recordFeeListDTO.feeList.length?1:0))/6*100).toFixed(0)||0" ></span>%</span>
+        <span class="order-detail-hover mr-d" ng-show="basicInfo.orderSN" ng-click="goOrderDetail(basicInfo.orderSN)">订单详情</span>
+        <button class="btn btn-edit" ng-click="print()">打印</button>
+        <!--<button class="btn btn-default" ng-click="deleteRecord()">删除</button>-->
+    </div>
+</div>
+<div class="data-container pr">
+    <div class="slide-nav no-print" id="navContainer">
+        <ul>
+            <li class="current">基本信息</li>
+            <li >患者主诉</li>
+            <li >病历记录</li>
+            <li >检查检验</li>
+            <li >诊断结论</li>
+            <li >治疗方案</li>
+            <li >费用清单</li>
+            <li >助理建议</li>
+            <li >随访任务</li>
+        </ul>
+    </div>
+    <div class="container-area medical-records-area pr form-edit-form">
+        <div class="order-list" data-anchor="1">
+            <div class="order-list-title">基本信息
+                <div class="fr edit-area">
+                    <span class="btn-edit-module" ng-show="!baseInfoEditFlag" ng-click="updateBaseInfo($event,'baseInfoEditFlag')"><i class="yb-sprites-modify"></i>修改</span>
+                    <button class="btn btn-edit" ng-show="baseInfoEditFlag" ng-click="saveUpdateBaseInfo('baseInfoEditFlag')">保存</button>
+                    <button class="btn btn-default" ng-show="baseInfoEditFlag" ng-click="cancelUpdateBaseInfo('baseInfoEditFlag')">取消</button>
+                </div>
+            </div>
+            <div ng-show="!baseInfoEditFlag">
+                <ul class="order-list-con">
+                    <li class="min-li"><span class="tit">病   程</span><span class="con" ng-bind="(pathogenesis.beginDate|date:'yyyy-MM-dd')+' '+pathogenesis.name"></span></li>
+                    <li><span class="tit">类   型</span><span class="con" ng-bind="subTypeName"></span></li>
+                    <li><span class="tit">跟踪人</span><span class="con" ng-bind="lastOperateName"></span></li>
+                </ul>
+                <div class="order-list-con">
+                    <span class="tit">病程描述</span><span class="con" ng-bind="pathogenesis.desc"></span>
+                </div>
+            </div>
+            <div ng-show="baseInfoEditFlag">
+                <ul class="order-list-con">
+                    <li class="min-li"><span class="tit">病   程</span><span class="con" ><label class="mr-d"><select class="form-control" name="pathogenesisId" ng-model="baseInfoUpdateData.pathogenesisId">
+                        <option ng-repeat="pathogenesis in baseInfoUpdateData.pathogenesisList" value="{{pathogenesis.id}}"  ng-selected="pathogenesis.id==baseInfoUpdateData.pathogenesisId">{{(pathogenesis.beginDateTimeStamp|date:'yyyy-MM-dd')+' '+pathogenesis.name }}</option>
+                    </select></label><button class="btn btn-edit"  ng-click="addPathogenesis()">添加新病程</button></span></li>
+                    <li><span class="tit">类   型</span><span class="con" ><label><select class="form-control"  ng-model="baseInfoUpdateData.subType" ng-disabled="basicInfo.orderId">
+                        <option ng-repeat="subTypeObj in subTypeList" value="{{subTypeObj.id}}" ng-selected="subTypeObj.id==baseInfoUpdateData.subType">{{subTypeObj.text}}</option>
+                    </select></label></span></li>
+                    <li><span class="tit">跟踪人</span><span class="con" ng-bind="lastOperateName"></span></li>
+                </ul>
+                <div class="order-list-con">
+                    <span class="tit ">病程描述</span><span class="con"  ng-bind="baseInfoUpdateData.pathogenesis.desc"></span>
+                    <!--<label ><textarea class="form-control" readonly value="{{baseInfoUpdateData.pathogenesis.desc}}">{{baseInfoUpdateData.pathogenesis.desc}}</textarea></label></span>-->
+                </div>
+            </div>
+            <ul class="order-list-con">
+                <li><span class="tit">就诊时间</span><span class="con" ng-bind="basicInfo.visitTime|date:'yyyy-MM-dd'"></span></li>
+                <li data-id="{{basicInfo.doctorId}}"><span class="tit">医生</span><span class="con" ng-bind="basicInfo.doctorName"></span></li>
+                <li><span class="tit">科室</span><span class="con" ng-bind="basicInfo.item"></span></li>
+            </ul>
+            <ul class="order-list-con">
+                <li data-id="{{basicInfo.hospitalId}}"><span class="tit">医院</span><span class="con" ng-bind="basicInfo.hospitalName"></span></li>
+                <li><span class="tit">出诊地点</span><span class="con" ng-bind="basicInfo.treatmentAddress"></span></li>
+            </ul>
+        </div>
+        <div class="order-list {{!patientPresentEditFlag&&!patientPresentDTO.imageInfoList.length&&!patientPresentDTO.patientPresent.mainSymptom&&!patientPresentDTO.patientPresent.historyTreatment&&!patientPresentDTO.patientPresent.requirement?'no-print':''}}" data-anchor="2">
+            <div class="order-list-title"><span class="item-icon"><span class="yb-sprites-over-icon{{patientPresentDTO.patientPresent.mainSymptom&&patientPresentDTO.patientPresent.requirement?'':'-not'}}"></span></span>患者主诉
+                <div class="fr edit-area">
+                    <span class="btn-edit-module" ng-show="!patientPresentEditFlag&&(patientPresentDTO.patientPresent.mainSymptom.length||patientPresentDTO.patientPresent.historyTreatment.length||patientPresentDTO.patientPresent.requirement.length)" ng-click="updatePatientPresentInfo()"><i class="yb-sprites-modify"></i>修改</span>
+                    <button class="btn btn-edit" ng-show="patientPresentEditFlag" ng-click="saveUpdatePatientPresentInfo()">保存</button>
+                    <button class="btn btn-default" ng-show="patientPresentEditFlag" ng-click="cancelUpdatePatientPresentInfo()">取消</button>
+                </div>
+            </div>
+            <div ng-show="!patientPresentEditFlag&&(patientPresentDTO.patientPresent.mainSymptom.length||patientPresentDTO.patientPresent.historyTreatment.length||patientPresentDTO.patientPresent.requirement.length)" class="">
+                <div class="order-list-con">
+                    <span class="tit">主要症状</span><span class="con" ng-bind="patientPresentDTO.patientPresent.mainSymptom"></span>
+                </div>
+                <div class="order-list-con">
+                    <span class="tit">历史就诊</span><span class="con" ng-bind="patientPresentDTO.patientPresent.historyTreatment"></span>
+                </div>
+                <div class="order-list-con">
+                    <span class="tit">患者需求</span><span class="con" ng-bind="patientPresentDTO.patientPresent.requirement"></span>
+                </div>
+                <div class="order-list-con">
+                    <span class="tit img-area-tit">图片资料</span>
+                    <div class="img-list-area">
+                        <div class="img-operate-area" ng-show="patientPresentDTO.imageInfoList.length>0">
+                            <span class="left-btn"><i class="yb-sprites-calender-left"></i></span>
+                            <span class="right-btn"><i class="yb-sprites-calender-right"></i></span>
+                        </div>
+                        <div class="all-img-list" data-current="0" ng-show="patientPresentDTO.imageInfoList.length">
+                            <ul class="img-list" >
+                                <li ng-repeat="img in patientPresentDTO.imageInfoList"><img src="{{img.miniImageUrl}}" data-bigSrc="{{img.imageUrl}}"/></li>
+                            </ul>
+                        </div>
+                        <div class="no-img" ng-show="!patientPresentDTO.imageInfoList.length">
+                            <img class="img" src="images/no-img.png"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-show="patientPresentEditFlag" class="form-edit-area">
+                <div class="order-list-con">
+                    <span class="tit important-inp-tit">主要症状</span><span class="con" ><textarea  maxlength="1000" class="form-control" ng-model="updatePatientPresentData.patientPresent.mainSymptom" value="{{updatePatientPresentData.patientPresent.mainSymptom}}" ng-focus="focusDefaultValue($event,updatePatientPresentData.patientPresent,'mainSymptom')" placeholder="有XX症状，出现了XX天"></textarea></span>
+                </div>
+                <div class="order-list-con">
+                    <span class="tit">历史就诊</span><span class="con" ><textarea maxlength="1000"
+                                                                              class="form-control" ng-model="updatePatientPresentData.patientPresent.historyTreatment" value="{{updatePatientPresentData.patientPresent.historyTreatment}}" ng-focus="focusDefaultValue($event,updatePatientPresentData.patientPresent,'historyTreatment')" placeholder="XX时间，在XX医院，XX科室，得到XX诊断，已做XX检查"></textarea></span>
+                </div>
+                <div class="order-list-con">
+                    <span class="tit important-inp-tit">患者需求</span><span class="con" ><textarea maxlength="1000" class="form-control" ng-model="updatePatientPresentData.patientPresent.requirement" value="{{updatePatientPresentData.patientPresent.requirement}}" ng-focus="focusDefaultValue($event,updatePatientPresentData.patientPresent,'requirement')" placeholder="患者想解决XX问题。"></textarea></span>
+                </div>
+                <div class="order-list-con">
+                    <span class="tit img-area-tit">图片资料</span>
+                    <div class="img-list-area">
+                        <div class="img-operate-area"  ng-show="updatePatientPresentData.imageInfoList.length>0">
+                            <span class="left-btn"><i class="yb-sprites-calender-left"></i></span>
+                            <span class="right-btn"><i class="yb-sprites-calender-right"></i></span>
+                        </div>
+                        <div class="all-img-list edit-all-img-list" data-current="0">
+                            <ul class="img-list" data-flag="1">
+                                <li class="addImg" ng-click="addImg($event,updatePatientPresentData)"><img class="img" src="images/select-img.png"/></li>
+                                <li ng-repeat="img in updatePatientPresentData.imageInfoList">
+                                    <div class="yb-icon-area " ng-click="removeImg(updatePatientPresentData.imageInfoList,$index)">
+                                        <i class="yb-sprites-del-img"></i>
+                                    </div>
+                                    <img src="{{img.miniImageUrl}}" data-bigSrc="{{img.imageUrl}}"/>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="order-list-con" ng-show="!patientPresentEditFlag&&!patientPresentDTO.imageInfoList.length&&!patientPresentDTO.patientPresent.mainSymptom&&!patientPresentDTO.patientPresent.historyTreatment&&!patientPresentDTO.patientPresent.requirement">
+                <button class="btn btn-default"  ng-click="updatePatientPresentInfo()">添加</button>
+            </div>
+        </div>
+        <hr class="g-border-top-dashed"/>
+        <div class="order-list {{!medicalRecordEditFlag&&!medicalRecordDTO.imageInfoList.length&&!medicalRecordDTO.doctorAdvice&&!medicalRecordDTO.detailSymptom?'no-print':''}}" data-anchor="3" data-key="edit-area">
+            <div class="order-list-title"><span class="item-icon"><span class="yb-sprites-over-icon{{medicalRecordDTO.detailSymptom&&medicalRecordDTO.doctorAdvice?'':'-not'}}"></span></span>病历记录
+                <div class="fr edit-area" >
+                    <span class="btn-edit-module" ng-show="!medicalRecordEditFlag&&(medicalRecordDTO.imageInfoList.length||medicalRecordDTO.doctorAdvice||medicalRecordDTO.detailSymptom)" ng-click="updateMedicalRecordInfo()"><i class="yb-sprites-modify"></i>修改</span>
+                    <button class="btn btn-edit" ng-show="medicalRecordEditFlag" ng-click="saveUpdateMedicalRecordInfo()">保存</button>
+                    <button class="btn btn-default" ng-show="medicalRecordEditFlag" ng-click="cancelUpdateMedicalRecordInfo()">取消</button>
+                </div>
+            </div>
+            <div ng-show="!medicalRecordEditFlag&&(medicalRecordDTO.imageInfoList.length||medicalRecordDTO.doctorAdvice||medicalRecordDTO.detailSymptom)">
+                <div class="order-list-con">
+                    <span class="tit">详细病情</span><span class="con" ng-bind="medicalRecordDTO.detailSymptom"></span>
+                </div>
+                <div class="order-list-con">
+                    <span class="tit">医生建议</span><span class="con" ng-bind="medicalRecordDTO.doctorAdvice"></span>
+                </div>
+                <div class="order-list-con">
+                    <span class="tit img-area-tit">图片资料</span>
+                    <div class="img-list-area">
+                        <div class="img-operate-area" ng-show="medicalRecordDTO.imageInfoList.length>0">
+                            <span class="left-btn"><i class="yb-sprites-calender-left"></i></span>
+                            <span class="right-btn"><i class="yb-sprites-calender-right"></i></span>
+                        </div>
+                        <div class="all-img-list" data-current="0" ng-show="medicalRecordDTO.imageInfoList.length">
+                            <ul class="img-list" >
+                                <li ng-repeat="img in medicalRecordDTO.imageInfoList"><img src="{{img.miniImageUrl}}" data-bigSrc="{{img.imageUrl}}"/></li>
+                            </ul>
+                        </div>
+                        <div class="no-img" ng-show="!medicalRecordDTO.imageInfoList.length">
+                            <img class="img" src="images/no-img.png"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-show="medicalRecordEditFlag" class="form-edit-area" data-key="updateMedicalRecordData">
+                <div class="order-list-con">
+                    <span class="tit important-inp-tit">详细病情</span><span class="con" ><textarea placeholder="请输入详情病情" maxlength="1000" class="form-control" value="{{updateMedicalRecordData.detailSymptom}}" ng-model="updateMedicalRecordData.detailSymptom"> </textarea></span>
+                </div>
+                <div class="order-list-con">
+                    <span class="tit important-inp-tit">医生建议</span><span class="con" ><textarea placeholder="请填写医生建议，建议详细描述就诊问答过程" maxlength="1000" class="form-control" value="{{updateMedicalRecordData.doctorAdvice}}" ng-model="updateMedicalRecordData.doctorAdvice"> </textarea></span>
+                </div>
+                <div class="order-list-con">
+                    <span class="tit img-area-tit">图片资料</span>
+                    <div class="img-list-area">
+                        <div class="img-operate-area" >
+                            <span class="left-btn"><i class="yb-sprites-calender-left"></i></span>
+                            <span class="right-btn"><i class="yb-sprites-calender-right"></i></span>
+                        </div>
+                        <div class="all-img-list edit-all-img-list" data-current="0">
+                            <ul class="img-list"  data-flag="1">
+                                <li class="addImg"  ng-click="addImg($event,updateMedicalRecordData)"><img class="img" src="images/select-img.png"/></li>
+                                <li ng-repeat="img in updateMedicalRecordData.imageInfoList">
+                                    <div class="yb-icon-area " ng-click="removeImg(updateMedicalRecordData.imageInfoList,$index)">
+                                        <i class="yb-sprites-del-img"></i>
+                                    </div>
+                                    <img src="{{img.miniImageUrl}}" data-bigSrc="{{img.imageUrl}}"/>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="order-list-con" ng-show="!medicalRecordEditFlag&&!medicalRecordDTO.imageInfoList.length&&!medicalRecordDTO.doctorAdvice&&!medicalRecordDTO.detailSymptom">
+                <button class="btn btn-default"  ng-click="updateMedicalRecordInfo()">添加</button>
+            </div>
+        </div>
+        <div class="order-list {{!checkDTOs.length&&!addCheckFlag?'no-print':''}}" data-anchor="4" >
+            <div class="order-list-title"><span class="item-icon"><span class="yb-sprites-over-icon{{(checkDTOs.length&&checkNoEmpty||checkNoFlag)?'':'-not'}}"></span></span>检查检验 <div class="fr edit-area" ng-show="checkDTOs.length||addCheckFlag"><button class="btn btn-default" ng-click="AddCheck()">添加</button></div></div>
+
+            <div ng-show="addCheckFlag" class="form-edit-area" >
+                <div class="check-list-title" >
+                            <span >
+                                <span class="mr-d"><span>检查日期</span> <label ><input  type="text" class="form-control" my97datePicker value="{{addCheck.check.date|date:'yyyy-MM-dd'}}" ng-model="addCheck.check.date" /></label></span>
+                                <span>检查类型 <label ><select ng-model="addCheck.check.type" class="form-control">
+                                    <option  ng-repeat="checkRow in checkList" value="{{checkRow.id}}" ng-selected="addCheck.check.type==checkRow.id">{{checkRow.text}}</option>
+                                </select></label></span>
+                                <span>
+                                <span>检查名称</span><label ><input  type="text" maxlength="25" class="form-control" value="{{addCheck.check.name}}" ng-model="addCheck.check.name"/></label>
+                            </span>
+                            </span>
+                    <div class="fr" >
+                        <button class="btn-save btn" ng-click="saveAddCheckInfo()">保存</button>
+                        <button class="btn-default btn"  ng-click="cancelAddCheckInfo()">取消</button>
+                    </div>
+                </div>
+                <div class="order-list-con form-edit-area">
+                    <span class="tit important-inp-tit">报告结果</span><span class="con" ><textarea maxlength="1000" placeholder="请输入报告结果" class="form-control" value="{{addCheck.check.reportResult}}" ng-model="addCheck.check.reportResult"></textarea></span>
+                </div>
+                <div class="order-list-con">
+                    <span class="tit img-area-tit">图片资料</span>
+                    <div class="img-list-area">
+                        <div class="img-operate-area" ng-show="addCheck.imageInfoList.length">
+                            <span class="left-btn"><i class="yb-sprites-calender-left"></i></span>
+                            <span class="right-btn"><i class="yb-sprites-calender-right"></i></span>
+                        </div>
+                        <div class="all-img-list edit-all-img-list" data-current="0">
+                            <ul class="img-list" data-flag="1">
+                                <li class="addImg" ng-click="addImg($event,addCheck)"><img class="img" src="images/select-img.png"/></li>
+                                <li ng-repeat="img in addCheck.imageInfoList">
+                                    <div class="yb-icon-area " ng-click="removeImg(addCheck.imageInfoList,$index)">
+                                        <i class="yb-sprites-del-img"></i>
+                                    </div>
+                                    <img src="{{img.miniImageUrl}}" data-bigSrc="{{img.imageUrl}}"/>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-repeat="check in checkDTOs">
+                <div class="check-list-title">
+                            <span ng-show="!check.editFlag">
+                                <span class="mr-d">{{check.check.date|date:'yyyy-MM-dd'}}</span><span>{{check.check.name}}</span>
+                            </span>
+                            <span ng-show="check.editFlag">
+                                <span class="mr-d"><span>检查日期</span> <label ><input  type="text" class="form-control" my97datePicker value="{{check.updateData.check.date|date:'yyyy-MM-dd'}}" ng-model="check.updateData.check.date" /></label></span>
+                                <span>检查类型 <label ><select ng-model="check.check.type" class="form-control">
+                                    <option  ng-repeat="checkRow in checkList" value="{{checkRow.id}}" ng-selected="check.check.type==checkRow.id">{{checkRow.text}}</option>
+                                </select></label></span>
+                                <span>
+                                <span>检查名称</span><label ><input  type="text" class="form-control " maxlength="25" value="{{check.updateData.check.name}}" ng-model="check.updateData.check.name"/></label>
+                            </span>
+                            </span>
+                    <div class="fr check-edit-area" >
+                        <div class="pr no-print" ng-show="!check.editFlag" ng-mouseenter="editCheckInfo(check)" ng-mouseleave="closeCheckEditList(check)"><span class="edit-menu">编辑</span>
+                            <div ng-show="check.listShowFlag" class="check-edit-list" >
+                                <ul>
+                                    <li ng-click="updateCheckInfo(check,$index)">修改</li>
+                                    <li ng-click="deleteCheckInfo(check,$index)">删除</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <button class="btn-save btn" ng-show="check.editFlag" ng-click="saveUpdateCheckInfo(check)">保存</button>
+                        <button class="btn-default btn" ng-show="check.editFlag" ng-click="cancelUpdateCheckInfo(check)">取消</button>
+                    </div>
+                </div>
+                <div class="order-list-con" ng-show="!check.editFlag">
+                    <span class="tit">报告结果</span><span class="con" ng-bind="check.check.reportResult"></span>
+                </div>
+                <div class="order-list-con form-edit-area" ng-show="check.editFlag">
+                    <span class="tit important-inp-tit">报告结果</span><span class="con" ><textarea placeholder="请输入报告结果" maxlength="1000" class="form-control" value="{{check.updateData.check.reportResult}}" ng-model="check.updateData.check.reportResult"></textarea></span>
+                </div>
+                <div class="order-list-con" ng-show="!check.editFlag">
+                    <span class="tit img-area-tit">图片资料</span>
+                    <div class="img-list-area" >
+                        <div class="img-operate-area" ng-show="check.imageInfoList.length">
+                            <span class="left-btn"><i class="yb-sprites-calender-left"></i></span>
+                            <span class="right-btn"><i class="yb-sprites-calender-right"></i></span>
+                        </div>
+                        <div class="all-img-list" data-current="0"ng-show="check.imageInfoList.length">
+                            <ul class="img-list" ng-show="check.imageInfoList.length">
+                                <li ng-repeat="img in check.imageInfoList"><img src="{{img.miniImageUrl}}" data-bigSrc="{{img.imageUrl}}"/></li>
+                            </ul>
+                        </div>
+                        <div class="no-img" ng-show="!check.imageInfoList.length">
+                            <img class="img" src="images/no-img.png"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="order-list-con form-edit-area" ng-show="check.editFlag" >
+                    <span class="tit img-area-tit">图片资料</span>
+                    <div class="img-list-area">
+                        <div class="img-operate-area" ng-show="check.updateData.imageInfoList.length">
+                            <span class="left-btn"><i class="yb-sprites-calender-left"></i></span>
+                            <span class="right-btn"><i class="yb-sprites-calender-right"></i></span>
+                        </div>
+                        <div class="all-img-list edit-all-img-list" data-current="0">
+                            <ul class="img-list" data-flag="1">
+                                <li class="addImg" ng-click="addImg($event,check.updateData)"><img class="img" src="images/select-img.png"/></li>
+                                <li ng-repeat="img in check.updateData.imageInfoList">
+                                    <div class="yb-icon-area " ng-click="removeImg(check.updateData.imageInfoList,$index)">
+                                        <i class="yb-sprites-del-img"></i>
+                                    </div>
+                                    <img src="{{img.miniImageUrl}}" data-bigSrc="{{img.imageUrl}}"/>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="order-list-con" ng-show="!checkDTOs.length&&!addCheckFlag">
+                <span><button class="btn btn-default" ng-click="AddCheck()">添加</button> <button class="btn btn-default" ng-if="!checkNoFlag" ng-click="noCheckList()">无检查记录</button></span>
+            </div>
+        </div>
+        <div class="order-list {{!conclusionsEditFlag&&!conclusionsDTO.imageInfoList.length&&!conclusionsDTO.conclusionList.length?'no-print':''}}" data-anchor="5">
+            <div class="order-list-title"><span class="item-icon"><span class="yb-sprites-over-icon{{conclusionsDTO.conclusionList.length?'':'-not'}}"></span></span>诊断结论
+                <div class="fr edit-area" >
+                    <span class="btn-edit-module" ng-show="!conclusionsEditFlag&&(conclusionsDTO.imageInfoList.length||conclusionsDTO.conclusionList.length)" ng-click="updateConclusionsInfo()"><i class="yb-sprites-modify"></i>修改</span>
+                    <button class="btn btn-edit" ng-show="conclusionsEditFlag" ng-click="saveUpdateConclusionsInfo()">保存</button>
+                    <button class="btn btn-default" ng-show="conclusionsEditFlag" ng-click="cancelUpdateConclusionsInfo()">取消</button>
+                </div>
+            </div>
+            <div ng-show="!conclusionsEditFlag&&(conclusionsDTO.imageInfoList.length||conclusionsDTO.conclusionList.length)">
+                <div class="data-container" >
+                    <table class="order-table">
+                        <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>疾病名称</th>
+                            <th>确诊/疑似</th>
+                        </tr>
+                        </thead>
+                        <tbody >
+                        <tr ng-repeat="row in conclusionsDTO.conclusionList">
+                            <td ng-bind="$index+1"></td>
+                            <td ng-bind="row.name"></td>
+                            <td ng-bind="row.isDiagnosed==1?'确诊':'疑似'"></td>
+                        </tr>
+                        <tr ng-show="!conclusionsDTO.conclusionList.length"><td colspan="3">暂无诊断结论</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="order-list-con">
+                    <span class="tit img-area-tit">图片资料</span>
+                    <div class="img-list-area">
+                        <div class="img-operate-area" ng-show="conclusionsDTO.imageInfoList.length">
+                            <span class="left-btn"><i class="yb-sprites-calender-left"></i></span>
+                            <span class="right-btn"><i class="yb-sprites-calender-right"></i></span>
+                        </div>
+                        <div class="all-img-list" data-current="0" ng-show="conclusionsDTO.imageInfoList.length">
+                            <ul class="img-list" ng-show="conclusionsDTO.imageInfoList.length">
+                                <li ng-repeat="img in conclusionsDTO.imageInfoList"><div class="yb-icon-area " ng-click="removeImg(conclusionsDTO.imageInfoList,$index)"></div><img src="{{img.miniImageUrl}}" data-bigSrc="{{img.imageUrl}}"/></li>
+                            </ul>
+                        </div>
+                        <div class="no-img" ng-show="!conclusionsDTO.imageInfoList.length">
+                            <img class="img" src="images/no-img.png"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-show="conclusionsEditFlag" class="form-edit-area">
+                <div class="data-container" >
+                    <table class="order-table">
+                        <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>疾病名称</th>
+                            <th>确诊/疑似</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody >
+                        <tr ng-repeat="row in updateConclusionsData.conclusionList">
+                            <td ng-bind="$index+1"></td>
+                            <td ><label><input class="form-control w400"  ng-required="true" required="" type="text" value="{{row.name}}" maxlength="25" ng-model="row.name"/></label></td>
+                            <td >
+                                <label ><select ng-model="row.isDiagnosed" class="form-control" value="{{row.isDiagnosed}}">
+                                    <option value="1" ng-selected="row.isDiagnosed==1">确诊</option>
+                                    <option value="0" ng-selected="row.isDiagnosed==0">疑似</option>
+                                </select>
+                                </label>
+                            </td>
+                            <td >
+                                <span ng-click="removeUpdateConclusionsData($index,row)">删除</span>
+                            </td>
+                        </tr>
+                        <tr><td colspan="4"><span ng-click="addUpdateConclusionsData()" class="add-single-row">添加一条诊断结论</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="order-list-con">
+                    <span class="tit img-area-tit">图片资料</span>
+                    <div class="img-list-area">
+                        <div class="img-operate-area" ng-show="updateConclusionsData.imageInfoList.length">
+                            <span class="left-btn"><i class="yb-sprites-calender-left"></i></span>
+                            <span class="right-btn"><i class="yb-sprites-calender-right"></i></span>
+                        </div>
+                        <div class="all-img-list edit-all-img-list" data-current="0">
+                            <ul class="img-list" data-flag="1">
+                                <li class="addImg" ng-click="addImg($event,updateConclusionsData)"><img class="img" src="images/select-img.png"/></li>
+                                <li ng-repeat="img in updateConclusionsData.imageInfoList">
+                                    <div class="yb-icon-area " ng-click="removeImg(updateConclusionsData.imageInfoList,$index)">
+                                        <i class="yb-sprites-del-img"></i>
+                                    </div>
+                                    <img src="{{img.miniImageUrl}}" data-bigSrc="{{img.imageUrl}}"/>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="order-list-con" ng-show="!conclusionsEditFlag&&!conclusionsDTO.imageInfoList.length&&!conclusionsDTO.conclusionList.length">
+                <button class="btn btn-default"  ng-click="updateConclusionsInfo()">添加</button>
+            </div>
+        </div>
+        <div class="order-list edit-area {{!treatmentPrescriptionEditFlag&&!treatmentPrescriptionDTO.imageInfoList.length&&!treatmentPrescriptionDTO.treatmentPrescription?'no-print':''}}" data-anchor="6" data-key="updateTreatmentPrescriptionData">
+            <div class="order-list-title"><span class="item-icon"><span class="yb-sprites-over-icon{{treatmentPrescriptionDTO.treatmentPrescription?'':'-not'}}"></span></span>治疗方案
+                <div class="fr edit-area">
+                    <span class="btn-edit-module" ng-show="!treatmentPrescriptionEditFlag&&(treatmentPrescriptionDTO.imageInfoList.length||treatmentPrescriptionDTO.treatmentPrescription)" ng-click="updateTreatmentPrescriptionInfo()"><i class="yb-sprites-modify"></i> 修改</span>
+                    <button class="btn btn-edit" ng-show="treatmentPrescriptionEditFlag" ng-click="saveUpdateTreatmentPrescriptionInfo()">保存</button>
+                    <button class="btn btn-default" ng-show="treatmentPrescriptionEditFlag" ng-click="cancelUpdateTreatmentPrescriptionInfo()">取消</button>
+                </div>
+            </div>
+            <div ng-show="!treatmentPrescriptionEditFlag&&(treatmentPrescriptionDTO.imageInfoList.length||treatmentPrescriptionDTO.treatmentPrescription)">
+                <div class="order-list-con">
+                    <span class="tit">治疗处方</span><span class="con" ng-bind="treatmentPrescriptionDTO.treatmentPrescription"></span>
+                </div>
+                <div class="order-list-con">
+                    <span class="tit img-area-tit">图片资料</span>
+                    <div class="img-list-area">
+                        <div class="img-operate-area"  ng-show="treatmentPrescriptionDTO.imageInfoList.length">
+                            <span class="left-btn"><i class="yb-sprites-calender-left"></i></span>
+                            <span class="right-btn"><i class="yb-sprites-calender-right"></i></span>
+                        </div>
+                        <div class="all-img-list edit-all-img-list" data-current="0"  ng-show="treatmentPrescriptionDTO.imageInfoList.length">
+                            <ul class="img-list" >
+                                <li ng-repeat="img in treatmentPrescriptionDTO.imageInfoList"><img src="{{img.miniImageUrl}}" data-bigSrc="{{img.imageUrl}}"/></li>
+                            </ul>
+                        </div>
+                        <div ng-show="!treatmentPrescriptionDTO.imageInfoList.length" class="no-img"><img class="img" src="images/no-img.png"/></div>
+                    </div>
+                </div>
+            </div>
+            <div ng-show="treatmentPrescriptionEditFlag" class="form-edit-area">
+                <div class="order-list-con">
+                    <span class="tit important-inp-tit">治疗处方</span><span class="con" ><textarea placeholder="请输入治疗处方" maxlength="1000" class="form-control" value="{{updateTreatmentPrescriptionData.treatmentPrescription}}" ng-model="updateTreatmentPrescriptionData.treatmentPrescription"></textarea></span>
+                </div>
+                <div class="order-list-con">
+                    <span class="tit img-area-tit">图片资料</span>
+                    <div class="img-list-area" >
+                        <div class="img-operate-area" ng-show="updateTreatmentPrescriptionData.imageInfoList.length">
+                            <span class="left-btn"><i class="yb-sprites-calender-left"></i></span>
+                            <span class="right-btn"><i class="yb-sprites-calender-right"></i></span>
+                        </div>
+                        <div class="all-img-list edit-all-img-list" data-current="0">
+                            <ul class="img-list" data-flag="1" >
+                                <li class="addImg" ng-click="addImg($event,updateTreatmentPrescriptionData)"><img class="img" src="images/select-img.png"/></li>
+                                <li ng-repeat="img in updateTreatmentPrescriptionData.imageInfoList">
+                                    <div class="yb-icon-area " ng-click="removeImg(updateTreatmentPrescriptionData.imageInfoList,$index)">
+                                        <i class="yb-sprites-del-img"></i>
+                                    </div>
+                                    <img src="{{img.miniImageUrl}}" data-bigSrc="{{img.imageUrl}}"/>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="order-list-con" ng-show="!treatmentPrescriptionEditFlag&&!treatmentPrescriptionDTO.imageInfoList.length&&!treatmentPrescriptionDTO.treatmentPrescription">
+                <button class="btn btn-default"  ng-click="updateTreatmentPrescriptionInfo()">添加</button>
+            </div>
+        </div>
+        <div class="order-list edit-area {{!recordFeeListEditFlag&&!recordFeeListDTO.imageInfoList.length&&!recordFeeListDTO.feeList.length?'no-print':''}}" data-anchor="7" data-key="updateRecordFeeListData" >
+            <div class="order-list-title"><span class="item-icon"><span class="yb-sprites-over-icon{{recordFeeListDTO.feeList.length?'':'-not'}}"></span></span>费用清单
+                <div class="fr edit-area">
+                    <span class="btn-edit-module" ng-show="!recordFeeListEditFlag&&(recordFeeListDTO.imageInfoList.length||recordFeeListDTO.feeList.length)" ng-click="updateRecordFeeListInfo()"><i class="yb-sprites-modify"></i>修改</span>
+                    <button class="btn btn-edit" ng-show="recordFeeListEditFlag" ng-click="saveUpdateRecordFeeListInfo()">保存</button>
+                    <button class="btn btn-default" ng-show="recordFeeListEditFlag" ng-click="cancelUpdateRecordFeeListInfo()">取消</button>
+                </div>
+            </div>
+            <div ng-show="!recordFeeListEditFlag&&(recordFeeListDTO.imageInfoList.length||recordFeeListDTO.feeList.length)">
+                <div class="data-container">
+                    <table class="order-table">
+                        <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>时间</th>
+                            <th>项目类别</th>
+                            <th>项目内容</th>
+                            <th>费用（个人+医保）</th>
+                        </tr>
+                        </thead>
+                        <tbody >
+                        <tr ng-repeat="row in recordFeeListDTO.feeList">
+                            <td ng-bind="$index+1"></td>
+                            <td ng-bind="row.datetime|date:'yyyy-MM-dd'"></td>
+                            <td ng-bind="row.itemType"></td>
+                            <td ng-bind="row.item"></td>
+                            <td ng-bind="row.fee"></td>
+
+                        </tr>
+                        <tr ng-show="!recordFeeListDTO.feeList.length"><td colspan="5">暂无费用清单</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="order-list-con">
+                    <span class="tit img-area-tit">图片资料</span>
+                    <div class="img-list-area" >
+                        <div class="img-operate-area" ng-show="recordFeeListDTO.imageInfoList.length">
+                            <span class="left-btn"><i class="yb-sprites-calender-left"></i></span>
+                            <span class="right-btn"><i class="yb-sprites-calender-right"></i></span>
+                        </div>
+                        <div class="all-img-list" data-current="0" ng-show="recordFeeListDTO.imageInfoList.length">
+                            <ul class="img-list" >
+                                <li ng-repeat="img in recordFeeListDTO.imageInfoList"><img src="{{img.miniImageUrl}}" data-bigSrc="{{img.imageUrl}}"/></li>
+                            </ul>
+                        </div>
+                        <div class="no-img" ng-show="!recordFeeListDTO.imageInfoList.length">
+                            <img class="img" src="images/no-img.png"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-show="recordFeeListEditFlag" class="form-edit-area">
+                <div class="data-container">
+                    <table class="order-table">
+                        <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>时间</th>
+                            <th>项目类别</th>
+                            <th>项目内容</th>
+                            <th>费用</th>
+                            <th width="30">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody >
+                        <tr ng-repeat="row in updateRecordFeeListData.feeList">
+                            <td ng-bind="$index+1"></td>
+                            <td >
+                                <label ><input type="text" my97datepicker class="form-control" value="{{row.datatime|date:'yyyy-MM-dd'}}" ng-model="row.datetime"/></label>
+                            </td>
+                            <td >
+                                <label ><select name="itemType" class="form-control" ng-model="row.itemType">
+                                    <option  ng-repeat="feeTypeObj in feeTypeList" class="form-control" value="{{feeTypeObj.id}}" ng-selected="row.itemType==feeTypeObj.id||!feeTypeObj.id" >{{feeTypeObj.name}}</option>
+                                </select>
+                                </label>
+                            </td>
+                            <td >
+                                <div class="pr w400 fee-text-area" ng-mouseleave="row.ulFlag=false;"><input type="text" class="form-control " value="{{row.item}}" ng-model="row.item" ng-focus="row.ulFlag = true"  maxlength="25"/>
+                                    <ul ng-show="row.itemType=='检查检验'&&row.ulFlag" class="pa check-name-list">
+                                        <li ng-repeat="check in checkDTOs" ng-show="!row.item||check.check.name.indexOf(row.item)>-1" ng-click="selectCheckNameFn(row,check)">{{check.check.name}}</li>
+                                    </ul>
+                                </div>
+                            </td>
+                            <td >
+                                <label ><input type="text" class="form-control" ng-keyup="filterNum($event,row,'fee')" value="{{row.fee}}" ng-model="row.fee" maxlength="11"/></label>
+                            </td>
+                            <td >
+                                <a href="javascript:;" ng-click="removeFeeRow($index)">删除</a>
+                            </td>
+                        </tr>
+                        <tr ><td colspan="6"><span class="add-single-row " ng-click="addFeeRow()">添加一条费用清单</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="order-list-con">
+                    <span class="tit img-area-tit">图片资料</span>
+                    <div class="img-list-area" >
+                        <div class="img-operate-area" ng-show="updateRecordFeeListData.imageInfoList.length">
+                            <span class="left-btn"><i class="yb-sprites-calender-left"></i></span>
+                            <span class="right-btn"><i class="yb-sprites-calender-right"></i></span>
+                        </div>
+                        <div class="all-img-list edit-all-img-list" data-current="0">
+                            <ul class="img-list" data-flag="1" >
+                                <li class="addImg" ng-click="addImg($event,updateRecordFeeListData)"><img class="img" src="images/select-img.png"/></li>
+                                <li ng-repeat="img in updateRecordFeeListData.imageInfoList">
+                                    <div class="yb-icon-area " ng-click="removeImg(updateRecordFeeListData.imageInfoList,$index)">
+                                        <i class="yb-sprites-del-img"></i>
+                                    </div>
+                                    <img src="{{img.miniImageUrl}}" data-bigSrc="{{img.imageUrl}}"/>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="order-list-con" ng-show="!recordFeeListEditFlag&&!recordFeeListDTO.imageInfoList.length&&!recordFeeListDTO.feeList.length">
+                <button class="btn btn-default"  ng-click="updateRecordFeeListInfo()">添加</button>
+            </div>
+        </div>
+        <div class="order-list {{!assistantAdviceEditFlag&&!assistantAdvice.medicalUsage&&!assistantAdvice.checkReminder&&!assistantAdvice.livingStyle&&!assistantAdvice.indexMonitoring?'no-print':''}}" data-anchor="8">
+            <div class="order-list-title">助理建议
+                <div class="fr edit-area">
+                    <span class="btn-edit-module" ng-show="!assistantAdviceEditFlag&&(assistantAdvice.medicalUsage||assistantAdvice.checkReminder||assistantAdvice.livingStyle||assistantAdvice.indexMonitoring)" ng-click="updateAssistantAdviceInfo('assistantAdviceEditFlag')"><i class="yb-sprites-modify"></i>修改</span>
+                    <button class="btn btn-edit" ng-show="assistantAdviceEditFlag" ng-click="saveUpdateAssistantAdviceInfo('assistantAdviceEditFlag')">保存</button>
+                    <button class="btn btn-default" ng-show="assistantAdviceEditFlag" ng-click="cancelUpdateAssistantAdviceInfo('assistantAdviceEditFlag')">取消</button>
+                </div>
+            </div>
+            <div ng-show="!assistantAdviceEditFlag&&(assistantAdvice.medicalUsage||assistantAdvice.checkReminder||assistantAdvice.livingStyle||assistantAdvice.indexMonitoring)" >
+                <div class="order-list-con">
+                    <span class="tit">药物用法</span><span class="con" ng-bind="assistantAdvice.medicalUsage"></span>
+                </div>
+                <div class="order-list-con">
+                    <span class="tit">检查提醒</span><span class="con" ng-bind="assistantAdvice.checkReminder"></span>
+                </div>
+                <div class="order-list-con">
+                    <span class="tit">生活方式</span><span class="con" ng-bind="assistantAdvice.livingStyle"></span>
+                </div>
+                <div class="order-list-con">
+                    <span class="tit">指标监控</span><span class="con" ng-bind="assistantAdvice.indexMonitoring"></span>
+                </div>
+            </div>
+            <div ng-show="assistantAdviceEditFlag" class="form-edit-area">
+                <div class="order-list-con">
+                    <span class="tit">药物用法</span><span class="con"><textarea ng-focus="focusDefaultValue($event,updateAssistantAdviceData,'medicalUsage')" placeholder="需要服用＊药物，使用方法是＊。注意药物的副作用是＊。" class="form-control" maxlength="1000" value="{{updateAssistantAdviceData.medicalUsage}}" ng-model="updateAssistantAdviceData.medicalUsage"></textarea></span>
+                </div>
+                <div class="order-list-con">
+                    <span class="tit">检查提醒</span><span class="con" ><textarea ng-focus="focusDefaultValue($event,updateAssistantAdviceData,'checkReminder')" placeholder="医生要求＊做＊检查。" class="form-control"  maxlength="1000" value="{{updateAssistantAdviceData.checkReminder}}" ng-model="updateAssistantAdviceData.checkReminder"></textarea></span>
+                </div>
+                <div class="order-list-con">
+                    <span class="tit">生活方式</span><span class="con" ><textarea ng-focus="focusDefaultValue($event,updateAssistantAdviceData,'livingStyle')" placeholder="需要注意的日常生活习惯包括＊。" class="form-control"  maxlength="1000" value="{{updateAssistantAdviceData.livingStyle}}" ng-model="updateAssistantAdviceData.livingStyle"></textarea></span>
+                </div>
+                <div class="order-list-con">
+                    <span class="tit">指标监控</span><span class="con" ><textarea ng-focus="focusDefaultValue($event,updateAssistantAdviceData,'indexMonitoring')" placeholder="需要监控的指标有＊，正常范围是＊。需要注意＊症状，对应症状的表现是＊。" class="form-control"  maxlength="1000"  value="{{updateAssistantAdviceData.indexMonitoring}}" ng-model="updateAssistantAdviceData.indexMonitoring"></textarea></span>
+                </div>
+            </div>
+            <div class="order-list-con" ng-show="!assistantAdviceEditFlag&&!assistantAdvice.medicalUsage&&!assistantAdvice.checkReminder&&!assistantAdvice.livingStyle&&!assistantAdvice.indexMonitoring">
+                <button class="btn btn-default"  ng-click="updateAssistantAdviceInfo()">添加</button>
+            </div>
+        </div>
+        <div class="order-list no-print" data-anchor="9">
+            <div class="order-list-title">随访任务
+                <div class="fr edit-area" ng-show="ssistantTask">
+                    <span class="btn-edit-module"   ng-click="updateAssistantTaskInfo(ssistantTask)"><i class="yb-sprites-modify"></i>修改</span>
+                    <button class="btn btn-default"  ng-show="ssistantTask.status==1" ng-click="cancelAssistantTaskInfo()">取消任务</button>
+                </div>
+            </div>
+            <div ng-show="ssistantTask">
+                <ul class="order-list-con">
+                    <li class="min-li">
+                        <span class="tit">任务时间</span><span class="con" ng-bind="(ssistantTask.date|date:'yyyy-MM-dd')+' '+ ssistantTask.timeStr"></span>
+                    </li>
+                    <li>
+                        <span class="tit">任务状态</span><span class="con" ng-bind="ssistantTask.statusStr"></span>
+                    </li>
+                </ul>
+                <div class="order-list-con">
+                    <span class="tit">跟踪人</span><span class="con" ng-bind="ssistantTask.assistName"></span>
+                </div>
+                <div class="order-list-con">
+                    <span class="tit">随访说明</span><span class="con" ng-bind="ssistantTask.comment"></span>
+                </div>
+            </div>
+            <div ng-show="!ssistantTask" class="order-list-con">
+                <button class="btn btn-default"  ng-click="addAssistantTaskInfo()">添加</button>
+            </div>
+        </div>
+    </div>
+</div>

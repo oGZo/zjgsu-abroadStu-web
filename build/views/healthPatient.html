@@ -1,0 +1,49 @@
+<div class="g-page-area">
+    <div class="yb-page-title">
+        <span class="icon"><i class="yb-sprites-location"></i></span>
+        <span class="module">健康档案</span>
+        <span class="arrow">&gt;</span>
+        <span class="page">患者列表</span>
+    </div>
+</div>
+<div class="data-area p-patient p-healthPatient">
+    <div class="yb-view-title">
+        <span class="title">患者列表</span>
+    </div>
+    <div class="data-container">
+        <div class="yb-search-group" id="customerSearchForm">
+            <span class="yb-form-condition">患者名<label><input type="text" class="form-control" maxlength="10" ng-model="tableFormData.patient"  placeholder="请输入"/></label></span>
+            <span class="yb-form-condition">身份证号<label class="idCard-input"><input type="text" class="form-control " maxlength="18" ng-model="tableFormData.idCard"  placeholder="请输入" /></label></span>
+            <button ng-click="query()" class="btn btn-sm btn-search">查询</button>
+        </div>
+        <div class="table-area">
+            <table class="table table-striped">
+                <thead>
+                    <th>患者名</th>
+                    <th>身份证号</th>
+                    <th>病程数</th>
+                    <th>就诊记录数</th>
+                    <th>咨询记录数</th>
+                    <th>随访记录数</th>
+                    <th>档案更新时间</th>
+                </thead>
+                <tbody>
+                <tr ng-repeat="row in rows">
+                    <!--<td>{{row.customerId}}</td>-->
+                    <td ng-click="goHealthFile(row)" class="link"><span class="tr-operate-area">{{row.name}}</span></td>
+                    <td ng-click="goHealthFile(row)" class="link"><span class="tr-operate-area">{{row.idCard}}</span></td>
+                    <td >{{row.pathogenesisCount||0}}</td>
+                    <td >{{row.pathogenesisVisitRecordCount||0}}</td>
+                    <td >{{row.pathogenesisVisitRecordCount||0}}</td>
+                    <td >{{row.pathogenesisVisitRecordCount||0}}</td>
+                    <td >{{row.maxUpdateTime&&row.maxUpdateTime*1000|date:'yyyy.MM.dd'}}</td>
+                </tr>
+                <tr ng-if="!rows.length">
+                    <td colspan="7">暂无患者</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <pagination total-items="bigTotalItems" ng-model="bigCurrentPage" max-size="maxSize" ng-change="pageChanged(page)" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages"></pagination>
+    </div>
+</div>
