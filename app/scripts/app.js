@@ -1,6 +1,6 @@
 define(['routes', 'services/dependencyResolverFor', 'services/services', 'directives/animations', 'directives/filter'], function (config, dependencyResolverFor) {
     //var app = angular.module('app', ['ui.router', 'ngDialog', 'ngAnimate', 'ngCookies', 'angular-table', 'Animations', 'ui.bootstrap']);
-    var app = angular.module('app', ['ngRoute', 'ui.router', 'ngAnimate', 'ngCookies', 'Animations', 'ui.bootstrap', 'Filter', 'Ajax']);
+    var app = angular.module('app', ['ngRoute', 'ui.router', 'ngAnimate', 'ngCookies', 'Animations', 'ui.bootstrap', 'Filter', 'Ajax','ui.bootstrap.tpls']);
     app.config([
         '$locationProvider',
         '$controllerProvider',

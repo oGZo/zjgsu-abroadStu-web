@@ -41,25 +41,9 @@ define(['app'], function (app) {
             }
             console.log($scope.isRemember);
             $scope.login = function () {
-                var pageJson = {
-                    1 : 'manage',
-                    2 : 'teacher',
-                    3 : 'student'
-                }
-                //if($scope.type==1){
-                //    $location.path('/manage');
-                //}
-                $location.path('/'+pageJson[$scope.type]);
-                $cookieStore.put(YB.param.sysParam.token, '111');
-                YB.localStorage.setItem('userType', $scope.type);
-                return;
                 if (!$scope.account) {
                     YB.info({
-                        content: '请输入手机号'
-                    });
-                } else if (!/^(0|86|17951)?(1[345789])[0-9]{9}$/.test($scope.account)) {
-                    YB.info({
-                        content: '手机号不合法'
+                        content: '请输入账号'
                     });
                 } else if (!$scope.password) {
                     YB.info({
@@ -67,7 +51,7 @@ define(['app'], function (app) {
                     });
                 } else if (!YB.reg.pwd.test($scope.password)) {
                     YB.info({
-                        content: '请输入6-25位密码'
+                        content: '请输入4-25位密码'
                     });
                 } else {
                     YB.localStorage.setItem('account', $scope.account);
@@ -92,31 +76,38 @@ define(['app'], function (app) {
                         YB.localStorage.removeItem('password');
                     }
                     var pageJson = {
-                        1 : 'manage',
-                        2 : 'teacher',
-                        3 : 'student'
-                    }
-                    //if($scope.type==1){
-                    //    $location.path('/manage');
-                    //}
-                    $location.path('/'+pageJson[$scope.type]);
-                    //Ajax({
-                    //    url: 'assistant/security/user/login',
-                    //    method: 'post',
-                    //    data: {
-                    //        phone: $scope.account,
-                    //        password: password,
-                    //        salt: randomStr
-                    //    },
-                    //    suc: function (res) {
-                    //        $location.path('/home');
-                    //        $cookieStore.put(YB.param.sysParam.token, res.yb_token);
-                    //        $cookieStore.put(YB.param.sysParam.permission, res.brokerClass);
-                    //    },
-                    //    err: function (err) {
-                    //
-                    //    }
-                    //})
+                        1 : {
+                            module : 'student',
+                            url : 'user/student/login'
+                        },
+                        2 : {
+                            module : 'teacher',
+                            url : 'user/teacher/login'
+                        },
+                        3 : {
+                            module : 'manage',
+                            url : 'user/admin/login'
+                        }
+                    };
+                    var obj = pageJson[$scope.userType];
+                    YB.localStorage.setItem('userType', $scope.userType);
+                    Ajax({
+                        url: obj.url,
+                        method: 'post',
+                        data: {
+                            account: $scope.account,
+                            password: password,
+                            salt: randomStr
+                        },
+                        suc: function (res) {
+                            $location.path('/' + obj.module);
+                            $cookieStore.put(YB.param.sysParam.token, res.token);
+                            YB.localStorage.setItem('userName', res.name);
+                        },
+                        err: function (err) {
+
+                        }
+                    })
                 }
             }
         }

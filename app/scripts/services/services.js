@@ -35,11 +35,18 @@ define(function () {
                         ajax.data = processData(ajax.data);
                     }
                 }
+                var userType = YB.localStorage.getItem('userType');
                 if(token){
                     if(location.host!=BASE_HOST){
                         ajax.url += '&'+YB.param.sysParam.token +'=' + token;
+                        if(userType){
+                            ajax.url += '&'+YB.param.sysParam.userType +'=' + userType;
+                        }
                     }else{
                         ajax.headers[YB.param.sysParam.token] = token;
+                        if(userType) {
+                            ajax.headers[YB.param.sysParam.userType] = userType;
+                        }
                     }
                 }
                 if(param.loadDom){

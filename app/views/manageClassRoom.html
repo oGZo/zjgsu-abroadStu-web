@@ -1,0 +1,25 @@
+
+<form action="" id="upload-classroom-form">
+    <input type="file" name="uploadFile" id="updateClassroomData">
+</form>
+
+
+<div class="table-area J_classroom_list">
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>楼名</th>
+            <th>教室</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="row in rows">
+            <td ng-bind="row.building"></td>
+            <td ng-bind="row.roomNumber"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<pagination total-items="bigTotalItems" ng-change="pageChanged(bigCurrentPage)"  ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages"></pagination>

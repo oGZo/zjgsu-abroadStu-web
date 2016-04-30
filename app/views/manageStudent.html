@@ -1,0 +1,48 @@
+<div class="table-area J_student_list">
+    <div class="table-condition">
+        <form class="form-inline">
+            <div class="form-group">
+                <input type="text" maxlength="20" ng-model="params.name" class="form-control" placeholder="姓名">
+            </div>
+            <div class="form-group">
+                <input type="text" maxlength="20" ng-model="params.passportNumber" class="form-control" placeholder="护照号">
+            </div>
+            <button type="button" class="btn btn-default" ng-click="query()">搜索</button>
+        </form>
+    </div>
+    <table class="table table-bordered">
+        <caption>
+            <form action="" id="upload-student-form">
+                <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle  >上传学生</button>
+                <input type="file" name="uploadFile" class="upload-input" id="updateStudentData">
+            </form>
+        </caption>
+        <thead>
+        <tr>
+            <th>护照号</th>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>专业</th>
+            <th>入学年份</th>
+            <th>国籍</th>
+            <th>手机号</th>
+            <th>电子邮箱</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="row in rows">
+            <td ng-bind="row.passportNumber"></td>
+            <td ng-bind="row.firstName + row.secondName"></td>
+            <td ng-bind="{0:'不详',1:'男',2:'女'}[row.sex]"></td>
+            <td ng-bind="row.professionName"></td>
+            <td ng-bind="row.startYear"></td>
+            <td ng-bind="row.country"></td>
+            <td ng-bind="row.phone"></td>
+            <td ng-bind="row.email"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<pagination total-items="bigTotalItems" ng-change="pageChanged(bigCurrentPage)"  ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages"></pagination>

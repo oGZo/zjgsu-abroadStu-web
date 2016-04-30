@@ -1,8 +1,16 @@
 <div class="nav-left">
-    <ul class="nav nav-tabs nav-stacked">
-        <li role="presentation" ng-repeat="nav in navList" class="{{nav.moduleId == currentId?'active':''}}" ng-click="selectModule(nav)"><a>{{nav.title}}</a></li>
+    <ul class="nav av-pills nav-stacked nav-pills-stacked-example">
+        <li role="presentation" ng-repeat="nav in navList" class="{{nav.moduleId == currentId?'active':''}}" ng-click="selectModule(nav.moduleId)"><a>{{nav.title}}</a></li>
     </ul>
 </div>
 <div class="container">
+    <div ng-show="currentId==1" class="J_student_info" ng-controller="StudentInfoController">
 
+    </div>
+    <div ng-show="currentId==2" class="J_student_course" ng-controller="StudentCourseController">
+
+    </div>
+    <div ng-show="currentId==3" class="J_student_score" ng-controller="StudentScoreController">
+
+    </div>
 </div>

@@ -14,7 +14,7 @@ window.BASE_HOST = config.url + 'assistant.120yibao.com';
 //window.BASE_HOST = 'localhost:8000';
 //window.BASE_HOST = '192.168.100.113:8095';
 window.BASE_URL = 'http://' + BASE_HOST + '/yb/';
-window.BASE_URL = 'http://10.0.0.73:8082/';
+window.BASE_URL = 'http://10.0.0.77:8080/';
 require.config({
   urlArgs: "bust=" + SYSTEM_VERSION,
   baseUrl: '/scripts',

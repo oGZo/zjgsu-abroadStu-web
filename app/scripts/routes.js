@@ -29,6 +29,14 @@ define([], function()
                 ],
                 controller: 'ManageViewController'
             },
+            'app.manage.student': {
+                url : '/manage/student',
+                templateUrl: '/views/manageStudent.html',
+                dependencies: [
+                    'controllers/ManageStudentViewController'
+                ],
+                controller: 'ManageStudentViewController'
+            },
             'app.teacher': {
                 url : '/teacher',
                 templateUrl: '/views/teacher.html',
@@ -36,6 +44,14 @@ define([], function()
                     'controllers/TeacherViewController'
                 ],
                 controller: 'TeacherViewController'
+            },
+            'app.teacherStudent' : {
+                url : '/teacherStudent',
+                templateUrl: '/views/teacherStudent.html',
+                dependencies: [
+                    'controllers/TeacherStudentViewController'
+                ],
+                controller: 'TeacherStudentViewController'
             },
             'app.student': {
                 url : '/student',

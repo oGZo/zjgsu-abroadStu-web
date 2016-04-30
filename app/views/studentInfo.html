@@ -1,0 +1,32 @@
+<dl>
+    <dt><p>护照号</p></dt>
+    <dd><p ng-bind="row.passportNumber"></p></dd>
+</dl>
+<dl>
+    <dt><p>姓名</p></dt>
+    <dd><p ng-bind="row.firstName + row.secondName"></p></dd>
+</dl>
+<dl>
+    <dt><p>性别</p></dt>
+    <dd><p ng-bind="{0:'不详',1:'男',2:'女'}[row.sex]"></p></dd>
+</dl>
+<dl>
+    <dt><p>专业</p></dt>
+    <dd><p ng-bind="row.professionName"></p></dd>
+</dl>
+<dl>
+    <dt><p>入学年份</p></dt>
+    <dd><p ng-bind="row.startYear"></p></dd>
+</dl>
+<dl>
+    <dt><p>国籍</p></dt>
+    <dd><p ng-bind="row.country"></p></dd>
+</dl>
+<dl>
+    <dt><p>手机号</p></dt>
+    <dd><p ng-bind="row.phone"></p></dd>
+</dl>
+<dl>
+    <dt><p>电子邮箱</p></dt>
+    <dd><p ng-bind="row.email"></p></dd>
+</dl>
