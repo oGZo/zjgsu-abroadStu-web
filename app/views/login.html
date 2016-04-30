@@ -1,42 +1,49 @@
-<div class="p-login">
-    <div class="login-container">
-        <div class="login-header">
-            <div class="login-title">
-                <div class="logo-area"><img class="logo-img" src="images/logo.jpg" alt=""/></div>
-                <div class="title-area">
-                    <h2>留学生综合服务与管理系统</h2>
+<div class="login-area">
+    <div class="login">
+        <div class="login-screen">
+            <h4>留学生综合服务与管理系统</h4>
+            <!--<div class="login-icon">-->
+                <!--&lt;!&ndash;<img src="images/logo.jpg" alt="留学生综合服务与管理系统">&ndash;&gt;-->
+                <!--<h4>留学生综合服务与管理系统</h4>-->
+            <!--</div>-->
+            <form action="" ng-submit="login()">
+                <div class="login-form">
+                    <div class="form-group">
+                        <input type="text" class="form-control login-field" value="" ng-model="account" ng-blur="accountBlur()" placeholder="账号" maxlength="11" id="login-name">
+                        <label class="login-field-icon fui-user" for="login-name"></label>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="password" class="form-control login-field" value="" ng-model="password"  maxlength="25" placeholder="密码" id="login-pass">
+                        <label class="login-field-icon fui-lock" for="login-pass"></label>
+                    </div>
+                    <div class="form-group-rows" ng-init="userType?userType=userType:userType=1">
+                        <span class="radio-inline">
+                            <label class="radio">
+                                <input type="radio" name="optionsRadios"  value="1" data-toggle="radio" ng-model="userType" class="custom-radio"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
+                                学生
+                            </label>
+                        </span>
+                        <span class="radio-inline">
+                            <label class="radio">
+                                <input type="radio" name="optionsRadios"  value="2" data-toggle="radio" ng-model="userType" class="custom-radio"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
+                                教师
+                            </label>
+                        </span>
+
+                        <span class="radio-inline">
+                            <label class="radio">
+                                <input type="radio" name="optionsRadios"  value="3" data-toggle="radio" ng-model="userType" class="custom-radio"><span class="icons"><span class="icon-unchecked"></span><span class="icon-checked"></span></span>
+                                管理员
+                            </label>
+                        </span>
+
+                    </div>
+
+                    <button class="btn btn-primary btn-lg btn-block" type="submit">登录</button>
                 </div>
-            </div>
-        </div>
-        <div class="login-area">
-            <div class="login-form">
-                <h3>留学生综合服务与管理系统</h3>
-                <div class="form-group" >
-                    <form action="" ng-submit="login()" id="loginForm">
-                        <div class="form-group">
-                            <div class="form-row">
-                                <div class="form-icon-area"><i class="yb-sprites-login-account"></i></div>
-                                <input type="text" name="account" value="{{account}}" class="form-control" ng-model="account" ng-blur="accountBlur()" placeholder="账号" maxlength="11"/>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-icon-area"><i class="yb-sprites-login-password"></i></div>
-                                <input type="password" name="password" value="{{password}}" class="form-control" ng-model="password" placeholder="密码" maxlength="25"/>
-                            </div>
-                            <div class="form-row" ng-init="type=1">
-                                <label><input type="radio"  name="type"  ng-model="type"  value="1"/>管理员</label>
-                                <label><input type="radio"  name="type"  ng-model="type"  value="2"/>教师</label>
-                                <label><input type="radio"  name="type"  ng-model="type"   value="3"/>学生</label>
-                            </div>
-                            <div class="form-row">
-                                <button type="submit" class="btn" >登录</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="login-footer">
-            <!--<p></p>-->
+            </form>
         </div>
     </div>
 </div>
+

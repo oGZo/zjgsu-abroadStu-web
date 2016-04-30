@@ -1,0 +1,12 @@
+<div class="cell">
+    <p><%= courseName %></p>
+    <p><%= startWeek+ '-' + endWeek %></p>
+    <p><%= building+ ' ' + roomNumber %></p>
+    <%
+     var teacherArr = [];
+     $.each(teachers,function(i,v){
+         teacherArr.push(v.name);
+     })
+      %>
+    <p><%= teacherArr.join(',') %></p>
+</div>

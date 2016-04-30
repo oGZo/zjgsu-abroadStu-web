@@ -115,10 +115,10 @@ window.YB = {
         var num = param.num||10;
         //起始数
         var start = (page-1)*num;
-        return {
+        return $.extend(param,{
             start : start,
-            count : num
-        }
+            size : num
+        });
     },
     //获取订单类型名称
     getTypeName : function(type){
@@ -310,8 +310,8 @@ window.YB = {
     },
     param: {
         sysParam: {
-            token: 'Yb-assitant-Token',
-            permission: 'permission'
+            token: 'token',
+            userType : 'userType'
         },
         sexJson: {
             1: '男',
@@ -406,7 +406,7 @@ window.YB = {
         }
     },
     reg : {
-        pwd: /^\w{6,25}$/,
+        pwd: /^\w{4,25}$/,
         inviteCode: /^\w{8}$/,
         phone: /^(0|86|17951)?(1[345789])[0-9]{9}$/,
         idCard: /(^\d{6}\d{2}(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])\d{3}$)|(^\d{6}(18|19|20|21)\d{2}(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])\d{3}(\d|X|x)$)/,

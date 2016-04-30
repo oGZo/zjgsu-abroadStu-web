@@ -1,0 +1,28 @@
+<div class="table-area J_teacher_list">
+    <div class="table-condition">
+        <form action="" id="upload-teacher-form">
+            <input type="file" name="uploadFile" id="updateTeacherData">
+        </form>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>工号</th>
+            <th>姓名</th>
+            <th>手机号</th>
+            <th>电子邮箱</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="row in rows">
+            <td ng-bind="row.jobNumber"></td>
+            <td ng-bind="row.name"></td>
+            <td ng-bind="row.phone"></td>
+            <td ng-bind="row.email"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<pagination total-items="bigTotalItems" ng-change="pageChanged(bigCurrentPage)"  ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages"></pagination>

@@ -1,8 +1,10 @@
 //主目录
 define(['app'], function (app) {
-    app.controller('LayoutViewController', ['$rootScope', '$scope', '$location', '$cookieStore', 'Ajax', '$timeout',
+    //angular.module('ui.bootstrap.demo');
+    app.controller('LayoutViewController', ['$rootScope', '$scope', '$location', '$cookieStore', 'Ajax', '$timeout','$modal','$log',
 
-        function ($rootScope, $scope, $location, $cookieStore, Ajax, $timeout) {
+        function ($rootScope, $scope, $location, $cookieStore, Ajax, $timeout,$modal,$log) {
+            YB.log(arguments)
             //没有token时跳转到登陆页
             if (!$cookieStore.get(YB.param.sysParam.token)) {
                 $location.path('/login');
@@ -42,55 +44,52 @@ define(['app'], function (app) {
             if (!$cookieStore.get(YB.param.sysParam.token)) {
                 $location.url('/login');
             }
-            Ajax({
-                method: 'post',
-                //data : $scope.params,
-                url: 'assistant/homepage/info',
-                suc: function (res) {
-                    //$scope.bigTotalItems = res.total;
-                    $.extend($scope, res);
-                    YB.param.assistantInfo = res;
-                    //$scope.userImgUrl = 'http://t.yh.120yibao.com/doctor-man.png';
-                }
-            });
             $scope.setView = function (param) {
                 $scope.currentView = param.moduleId;
             };
-            $scope.goConsultPhone = function () {
-                $scope.currentView = 'customer';
-                $location.path('/consultPhone');
-            };
-            $timeout(function () {
-                if (!$location.path()) {
-                    $scope.currentView = 'home';
-                    $location.path('/home');
-                }
-            }, 100);
             //$scope.currentView = $location.path()&&$location.path().slice(1);
-            $scope.logout = function () {
-                art.dialog({
-                    lock: true,
-                    opacity: 0.4,	// 透明度
-                    width: 320,
-                    height: 160,
-                    title: '壹宝提醒',
-                    content: '确定要退出吗？',
-                    ok: function () {
-                        $cookieStore.remove(YB.param.sysParam.token);
-                        $location.url('/login');
-                        Ajax({
-                            method: 'post',
-                            url: 'assistant/account/logout',
-                            suc: function (res) {
-                                $cookieStore.remove(YB.param.sysParam.token);
-                                $location.url('/login');
-                            }
-                        });
-                    },
-                    cancel: true
+            $scope.user = {};
+            $scope.user.name = YB.localStorage.getItem('userName');
+            $scope.items = ['item1', 'item2', 'item3'];
+
+            $scope.open = function (size) {
+
+                var modalInstance = $modal.open({
+                    templateUrl: 'myModalContent.html',
+                    controller: 'ModalInstanceCtrl',
+                    size: size,
+                    resolve: {
+                        items: function () {
+                            return $scope.items;
+                        }
+                    }
+                });
+
+                modalInstance.result.then(function (selectedItem) {
+                    YB.localStorage.removeItem(YB.param.sysParam.userType);
+                    YB.localStorage.removeItem('userName');
+                    $cookieStore.remove(YB.param.sysParam.token);
+                    $location.path('/login');
+                }, function () {
+                    $log.info('Modal dismissed at: ' + new Date());
                 });
             }
         }
     ]);
+    app.controller('ModalInstanceCtrl', function ($scope, $modalInstance, items) {
+        YB.log(arguments);
+        $scope.items = items;
+        $scope.selected = {
+            item: $scope.items[0]
+        };
+
+        $scope.ok = function () {
+            $modalInstance.close();
+        };
+
+        $scope.cancel = function () {
+            $modalInstance.dismiss('cancel');
+        };
+    });
 
 });

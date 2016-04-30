@@ -1,8 +1,22 @@
 <div class="nav-left">
-    <ul class="nav nav-tabs nav-stacked">
-        <li role="presentation" ng-repeat="nav in navList" class="{{nav.moduleId == currentId?'active':''}}" ng-click="selectModule(nav)"><a>{{nav.title}}</a></li>
+    <ul class="nav nav-pills nav-stacked nav-pills-stacked-example">
+        <li role="presentation" ng-repeat="nav in navList" class="{{nav.moduleId == currentId?'active':''}}" ng-click="selectModule(nav.moduleId)"><a>{{nav.title}}</a></li>
     </ul>
 </div>
-<div class="container">
+<div class="container manage-area J_manage">
+    <div ng-show="currentId==1" class="J_manage_student" ng-controller="ManageStudentController">
 
+    </div>
+    <div ng-show="currentId==2" class="J_manage_course" ng-controller="ManageCourseController">
+
+    </div>
+    <div ng-show="currentId==3" class="J_manage_arrange" ng-controller="ManageArrangeController">
+
+    </div>
+    <div ng-show="currentId==4" class="J_manage_teacher" ng-controller="ManageTeacherController">
+
+    </div>
+    <div ng-show="currentId==5" class="J_manage_classroom" ng-controller="ManageClassroomController">
+
+    </div>
 </div>

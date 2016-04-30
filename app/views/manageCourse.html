@@ -1,0 +1,29 @@
+
+<form action="" id="upload-course-form">
+    <input type="file" name="uploadFile" id="updateCourseData">
+</form>
+
+
+<div class="table-area J_course_list">
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>课程名</th>
+            <th>所属专业</th>
+            <th>起始周</th>
+            <th>结束周</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="row in rows">
+            <td ng-bind="row.name"></td>
+            <td ng-bind="row.professionName"></td>
+            <td ng-bind="'第'+row.startWeek+'周'"></td>
+            <td ng-bind="'第'+row.endWeek+'周'"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<!--<pagination total-items="bigTotalItems" ng-change="pageChanged(page)"  ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages"></pagination>-->

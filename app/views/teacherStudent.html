@@ -1,0 +1,36 @@
+<div class="table-area J_teacher_student_list">
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>护照号</th>
+            <th>姓名</th>
+            <th>邮箱</th>
+            <th>性别</th>
+            <th>手机号</th>
+            <th>邮箱</th>
+            <th>分数</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="row in rows">
+            <td ng-bind="row.passportNumber"></td>
+            <td ng-bind="row.firstName + row.secondName"></td>
+            <td ng-bind="row.professionName"></td>
+            <td ng-bind="{0:'不详',1:'男',2:'女'}[row.sex]"></td>
+            <td ng-bind="row.phone"></td>
+            <td ng-bind="row.email"></td>
+            <td ><span ng-show="!row.updateFlag" ng-bind="row.score"></span><span ng-show="row.updateFlag"><input type="text" class="form-control" ng-model="row.newScore" /></span></td>
+            <td >
+                <div ng-show="!row.updateFlag">
+                    <button type="button" class="btn btn-default btn-sm btn-info" ng-click="updateScore(row)" >修改</button>
+                </div>
+                <div ng-show="row.updateFlag">
+                    <button type="button" class="btn btn-default btn-sm btn-success" ng-click="saveUpdateScore(row)" >保存</button>
+                    <button type="button" class="btn btn-default btn-sm bt-default" ng-click="cancelUpdateScore(row)" >取消</button>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

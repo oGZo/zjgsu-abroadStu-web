@@ -1,0 +1,20 @@
+<div class="table-area J_student_score_list">
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>课程名</th>
+            <th>起始周</th>
+            <th>教室名称</th>
+            <th>分数</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="row in rows">
+            <td ng-bind="row.courseName"></td>
+            <td ng-bind="'第'+row.startWeek+'周-第'+row.endWeek+'周'"></td>
+            <td ng-bind="row.teacherStr"></td>
+            <td ng-bind="row.score"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
