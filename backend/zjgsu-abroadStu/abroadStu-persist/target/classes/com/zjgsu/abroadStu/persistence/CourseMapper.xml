@@ -163,4 +163,16 @@
             WHERE relation.status = 1 AND relation.teacherId = #{id}
     </select>
 
+    <delete id="deleteArrange">
+        DELETE FROM course_instance WHERE id = #{id}
+    </delete>
+
+    <delete id="deleteStudentRelation">
+        DELETE FROM student_course_relation WHERE courseId = #{id}
+    </delete>
+
+    <delete id="deleteTeacherRelation">
+        DELETE FROM teacher_course_relation WHERE courseId = #{id}
+    </delete>
+
 </mapper>

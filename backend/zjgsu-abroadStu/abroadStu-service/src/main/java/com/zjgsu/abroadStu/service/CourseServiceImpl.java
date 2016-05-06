@@ -108,5 +108,13 @@ public class CourseServiceImpl implements CourseService{
         return courseInstanceList;
     }
 
+    @Override
+    @Transactional(readOnly = false, rollbackFor = Exception.class)
+    public void deleteArrange(Integer id) throws Exception{
+        courseMapper.deleteInstance(id);
+        courseMapper.deleteStudentRelation(id);
+        courseMapper.deleteTeacherRelation(id);
+    }
+
 
 }

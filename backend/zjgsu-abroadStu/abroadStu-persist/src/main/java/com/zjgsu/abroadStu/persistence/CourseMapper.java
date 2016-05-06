@@ -36,4 +36,10 @@ public interface CourseMapper {
 
     List<CourseInstanceDTO> getCourseInstanceListByTeacher(@Param("id")Integer id);
 
+    void deleteInstance(@Param("id")Integer id);
+
+    void deleteStudentRelation(@Param("id")Integer id);
+
+    void deleteTeacherRelation(@Param("id")Integer id);
+
  }

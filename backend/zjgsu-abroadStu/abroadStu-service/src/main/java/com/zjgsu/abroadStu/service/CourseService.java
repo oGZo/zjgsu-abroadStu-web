@@ -24,4 +24,6 @@ public interface CourseService {
     List<CourseInstanceDTO> getCourseInstanceListByProfessionId(Integer id);
 
     List<CourseInstanceDTO> getCourseInstanceListByTeacher(Integer id);
+
+    void deleteArrange(Integer id) throws Exception;
 }

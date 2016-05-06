@@ -120,7 +120,7 @@ public class AdminController {
         File file = new File("/Users/JIADONG/Documents/workDocuments/teacher.xlsx");
         try {
             uploadFile.transferTo(file);
-            List<Teacher> teacherList = teacherService.selectAllTeachers(null,null);
+            List<Teacher> teacherList = teacherService.selectAllTeachers(null, null);
 
             List<Teacher> newTeacherList = new ArrayList<>();
             List list = ExcelOperate.readExcel(file);
@@ -168,7 +168,7 @@ public class AdminController {
         File file = new File("/Users/JIADONG/Documents/workDocuments/classroom.xlsx");
         try {
             uploadFile.transferTo(file);
-            List<Classroom> classroomList = classroomService.selectAllClassrooms(null,null);
+            List<Classroom> classroomList = classroomService.selectAllClassrooms(null, null);
 
             List<Classroom> newClassroomList = new ArrayList<>();
 
@@ -297,6 +297,90 @@ public class AdminController {
         }
         return response;
     }
+
+    /**
+     * 删除排课
+     * @param request
+     * @param id
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.POST, value = "/deleteArrange")
+    @ResponseBody
+    public ResponseModel deleteArrange(HttpServletRequest request,Integer id) {
+
+        ResponseModel response = new ResponseModel(ResponseCodeList.Success, "请求成功！");
+        try{
+            courseService.deleteArrange(id);
+        }catch (Exception e){
+            response.setInfo("系统异常");
+            response.setStatus(ResponseCodeList.SERVER_ERROR);
+            return response;
+        }
+        return response;
+
+    }
+
+    /**
+     * 更新排课
+     * @param request
+     * @param courseInstance
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.POST, value = "/updateArrange")
+    @ResponseBody
+    public ResponseModel updateArrange(HttpServletRequest request, CourseInstance courseInstance) {
+        ResponseModel response = new ResponseModel(ResponseCodeList.Success, "请求成功！");
+        try {
+            courseService.deleteArrange(courseInstance.getId());
+
+            List<Integer> studentList = courseInstance.getStudentIdList();
+            List<Integer> teacherList = courseInstance.getTeacherIdList();
+
+            List<CourseInstance> courseInstanceList = courseService.getCourseInstanceList();
+            for (CourseInstance course:courseInstanceList) {
+                if (courseInstance.getWeek().equals(course.getWeek())) {
+                    if ((courseInstance.getStartTime() <= course.getStartTime() && courseInstance.getStartTime() >= course.getEndTime())
+                            || courseInstance.getEndTime() <= course.getStartTime() && courseInstance.getEndTime() >= course.getEndTime()) {
+
+                        //教室判重
+                        if (courseInstance.getClassroomId().equals(course.getClassroomId())) {
+                            response.setInfo("该时间段教室冲突!");
+                            response.setStatus(ResponseCodeList.SERVER_ERROR);
+                            return response;
+                        }
+                        //学生判重
+                        for (Integer oldStudentId : course.getStudentIdList()) {
+                            for (Integer newStudentId : studentList) {
+                                if (oldStudentId.equals(newStudentId)) {
+                                    response.setInfo("该时间段学生冲突!");
+                                    response.setStatus(ResponseCodeList.SERVER_ERROR);
+                                    return response;
+                                }
+                            }
+                        }
+                        //教师判重
+                        for (Integer oldTeacherId : course.getTeacherIdList()) {
+                            for (Integer newTeacherId : teacherList) {
+                                if (oldTeacherId.equals(newTeacherId)) {
+                                    response.setInfo("该时间段教师冲突!");
+                                    response.setStatus(ResponseCodeList.SERVER_ERROR);
+                                    return response;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }catch (Exception e){
+            response.setInfo("系统异常");
+            response.setStatus(ResponseCodeList.SERVER_ERROR);
+            return response;
+        }
+        return response;
+    }
+
+
+
 
     /**
      * 排课选择学生
