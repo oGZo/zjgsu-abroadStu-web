@@ -20,9 +20,9 @@ public interface CourseMapper {
 
     List<CourseInstance> getCourseInstanceList();
 
-    List<Integer> getCourseStudentList(Integer id);
+    List<Integer> getCourseStudentList(@Param("id")Integer id);
 
-    List<Integer> getCourseTeacherList(Integer id);
+    List<Integer> getCourseTeacherList(@Param("id")Integer id);
 
     void addCourseInstance (CourseInstance courseInstance);
 

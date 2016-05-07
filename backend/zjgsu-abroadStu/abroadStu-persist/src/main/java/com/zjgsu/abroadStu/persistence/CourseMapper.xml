@@ -54,7 +54,7 @@
     </select>
 
     <insert id="addCourseInstance" parameterType="com.zjgsu.abroadStu.model.CourseInstance">
-        INSERT INTO
+        INSERT INTO course_instance
         (
           courseTemplateId,
           classroomId,
@@ -70,6 +70,11 @@
           #{endTime},
           now()
         )
+        <selectKey resultType="int" keyProperty="id">
+            <![CDATA[
+	       	  SELECT LAST_INSERT_ID() AS id
+	        ]]>
+        </selectKey>
     </insert>
 
     <insert id="addCourseStudents" parameterType="java.util.List">
@@ -174,5 +179,20 @@
     <delete id="deleteTeacherRelation">
         DELETE FROM teacher_course_relation WHERE courseId = #{id}
     </delete>
+
+    <select id="getCourseStudentList" resultType="java.lang.Integer">
+        SELECT
+          studentId
+          FROM student_course_relation
+          WHERE courseId = #{id} AND status =1
+    </select>
+
+    <select id="getCourseTeacherList" resultType="java.lang.Integer">
+        SELECT
+        teacherId
+        FROM teacher_course_relation
+        WHERE courseId = #{id} AND status =1
+    </select>
+
 
 </mapper>
