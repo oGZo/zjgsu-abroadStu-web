@@ -55,10 +55,10 @@
           email
         FROM teacher
         WHERE status = 1
+        ORDER BY createTime DESC
         <if test="start!=null and size!=null">
             limit #{start},#{size}
         </if>
-        ORDER BY createTime DESC
     </select>
 
     <insert id="insertTeacher" parameterType="java.util.List">
