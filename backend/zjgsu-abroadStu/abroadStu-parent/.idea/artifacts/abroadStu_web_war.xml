@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="abroadStu-web:war">
+    <output-path>$PROJECT_DIR$/../abroadStu-web/target</output-path>
+    <root id="archive" name="zjgsu-abroadStu.war">
+      <element id="artifact" artifact-name="abroadStu-web:war exploded" />
+    </root>
+  </artifact>
+</component>

@@ -4,9 +4,9 @@ if(config.type != 'develop'){
   SYSTEM_VERSION = config.timestamp;
 }
 window.BASE_HOST = config.url ;
-
 //window.BASE_URL = 'http://' + BASE_HOST + '/';
 window.BASE_URL = 'http://localhost:8088/';
+
 require.config({
   urlArgs: "bust=" + SYSTEM_VERSION,
   baseUrl: '/scripts',

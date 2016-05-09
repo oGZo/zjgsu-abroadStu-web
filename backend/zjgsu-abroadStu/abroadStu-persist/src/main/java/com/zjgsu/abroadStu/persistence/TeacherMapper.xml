@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zjgsu.abroadStu.persistence.TeacherMapper">
+
+    <select id="selectTeacherByJobNumber" resultType="com.zjgsu.abroadStu.model.Teacher" >
+        SELECT
+          id,
+          jobNumber,
+          password,
+          token,
+          name,
+          phone,
+          email
+        FROM teacher
+        WHERE jobNumber = #{jobNumber} AND status = 1
+    </select>
+
+    <select id="selectTeacherByToken" resultType="com.zjgsu.abroadStu.model.Teacher" >
+        SELECT
+        id,
+        jobNumber,
+        password,
+        lastLoginIp,
+        name,
+        phone,
+        email
+        FROM teacher
+        WHERE token = #{token} AND status = 1
+    </select>
+
+    <update id="saveTeacherToken" parameterType="com.zjgsu.abroadStu.model.Teacher">
+        UPDATE teacher
+        SET
+        token = #{token},
+        lastLoginIp = #{lastLoginIp}
+        WHERE  jobNumber = #{jobNumber} AND status = 1
+    </update>
+
+    <select id="countTeacher" resultType="java.lang.Integer">
+        SELECT
+          COUNT(*)
+           FROM teacher
+        WHERE status = 1
+    </select>
+    <select id="selectAllTeachers"  resultType="com.zjgsu.abroadStu.model.Teacher">
+        SELECT
+          id,
+          jobNumber,
+          password,
+          token,
+          name,
+          phone,
+          email
+        FROM teacher
+        WHERE status = 1
+        ORDER BY createTime DESC
+        <if test="start!=null and size!=null">
+            limit #{start},#{size}
+        </if>
+    </select>
+
+    <insert id="insertTeacher" parameterType="java.util.List">
+        INSERT INTO teacher
+        (
+        jobNumber,
+        password,
+        name,
+        phone,
+        email,
+        createTime
+        )VALUES
+        <foreach collection="list" item="teacher" index="index"
+                 separator=",">
+            (
+            #{teacher.jobNumber},
+            #{teacher.password},
+            #{teacher.name},
+            #{teacher.phone},
+            #{teacher.email},
+            now()
+            )
+        </foreach>
+    </insert>
+
+    <select id="selectTeacherByCourseId" resultType="com.zjgsu.abroadStu.model.Teacher">
+        SELECT
+            teacher.id,
+            teacher.name
+          FROM teacher_course_relation relation
+            LEFT JOIN teacher ON teacher.id = relation.teacherId
+            WHERE relation.courseId = #{id}
+    </select>
+
+</mapper>

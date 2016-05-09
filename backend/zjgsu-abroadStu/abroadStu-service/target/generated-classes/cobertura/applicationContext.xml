@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Repository and Service layers -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/task
+        http://www.springframework.org/schema/task/spring-task.xsd">
+
+	<!-- use annotation config -->
+	<context:annotation-config />
+	<context:component-scan base-package="com.zjgsu.abroadStu.service" />
+
+	<task:annotation-driven />
+	<bean id="taskScheduler"
+		class="org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler">
+	</bean>
+
+	<!-- load properties -->
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="ignoreResourceNotFound">
+			<value>true</value>
+		</property>
+		<property name="locations">
+			<list>
+				<value>classpath:database.properties</value>
+				<value>classpath:settings.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 数据源 -->
+	<bean id="mainDataSource" class="com.jolbox.bonecp.BoneCPDataSource"
+		destroy-method="close">
+		<property name="driverClass" value="com.mysql.jdbc.Driver" />
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/zjgsu?autoReconnect=true&amp;zeroDateTimeBehavior=convertToNull" />
+		<property name="username" value="root" />
+		<property name="password" value="!#jiadong" />
+
+		<!-- 分区数 ，默认值2，最小1，推荐3-4，视应用而定 -->
+		<property name="partitionCount" value="2" />
+		<!-- 每个分区最小的连接数 默认值:5 -->
+		<property name="minConnectionsPerPartition" value="3" />
+		<!-- 每个分区最大的连接数 默认值:15 -->
+		<property name="maxConnectionsPerPartition" value="30" />
+		<!-- Free Connections / MaxConnections < poolAvailabilityThreshold, new 
+			connections will be created. -->
+		<property name="poolAvailabilityThreshold" value="10" />
+
+		<!-- 检查数据库连接池中空闲连接的间隔时间，单位是分，默认值：240，如果要取消则设置为0 -->
+		<property name="idleConnectionTestPeriodInMinutes" value="240" />
+		<!-- 连接池中未使用的链接最大存活时间，单位是分，默认值：60，如果要永远存活设置为0 -->
+		<property name="idleMaxAgeInMinutes" value="60" />
+
+		<!-- 如果设置为true，那么连接池不会自动创建最小连接数的链接，而是保持为空，直到有需求要获取连接。 开发:true,生产:false -->
+		<property name="lazyInit" value="false" />
+		<!-- 在做keep-alive的时候的SQL语句 -->
+		<property name="connectionTestStatement" value="SELECT 1" />
+		<!-- If set to true, the pool will not monitor connections for proper closure. -->
+		<property name="disableConnectionTracking" value="true" />
+	</bean>
+
+	<!-- transaction -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="mainDataSource" />
+		<property name="nestedTransactionAllowed" value="true"/>
+	</bean>
+
+	<!-- 事务注解驱动，标注@Transactional的类和方法将具有事务性 -->
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	<!--事务模板 -->
+	<bean id="transactionTemplate"
+		  class="org.springframework.transaction.support.TransactionTemplate">
+		<property name="transactionManager">
+			<ref bean="transactionManager" />
+		</property>
+		<!--ISOLATION_DEFAULT 表示由使用的数据库决定  -->
+		<property name="isolationLevelName" value="ISOLATION_DEFAULT"/>
+		<property name="propagationBehaviorName" value="PROPAGATION_NESTED"/>
+		<!-- <property name="timeout" value="30"/> -->
+	</bean>
+
+	<!-- define the SqlSessionFactory -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="mainDataSource" />
+		<!--<property name="typeAliasesPackage" value="com.yibao.broker.model" />-->
+	</bean>
+
+	<!-- scan for mappers and let them be autowired -->
+	<bean id="mapperScanner" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.zjgsu.abroadStu.persistence" />
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+	</bean>
+
+</beans>

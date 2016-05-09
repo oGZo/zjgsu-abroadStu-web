@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zjgsu.abroadStu.persistence.CourseMapper">
+
+    <select id="selectCourseTemplateByProfessionId" resultType="com.zjgsu.abroadStu.model.CourseTemplate">
+        SELECT
+        course.id,
+        course.name,
+        course.professionId,
+        course.startWeek,
+        course.endWeek,
+        pro.name as professionName
+        FROM course_template course
+          LEFT JOIN profession pro ON pro.id = course.professionId
+          WHERE course.status = 1
+          <if test="professionId!=null and professionId!=''">
+              AND professionId = #{professionId}
+          </if>
+    </select>
+
+    <insert id="insertCourseTemplate" parameterType="java.util.List">
+        INSERT INTO course_template
+        (
+        name,
+        professionId,
+        startWeek,
+        endWeek,
+        createTime
+        )VALUES
+        <foreach collection="list" item="course" index="index"
+                 separator=",">
+            (
+            #{course.name},
+            #{course.professionId},
+            #{course.startWeek},
+            #{course.endWeek},
+            now()
+            )
+        </foreach>
+    </insert>
+
+    <select id="getCourseInstanceList" resultType="com.zjgsu.abroadStu.model.CourseInstance">
+        SELECT
+          id,
+          courseTemplateId,
+          classroomId,
+          week,
+          startTime,
+          endTime
+          FROM course_instance
+           WHERE status = 1
+    </select>
+
+    <insert id="addCourseInstance" parameterType="com.zjgsu.abroadStu.model.CourseInstance">
+        INSERT INTO course_instance
+        (
+          courseTemplateId,
+          classroomId,
+          week,
+          startTime,
+          endTime,
+          createTime
+        )VALUES (
+          #{courseTemplateId},
+          #{classroomId},
+          #{week},
+          #{startTime},
+          #{endTime},
+          now()
+        )
+        <selectKey resultType="int" keyProperty="id">
+            <![CDATA[
+	       	  SELECT LAST_INSERT_ID() AS id
+	        ]]>
+        </selectKey>
+    </insert>
+
+    <insert id="addCourseStudents" parameterType="java.util.List">
+        INSERT INTO student_course_relation
+        (
+        courseId,
+        studentId,
+        createTime
+        )VALUES
+        <foreach collection="list" item="course" index="index"
+                 separator=",">
+            (
+            #{course.courseId},
+            #{course.studentId},
+            now()
+            )
+        </foreach>
+    </insert>
+
+    <insert id="addCourseTeachers" parameterType="java.util.List">
+        INSERT INTO teacher_course_relation
+        (
+        courseId,
+        teacherId,
+        createTime
+        )VALUES
+        <foreach collection="list" item="course" index="index"
+                 separator=",">
+            (
+            #{course.courseId},
+            #{course.teacherId},
+            now()
+            )
+        </foreach>
+    </insert>
+
+    <select id="getCourseInstanceListByStudent" resultType="com.zjgsu.abroadStu.model.http.CourseInstanceDTO">
+        SELECT
+          instance.id,
+          template.name as courseName,
+          template.startWeek,
+          template.endWeek,
+          classroom.building,
+          classroom.roomNumber,
+          instance.classroomId,
+          instance.week,
+          instance.startTime,
+          instance.endTime,
+          relation.score
+          FROM student_course_relation relation
+             JOIN course_instance instance ON relation.courseId = instance.id
+             JOIN course_template template ON instance.courseTemplateId = template.id
+             JOIN classroom ON classroom.id = instance.classroomId
+            WHERE relation.status = 1 AND relation.studentId = #{id}
+    </select>
+
+    <select id="getCourseInstanceListByProfessionId" resultType="com.zjgsu.abroadStu.model.http.CourseInstanceDTO">
+          SELECT
+          instance.id,
+          template.name as courseName,
+          template.startWeek,
+          template.endWeek,
+          classroom.building,
+          classroom.roomNumber,
+          instance.classroomId,
+          instance.week,
+          instance.startTime,
+          instance.endTime
+          FROM course_instance instance
+            JOIN course_template template ON instance.courseTemplateId = template.id
+            JOIN classroom ON classroom.id = instance.classroomId
+            WHERE instance.status = 1 and template.professionId = #{id}
+    </select>
+
+    <select id="getCourseInstanceListByTeacher" resultType="com.zjgsu.abroadStu.model.http.CourseInstanceDTO">
+                SELECT
+          instance.id,
+          template.name as courseName,
+          template.startWeek,
+          template.endWeek,
+          classroom.building,
+          classroom.roomNumber,
+          instance.classroomId,
+          instance.week,
+          instance.startTime,
+          instance.endTime
+          FROM teacher_course_relation relation
+             JOIN course_instance instance ON relation.courseId = instance.id
+             JOIN course_template template ON instance.courseTemplateId = template.id
+             JOIN classroom ON classroom.id = instance.classroomId
+            WHERE relation.status = 1 AND relation.teacherId = #{id}
+    </select>
+
+    <delete id="deleteArrange">
+        DELETE FROM course_instance WHERE id = #{id}
+    </delete>
+
+    <delete id="deleteStudentRelation">
+        DELETE FROM student_course_relation WHERE courseId = #{id}
+    </delete>
+
+    <delete id="deleteTeacherRelation">
+        DELETE FROM teacher_course_relation WHERE courseId = #{id}
+    </delete>
+
+    <select id="getCourseStudentList" resultType="java.lang.Integer">
+        SELECT
+          studentId
+          FROM student_course_relation
+          WHERE courseId = #{id} AND status =1
+    </select>
+
+    <select id="getCourseTeacherList" resultType="java.lang.Integer">
+        SELECT
+        teacherId
+        FROM teacher_course_relation
+        WHERE courseId = #{id} AND status =1
+    </select>
+
+
+</mapper>
