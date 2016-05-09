@@ -1,6 +1,4 @@
-/**
- * Created by sanqi on 16/4/26.
- */
+
 //教师页面
 define(['app'], function (app) {
     app.controller('TeacherViewController', ['$scope', '$location', '$cookieStore', 'Ajax',function($scope,$location,$cookieStore,Ajax){

@@ -17,14 +17,22 @@ define(function () {
         dialog.DOM.dialog.find('.confirm-btn')
             .on('click',function(e){
                 var dataArr = $('.J_assistantListForm input:checked');
-                var dataId = dataArr.val();
+                var dataIds = [];
                 var obj;
-                $.each(param.data.brokerList,function(i,v){
-                    if(v.userId == dataId){
-                        obj = v;
-                    }
-                })
-                param.ok&&param.ok(obj);
+                dataArr.each(function(i,v){
+                    var me = $(v);
+                    dataIds.push({
+                        id : me.val(),
+                        name : me.attr('data-value')
+                    });
+                });
+                if(!dataIds.length){
+                    YB.info({
+                        content : param.hintInfo || '请选择'
+                    })
+                    return;
+                }
+                param.ok&&param.ok(dataIds);
             });
         dialog.DOM.dialog.find('.cancel-btn').on('click',function(e){
             param.cancel&&param.cancel(e);

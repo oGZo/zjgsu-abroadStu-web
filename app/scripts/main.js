@@ -1,20 +1,12 @@
-//window.BASE_HOST = '192.168.100.113:8095';
-//window.BASE_HOST = '127.0.0.1:8080';
-//window.BASE_HOST = '192.168.100.169:8080';
-//window.BASE_HOST = '192.168.100.148:8095';
+
 window.SYSTEM_VERSION = new Date().getTime();
 if(config.type != 'develop'){
   SYSTEM_VERSION = config.timestamp;
 }
-window.BASE_HOST = config.url + 'assistant.120yibao.com';
-//window.BASE_HOST = '10.0.0.12:8002/back';
-//window.BASE_HOST = '192.168.100.169:8080';
-//window.BASE_HOST = '192.168.100.141:8080';
-//window.BASE_HOST = '192.168.100.148:8095';
-//window.BASE_HOST = 'localhost:8000';
-//window.BASE_HOST = '192.168.100.113:8095';
-window.BASE_URL = 'http://' + BASE_HOST + '/yb/';
-window.BASE_URL = 'http://10.0.0.77:8080/';
+window.BASE_HOST = config.url ;
+
+//window.BASE_URL = 'http://' + BASE_HOST + '/';
+window.BASE_URL = 'http://localhost:8088/';
 require.config({
   urlArgs: "bust=" + SYSTEM_VERSION,
   baseUrl: '/scripts',

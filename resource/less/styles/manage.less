@@ -1,0 +1,582 @@
+
+@import "../base";
+html,body,img,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,table
+{
+  margin:0px;
+  padding:0px;
+  border:0px;
+}
+/*****************����************************/
+.headDiv{
+  position : relative;
+  width:100%;
+  height:28px;
+  padding-left:8px;
+  background:#BBCCFF;
+  font: 12px Arial,Sans-serif;
+  line-height:28px;
+}
+.headDiv .toWeek {
+  position:absolute;
+  width:30px;
+  right:80px;
+  top:0px;
+  height:22px;
+  border:1px solid #bbbbbb;
+  margin-top:2px;
+  text-align:center;
+  line-height:25px;
+  cursor:pointer;
+}
+.headDiv .toMonth {
+  position:absolute;
+  width:30px;
+  right:49px;
+  top:0px;
+  height:22px;
+  border:1px solid #bbbbbb;
+  margin-top:2px;
+  text-align:center;
+  line-height:25px;
+  cursor:pointer;
+}
+.normalBackground {
+  background:url("../images/activity/change.gif") repeat-x;
+}
+.changeBackground {
+  background:url("../images/activity/change_.gif") repeat-x;
+}
+/****************���ڸ�ʽtable*********************/
+table{
+  border-collapse:collapse;
+  border-spacing:0;
+}
+li{
+  list-style:none;
+}
+.timeTable {
+  width:100%;
+}
+.table_weeks {
+  text-align:center;
+  background:#E3E9FF;
+  font: 11px Arial,Sans-serif;
+  color: #2200CC;
+}
+.table_weeks td {
+  padding-top:5px;
+  padding-bottom:3px;
+  height:15px;
+}
+.week-title {
+
+}
+.allDay  td{
+  height:15px;
+}
+.oneDay {
+  border-left: 1px solid #DDDDDD;
+  border-right: 1px solid #DDDDDD;
+}
+.time-title{
+  text-align:center;
+  color: #666666;
+  font: 11px Arial,Sans-serif;
+  width:40px;
+  vertical-align: top;
+  padding-top:2px;
+  padding-right:2px;
+  background : #F6F9FC;
+}
+.week-day td{
+  min-height:13px;
+  border-right: 1px solid #DDDDDD;
+  padding-bottom:5px;
+}
+.headBottomLine td{
+  background:#E3E9FF;
+  height:8px;
+  border-bottom:#BBCCFF solid 1px;
+}
+
+.timeTable .solid td {
+  border-top: 1px solid #DDDDDD;
+  border-left: 1px solid #DDDDDD;
+  border-right: 1px solid #DDDDDD;
+  height:30px;
+}
+.timeTable .dotted td{
+  height:30px;
+  border-top:#DDDDDD dotted 1px;
+  border-left: 1px solid #DDDDDD;
+  border-right: 1px solid #DDDDDD;
+}
+.thisDay {
+  background : #FFF7D7;
+  border-left:1px solid #FAD163;
+  border-right: 1px solid #FAD163;
+}
+.thisDayHead {
+  background : #FAD163;
+}
+
+/**********************���ѡ��css��ʽ***************************/
+.selectItem {
+  position:absolute;
+  cursor:pointer;
+}
+.selectItem .head {
+  height:15px;
+  background:#465679;
+  border-right:solid #465679 1px;
+  border-left:solid #465679 1px;
+  font: 11px Arial,Sans-serif;
+  color:white;
+}
+.selectItem .content {
+  background:#7589b8;
+  border-right:solid #465679 1px;
+  border-left:solid #465679 1px;
+  font: 11px Arial,Sans-serif;
+  color:white;
+}
+.selectItem  table {
+  width:100%;
+}
+.selectItem .content table td {
+  word-break:break-all;
+  text-align: center;
+}
+.selectItem table .TL {
+  width:3px;
+  height:3px;
+  background:url(../images/activity/LT.gif);
+}
+.selectItem table .TR {
+  width:3px;
+  height:3px;
+  background:url(../images/activity/RT.gif);
+}
+.selectItem table .TC {
+  background:#465679;
+}
+.selectItem table .BL {
+  width:3px;
+  height:3px;
+  background:url(../images/activity/LB.gif);
+}
+.selectItem table  .BR {
+  width:3px;
+  height:3px;
+  background:url(../images/activity/RB.gif);
+}
+.selectItem table .BC {
+  background:#7589b8;
+  border-bottom:solid #465679 1px;
+}
+/***********************������ӵ�����css��ʽ*******************************/
+.popItem {
+  position:absolute;
+  width:420px;
+  height:160px;
+  z-index:200;
+}
+.popItem .close{
+  position:absolute;
+  width:13px;
+  height:14px;
+  background:url("../images/activity/google-close.png");
+  top:10px;
+  right:11px;
+  cursor:pointer;
+}
+.popItem table {
+  width:100%;
+}
+.popItem .TL {
+  width:25px;
+  height:25px;
+  background:url(../images/activity/add_LT.gif);
+}
+.popItem .TR {
+  width:25px;
+  height:25px;
+  background:url(../images/activity/add_RT.gif);
+}
+.popItem .TC {
+  border-top:1px solid #ababab;
+  background:white;
+}
+.popItem .ML {
+  background:white;
+  border-left:#ababab 1px solid;
+}
+.popItem .MR {
+  background:white;
+  border-right:#ababab 1px solid;
+}
+.popItem .MC {
+  height:108px;
+  background:white;
+
+}
+.popItem .BL {
+  width:25px;
+  height:25px;
+  background:url(../images/activity/add_LB.gif);
+}
+.popItem .BC {
+  border-bottom:1px solid #ababab;
+  background:white;
+}
+.popItem .BR {
+  width:25px;
+  height:25px;
+  background:url(../images/activity/add_RB.gif);
+}
+.vPic {
+  position:absolute;
+  width:96px;
+  height:96px;
+  background:url("../images/activity/bubble_combined.png");
+  background-position:-54px 0px;
+  z-index:201;
+}
+.popItem .label {
+  text-align:left;
+  width:80px;
+  padding-top:5px;
+  padding-bottom:5px;
+  font: 13px Arial,Sans-serif;
+}
+.popItem .time {
+  text-align:left;
+  font: 13px Arial,Sans-serif;
+}
+.popItem .text {
+  padding-top:5px;
+  padding-bottom:5px;
+  border-right : 1px solid #DDDDDD;
+  border-left : 1px solid #DDDDDD;
+  border-bottom : 1px solid #DDDDDD;
+  border-top : 1px solid #888888;
+  font: 13px Arial,Sans-serif;
+  height:12px;
+  width:280px;
+  line-height:12px;
+}
+.popItem .operate{
+  margin-top:25px;
+}
+
+.popItem .createButton{
+  float:left;
+  width:70px;
+  height:23px;
+  font-size:13px;
+  line-height:25px;
+  text-align:center;
+  cursor:pointer;
+  background:url("../images/activity/createButton.gif") no-repeat;
+}
+.popItem .createButton_over{
+  float:left;
+  width:70px;
+  height:23px;
+  font-size:13px;
+  line-height:25px;
+  text-align:center;
+  cursor:pointer;
+  background:url("../images/activity/createButton_over.gif");
+}
+.popItem .moreInfo{
+  margin-left:8px;
+  height:15px;
+  text-decoration:underline;
+  color:#2200CC;
+  cursor:pointer;
+  font-size:13px;
+  line-height:28px;
+}
+.popItem .line {
+  border-top:#DDDDDD 1px solid;
+  margin-top:15px;
+}
+
+.popItem .viewOperate{
+  padding-top:10px;
+}
+
+.popItem .viewOperate .moreInfo{
+  height:15px;
+  text-decoration:underline;
+  color:#2200CC;
+  cursor:pointer;
+  font-size:13px;
+  line-height:28px;
+  float:right;
+}
+.popItem .viewOperate .delete{
+  height:15px;
+  text-decoration:underline;
+  color:#2200CC;
+  cursor:pointer;
+  font-size:13px;
+  line-height:28px;
+}
+
+/************************����ͼ��ʼ****************************/
+.monthTable {
+  width:100%;
+  height:100%;
+}
+.dayTr {
+  height:120px;
+}
+.dayTr .dayTd{
+  border: 1px solid #DDDDDD;
+  vertical-align: top;
+  text-align:right;
+}
+.dayTr .noday{
+  border: 1px solid #DDDDDD;
+  vertical-align: top;
+  text-align:right;
+}
+.dayTr .dayTime {
+  background:#F8F9FF;
+  font: 13px Arial,Sans-serif;
+  color:#666666;
+  padding-right:5px;
+}
+.tempSelect {
+  background:#F0F3FF;
+}
+.itemTable {
+  width:100%;
+}
+.itemTable td {
+  height:15px;
+}
+
+.dayItem_all {
+  width:100%;
+  border-collapse:collapse;
+  border-spacing:0;
+  margin-bottom:1px;
+  font: 9px Arial,Sans-serif;
+  color:white;
+  cursor:pointer;
+  position:absolute;
+}
+.dayItem_all tr {
+  border:0px;
+}
+.dayItem_all tr td{
+  border:0px;
+}
+.dayItem_all .TL {
+  width:3px;
+  height:3px;
+  background:url("../images/activity/LT.gif") no-repeat;
+}
+.dayItem_all .TM {
+  height:3px;
+  background:#465679;
+}
+.dayItem_all .TR {
+  width:3px;
+  height:3px;
+  background:url("../images/activity/RT.gif") no-repeat;
+}
+.dayItem_all .ML {
+  height:3px;
+  width:3px;
+  background:#465679;
+}
+.dayItem_all .MM {
+  height:8px;
+  background:#465679;
+  text-align:left;
+  font-size:7px;
+  word-break:break-all;
+}
+.dayItem_all .MR {
+  height:8px;
+  background:#465679;
+}
+.dayItem_all .BL {
+  width:3px;
+  height:3px;
+  background:url("../images/activity/LB_.gif") no-repeat;
+}
+.dayItem_all .BM {
+  height:3px;
+  background:#465679;
+}
+.dayItem_all .BR {
+  width:3px;
+  height:3px;
+  background:url("../images/activity/RB_.gif") no-repeat;
+}
+
+
+/****************����ͼItems(ͷ)**********************/
+.dayItem_head {
+  width:100%;
+  border-collapse:collapse;
+  border-spacing:0;
+  margin-bottom:1px;
+  font: 9px Arial,Sans-serif;
+  color:white;
+  cursor:pointer;
+  position:absolute;
+}
+.dayItem_head tr {
+  border:0px;
+}
+.dayItem_head tr td{
+  border:0px;
+}
+.dayItem_head .TL {
+  width:3px;
+  height:3px;
+  background:url("../images/activity/LT.gif") no-repeat;
+}
+.dayItem_head .TM {
+  height:3px;
+  background:#465679;
+}
+.dayItem_head .ML {
+  height:3px;
+  width:3px;
+  background:#465679;
+}
+.dayItem_head .MM {
+  height:8px;
+  background:#465679;
+  text-align:left;
+  font-size:7px;
+  word-break:break-all;
+}
+.dayItem_head .BL {
+  width:3px;
+  height:3px;
+  background:url("../images/activity/LB_.gif") no-repeat;
+}
+.dayItem_head .BM {
+  height:3px;
+  background:#465679;
+}
+
+/****************����ͼItems(β)**********************/
+
+.dayItem_tail {
+  width:100%;
+  border-collapse:collapse;
+  border-spacing:0;
+  margin-bottom:1px;
+  font: 9px Arial,Sans-serif;
+  color:white;
+  cursor:pointer;
+  position:absolute;
+}
+.dayItem_tail tr {
+  border:0px;
+}
+.dayItem_tail tr td{
+  border:0px;
+}
+.dayItem_tail .TM {
+  height:3px;
+  background:#465679;
+}
+.dayItem_tail .TR {
+  width:3px;
+  height:3px;
+  background:url("../images/activity/RT.gif") no-repeat;
+}
+.dayItem_tail .MM {
+  height:8px;
+  background:#465679;
+}
+.dayItem_tail .MR {
+  height:8px;
+  background:#465679;
+}
+.dayItem_tail .BM {
+  height:3px;
+  background:#465679;
+}
+.dayItem_tail .BR {
+  width:3px;
+  height:3px;
+  background:url("../images/activity/RB_.gif") no-repeat;
+}
+/****************����ͼItems(��)**********************/
+
+.dayItem_body {
+  width:100%;
+  border-collapse:collapse;
+  border-spacing:0;
+  margin-bottom:1px;
+  font: 9px Arial,Sans-serif;
+  color:white;
+  cursor:pointer;
+  position:absolute;
+}
+.dayItem_body tr {
+  border:0px;
+}
+.dayItem_body tr td{
+  border:0px;
+}
+.dayItem_body .TM {
+  height:3px;
+  background:#465679;
+}
+.dayItem_body .MM {
+  height:8px;
+  background:#465679;
+}
+.dayItem_body .BM {
+  height:3px;
+  background:#465679;
+}
+
+.timeItemTitle {
+  width:40px;
+  text-align: center;
+}
+
+
+.manage-area {
+  //position: relative;
+}
+.J_student_list_area {
+  .cover {
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-color:#000000;
+    opacity:0.4;
+  }
+  .main {
+     position: relative;
+      background: @g-main-color;
+  }
+  position:absolute;
+  display: none;
+  top: 50%;
+  left: 50%;
+  width: 700px;
+  height: 500px;
+  z-index: 999;
+  box-sizing: border-box;
+  padding: 20px;
+  overflow: auto;
+  margin-left: -350px;
+  margin-top: -250px;
+}

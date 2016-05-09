@@ -1,0 +1,42 @@
+<div class="table-area J_student_list">
+    <div class="table-condition">
+        <form class="form-inline">
+            <div class="form-group">
+                <input type="text" maxlength="20" ng-model="params.name" class="form-control" placeholder="姓名">
+            </div>
+            <div class="form-group">
+                <input type="text" maxlength="20" ng-model="params.passportNumber" class="form-control" placeholder="护照号">
+            </div>
+            <button type="button" class="btn btn-default" ng-click="query()">搜索</button>
+        </form>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th></th>
+            <th>护照号</th>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>专业</th>
+            <th>入学年份</th>
+            <th>国籍</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="row in rows">
+            <td >
+                <input type="checkbox" value="{{row.id}}"  ng-checked="currentStudentMap[row.id]" ng-click="currentStudentChange($event,row)" />
+            </td>
+            <td ng-bind="row.passportNumber"></td>
+            <td ng-bind="row.firstName + row.secondName"></td>
+            <td ng-bind="{0:'不详',1:'男',2:'女'}[row.sex]"></td>
+            <td ng-bind="row.professionName"></td>
+            <td ng-bind="row.startYear"></td>
+            <td ng-bind="row.country"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<pagination total-items="bigTotalItems" ng-change="pageChanged(bigCurrentPage)"  ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages"></pagination>

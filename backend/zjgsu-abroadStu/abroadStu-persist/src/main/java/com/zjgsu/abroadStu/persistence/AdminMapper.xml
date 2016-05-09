@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zjgsu.abroadStu.persistence.AdminMapper">
+
+    <select id="selectAdminByAccount" resultType="com.zjgsu.abroadStu.model.Admin">
+        SELECT
+        id,
+        account,
+        password,
+        token
+        FROM admin
+        WHERE account = #{account} AND status=1
+    </select>
+
+    <select id="selectAdminByToken" resultType="com.zjgsu.abroadStu.model.Admin">
+        SELECT
+        id,
+        account,
+        lastLoginIp,
+        password
+        FROM admin
+        WHERE token = #{token} AND status=1
+    </select>
+
+    <insert id="saveAdminToken" parameterType="com.zjgsu.abroadStu.model.Admin">
+        UPDATE admin
+        SET
+        token = #{token},
+        lastLoginIp = #{lastLoginIp}
+        WHERE  account = #{account} AND status = 1
+    </insert>
+
+    <select id="selectAllProfession" resultType="com.zjgsu.abroadStu.model.Profession">
+        SELECT
+          id,
+          `name`
+          FROM profession
+          WHERE status = 1
+    </select>
+</mapper>

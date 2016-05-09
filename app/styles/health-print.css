@@ -1,34 +1,3 @@
 .no-print {
   display: none;
 }
-.yb-page {
-  position: static;
-  top: 0;
-  left: 0;
-}
-.p-course .container-area,
-.p-recordsTreatment .container-area {
-  margin-left: 0;
-}
-.p-course .edit-area,
-.p-recordsTreatment .edit-area {
-  display: none;
-}
-.p-course .order-list .order-list-title,
-.p-recordsTreatment .order-list .order-list-title {
-  border-bottom: solid 1px #d9d9d9;
-}
-.p-course .img-list-area .all-img-list,
-.p-recordsTreatment .img-list-area .all-img-list {
-  margin-left: 0;
-}
-.p-course .can-print,
-.p-recordsTreatment .can-print {
-  display: block;
-}
-.p-course .record-nav {
-  display: none;
-}
-.p-course .data-module-area {
-  margin-left: 10px;
-}

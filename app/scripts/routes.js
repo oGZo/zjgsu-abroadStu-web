@@ -29,14 +29,14 @@ define([], function()
                 ],
                 controller: 'ManageViewController'
             },
-            'app.manage.student': {
-                url : '/manage/student',
-                templateUrl: '/views/manageStudent.html',
-                dependencies: [
-                    'controllers/ManageStudentViewController'
-                ],
-                controller: 'ManageStudentViewController'
-            },
+            //'app.manage.student': {
+            //    url : '/manage/student',
+            //    templateUrl: '/views/manageStudent.html',
+            //    dependencies: [
+            //        'controllers/ManageStudentViewController'
+            //    ],
+            //    controller: 'ManageStudentViewController'
+            //},
             'app.teacher': {
                 url : '/teacher',
                 templateUrl: '/views/teacher.html',

@@ -1,0 +1,17 @@
+/Users/sanqi/workspace/zjgsu-abroadStu-web/backend/zjgsu-abroadStu/abroadStu-model/src/main/java/com/zjgsu/abroadStu/model/common/Constants.java
+/Users/sanqi/workspace/zjgsu-abroadStu-web/backend/zjgsu-abroadStu/abroadStu-model/src/main/java/com/zjgsu/abroadStu/model/CourseTemplate.java
+/Users/sanqi/workspace/zjgsu-abroadStu-web/backend/zjgsu-abroadStu/abroadStu-model/src/main/java/com/zjgsu/abroadStu/model/Admin.java
+/Users/sanqi/workspace/zjgsu-abroadStu-web/backend/zjgsu-abroadStu/abroadStu-model/src/main/java/com/zjgsu/abroadStu/model/common/XMLTool.java
+/Users/sanqi/workspace/zjgsu-abroadStu-web/backend/zjgsu-abroadStu/abroadStu-model/src/main/java/com/zjgsu/abroadStu/model/common/ResponseTool.java
+/Users/sanqi/workspace/zjgsu-abroadStu-web/backend/zjgsu-abroadStu/abroadStu-model/src/main/java/com/zjgsu/abroadStu/model/http/ResponseModel.java
+/Users/sanqi/workspace/zjgsu-abroadStu-web/backend/zjgsu-abroadStu/abroadStu-model/src/main/java/com/zjgsu/abroadStu/model/Profession.java
+/Users/sanqi/workspace/zjgsu-abroadStu-web/backend/zjgsu-abroadStu/abroadStu-model/src/main/java/com/zjgsu/abroadStu/model/http/CourseInstanceDTO.java
+/Users/sanqi/workspace/zjgsu-abroadStu-web/backend/zjgsu-abroadStu/abroadStu-model/src/main/java/com/zjgsu/abroadStu/model/http/ResponseCodeList.java
+/Users/sanqi/workspace/zjgsu-abroadStu-web/backend/zjgsu-abroadStu/abroadStu-model/src/main/java/com/zjgsu/abroadStu/model/common/MD5.java
+/Users/sanqi/workspace/zjgsu-abroadStu-web/backend/zjgsu-abroadStu/abroadStu-model/src/main/java/com/zjgsu/abroadStu/model/CourseTeacher.java
+/Users/sanqi/workspace/zjgsu-abroadStu-web/backend/zjgsu-abroadStu/abroadStu-model/src/main/java/com/zjgsu/abroadStu/model/Student.java
+/Users/sanqi/workspace/zjgsu-abroadStu-web/backend/zjgsu-abroadStu/abroadStu-model/src/main/java/com/zjgsu/abroadStu/model/Classroom.java
+/Users/sanqi/workspace/zjgsu-abroadStu-web/backend/zjgsu-abroadStu/abroadStu-model/src/main/java/com/zjgsu/abroadStu/model/CourseInstance.java
+/Users/sanqi/workspace/zjgsu-abroadStu-web/backend/zjgsu-abroadStu/abroadStu-model/src/main/java/com/zjgsu/abroadStu/model/http/StudentRequestParam.java
+/Users/sanqi/workspace/zjgsu-abroadStu-web/backend/zjgsu-abroadStu/abroadStu-model/src/main/java/com/zjgsu/abroadStu/model/CourseStudent.java
+/Users/sanqi/workspace/zjgsu-abroadStu-web/backend/zjgsu-abroadStu/abroadStu-model/src/main/java/com/zjgsu/abroadStu/model/Teacher.java

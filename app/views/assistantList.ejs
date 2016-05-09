@@ -1,0 +1,27 @@
+<div class="m-dialog ">
+    <form class="J_assistantListForm ">
+        <div class="head">
+            <%= title %>
+        </div>
+        <div class="body">
+            <form >
+                <div class="cell">
+                    <ul>
+
+                    <% for(var i = 0,arrLength = arr.length; i < arrLength; i++){ %>
+                        <% var item = arr[i]; %>
+                        <li>
+                            <label ><input  type="<%=  singleSelectFlag?'radio':'checkbox' %>" name="assistantUserId" value="<%= item.id %>"  data-value="<%= item.name %>" <% if (currentIds.indexOf(item.id)>-1) { %> checked="checked" <% } %> /> <%= item.name %></label>
+                        </li>
+                    <% } %>
+                    </ul>
+                </div>
+
+            </form>
+        </div>
+        <div class="foot">
+            <button type="button" class="btn btn-success confirm-btn" >确定</button>
+            <button type="button" class="cancel-btn btn btn-cancel J_cancel">取消</button>
+        </div>
+    </form>
+</div>

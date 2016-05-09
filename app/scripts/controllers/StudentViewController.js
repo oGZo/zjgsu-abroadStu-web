@@ -1,6 +1,4 @@
-/**
- * Created by sanqi on 16/4/26.
- */
+
 //学生页面
 define(['app','controllers/StudentInfoModuleController','controllers/StudentCourseModuleController','controllers/StudentScoreModuleController'], function (app,StudentInfoModuleController,StudentCourseModuleController,StudentScoreModuleController) {
     app.controller('StudentViewController', ['$scope', '$location', '$cookieStore', 'Ajax',function($scope,$location,$cookieStore,Ajax){

@@ -14,36 +14,36 @@ define(['app'], function (app) {
             loadingObj.fadeOut();
             $rootScope.$on('$locationChangeSuccess', function (scope) {
                 var currentModule = $location.path() && $location.path().slice(1) || '';
-                settingMenu(currentModule);
+                //settingMenu(currentModule);
                 loadingObj.fadeOut();
             });
             $rootScope.$on('$locationChangeStart', function (scope) {
                 window.homeTableSearchTask = null;
                 loadingObj.show();
             });
-            function settingMenu(currentModule) {
-                var urlMap = {
-                    customer: ['patient', 'invite', 'memberCard', 'coupon', 'consultPhone', 'comment'],
-                    order: ['orderDetail'],
-                    person: [],
-                    home: [],
-                    healthPatient : []
-                };
-                //var currentModule = $location.path()&&$location.path().slice(1)||'';
-                $.each(urlMap, function (i, v) {
-                    if (currentModule == i/*||(currentModule!==i&&$.inArray(currentModule,v)>-1)*/) {
-                        $scope.currentView = i;
-                        //alert(i);
-                        //alert(i);
-                        return false;
-                    }
-                })
-            }
-
-            settingMenu($location.path() && $location.path().slice(1));
-            if (!$cookieStore.get(YB.param.sysParam.token)) {
-                $location.url('/login');
-            }
+            //function settingMenu(currentModule) {
+            //    var urlMap = {
+            //        customer: ['patient', 'invite', 'memberCard', 'coupon', 'consultPhone', 'comment'],
+            //        order: ['orderDetail'],
+            //        person: [],
+            //        home: [],
+            //        healthPatient : []
+            //    };
+            //    //var currentModule = $location.path()&&$location.path().slice(1)||'';
+            //    $.each(urlMap, function (i, v) {
+            //        if (currentModule == i/*||(currentModule!==i&&$.inArray(currentModule,v)>-1)*/) {
+            //            $scope.currentView = i;
+            //            //alert(i);
+            //            //alert(i);
+            //            return false;
+            //        }
+            //    })
+            //}
+            //
+            //settingMenu($location.path() && $location.path().slice(1));
+            //if (!$cookieStore.get(YB.param.sysParam.token)) {
+            //    $location.url('/login');
+            //}
             $scope.setView = function (param) {
                 $scope.currentView = param.moduleId;
             };

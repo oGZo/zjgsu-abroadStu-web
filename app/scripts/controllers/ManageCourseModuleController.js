@@ -1,6 +1,4 @@
-/**
- * Created by sanqi on 16/4/29.
- */
+
 //学生管理
 define(['app'], function (app) {
     var moduleApp = {};
@@ -129,6 +127,7 @@ define(['app'], function (app) {
             $scope.pageChanged(1);
         }
         $scope.query();
+
     }]);
     return moduleApp
 });

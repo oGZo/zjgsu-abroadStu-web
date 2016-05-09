@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<parent>
+		<artifactId>abroadStu-parent</artifactId>
+		<groupId>com.zjgsu</groupId>
+		<version>1.0-SNAPSHOT</version>
+		<relativePath>../abroadStu-parent/pom.xml</relativePath>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>abroadStu-web</artifactId>
+	<packaging>war</packaging>
+	<name>abroadStu-web</name>
+	<description>abroadStu-web</description>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.zjgsu</groupId>
+			<artifactId>abroadStu-service</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+
+		<!--<dependency>-->
+			<!--<groupId>com.yibao</groupId>-->
+			<!--<artifactId>yibao-custom-common</artifactId>-->
+			<!--<version>1.0-SNAPSHOT</version>-->
+		<!--</dependency>-->
+
+		<!-- jstl -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>taglibs</groupId>
+			<artifactId>standard</artifactId>
+			<version>1.1.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.thetransactioncompany</groupId>
+			<artifactId>cors-filter</artifactId>
+			<version>2.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.yuntongxun</groupId>
+			<artifactId>ccp_sdk</artifactId>
+			<version>1.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.14</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.14</version>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<finalName>zjgsu-abroadStu</finalName>
+		<plugins>
+
+			<plugin>
+					<groupId>org.mortbay.jetty</groupId>
+					<artifactId>jetty-maven-plugin</artifactId>
+					<version>8.1.14.v20131031</version>
+					<configuration>
+						<systemProperties>
+							<systemProperty>
+								<name>org.apache.commons.logging.Log</name>
+								<value>org.apache.commons.logging.impl.SimpleLog</value>
+							</systemProperty>
+						</systemProperties>
+						<useTestClasspath>true</useTestClasspath>
+						<webAppConfig>
+							<contextPath>/</contextPath>
+						</webAppConfig>
+						<connectors>
+							<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+								<port>8091</port>
+							</connector>
+						</connectors>
+					</configuration>
+				</plugin>
+
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<webResources>
+						<resource>
+							<directory>src/main/webapp</directory>
+							<includes>
+								<include>WEB-INF/**.xml</include>
+							</includes>
+							<includes>
+								<include>WEB-INF/**/*.xml</include>
+							</includes>
+							<includes>
+								<include>WEB-INF/**/**/*.xml</include>
+							</includes>
+							<includes>
+								<include>WEB-INF/**/**/**/*.xml</include>
+							</includes>
+							<filtering>true</filtering>
+						</resource>
+						<!--<resource> <directory>src/main/webapp</directory> <excludes> <include>WEB-INF/**.xml</include>
+                            </excludes> </resource> -->
+					</webResources>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.1</version>
+				<configuration>
+					<attach>true</attach>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>compile</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+
+		<resources>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.xml</include>
+					<include>**/*.properties</include>
+				</includes>
+			</resource>
+			<resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+                <excludes>
+                    <exclude>VERSION</exclude>
+                    <exclude>**/*.java</exclude>
+                    <exclude>env/dev/*</exclude>
+                    <exclude>env/test/*</exclude>
+                    <exclude>env/gm/*</exclude>
+                    <exclude>env/production/*</exclude>
+                </excludes>
+            </resource>
+			<resource>
+				<directory>src/main/assembly</directory>
+				<includes>
+					<include>**/*.xml</include>
+				</includes>
+				<targetPath>META-INF</targetPath>
+			</resource>
+			<resource>
+				<directory>${project.basedir}/src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+
+		</resources>
+
+		<filters>
+			<filter>${basedir}/src/main/resources/env/${filters.env}/database.properties</filter>
+			<filter>${basedir}/src/main/resources/env/${filters.env}/settings.properties</filter>
+		</filters>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>production</id>
+			<properties>
+				<filters.env>production</filters.env>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>gm</id>
+			<properties>
+				<filters.env>gm</filters.env>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>test</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<filters.env>test</filters.env>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>dev</id>
+			<properties>
+				<filters.env>dev</filters.env>
+			</properties>
+		</profile>
+	</profiles>
+
+</project>

@@ -1,6 +1,4 @@
-/**
- * Created by sanqi on 16/4/26.
- */
+
 //管理页面
 define(['app','controllers/ManageStudentModuleController','controllers/ManageCourseModuleController','controllers/ManageArrangeModuleController','controllers/ManageClassroomModuleController','controllers/ManageTeacherModuleController'], function (app, ManageStudentController,ManageCourseController,ManageArrangeController,ManageClassroomController,ManageTeacherController) {
     app.controller('ManageViewController', ['$scope', '$location', '$cookieStore', 'Ajax',function($scope,$location,$cookieStore,Ajax){
@@ -45,7 +43,7 @@ define(['app','controllers/ManageStudentModuleController','controllers/ManageCou
             })
             currentController&&currentController.render&&currentController.render();
         };
-        $scope.selectModule($location.search().moduleId)
+        $scope.selectModule($location.search().moduleId||1);
     }
     ]);
 });
