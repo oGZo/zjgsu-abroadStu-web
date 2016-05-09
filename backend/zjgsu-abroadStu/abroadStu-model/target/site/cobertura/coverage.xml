@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
 
-<coverage line-rate="0.0" branch-rate="0.0" lines-covered="0" lines-valid="350" branches-covered="0" branches-valid="19" complexity="1.0862068965517242" version="2.1.1" timestamp="1462805350635">
+<coverage line-rate="0.0" branch-rate="0.0" lines-covered="0" lines-valid="349" branches-covered="0" branches-valid="19" complexity="1.0862068965517242" version="2.1.1" timestamp="1462806799357">
 	<sources>
-		<source>/Users/JIADONG/workspace/zjgsu-abroadStu-web/backend/zjgsu-abroadStu/abroadStu-model/src/main/java</source>
 		<source>--source</source>
+		<source>/Users/sanqi/workspace/zjgsu-abroadStu-web/backend/zjgsu-abroadStu/abroadStu-model/src/main/java</source>
 	</sources>
 	<packages>
 		<package name="com.zjgsu.abroadStu.model" line-rate="0.0" branch-rate="1.0" complexity="1.0">
@@ -1085,7 +1085,6 @@
 						<method name="&lt;init&gt;" signature="()V" line-rate="0.0" branch-rate="1.0" complexity="0">
 							<lines>
 								<line number="14" hits="0" branch="false"/>
-								<line number="105" hits="0" branch="false"/>
 							</lines>
 						</method>
 						<method name="writeJsonPToResponse" signature="(Ljava/lang/Object;Ljavax/servlet/http/HttpServletResponse;Ljava/lang/String;)V" line-rate="0.0" branch-rate="1.0" complexity="0">
@@ -1198,7 +1197,6 @@
 						<line number="100" hits="0" branch="false"/>
 						<line number="102" hits="0" branch="false"/>
 						<line number="104" hits="0" branch="false"/>
-						<line number="105" hits="0" branch="false"/>
 					</lines>
 				</class>
 				<class name="com.zjgsu.abroadStu.model.common.ResponseTool$1" filename="com/zjgsu/abroadStu/model/common/ResponseTool.java" line-rate="0.0" branch-rate="1.0" complexity="2.2">

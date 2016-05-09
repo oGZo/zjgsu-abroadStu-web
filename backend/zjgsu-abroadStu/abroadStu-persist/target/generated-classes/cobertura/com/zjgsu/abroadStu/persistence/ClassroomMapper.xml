@@ -10,10 +10,10 @@
           roomNumber
         FROM classroom
           WHERE status=1
+          ORDER BY createTime DESC
         <if test="start!=null and size!=null">
             limit #{start},#{size}
         </if>
-        ORDER BY createTime DESC
     </select>
 
     <select id="countAllClassrooms" resultType="java.lang.Integer">

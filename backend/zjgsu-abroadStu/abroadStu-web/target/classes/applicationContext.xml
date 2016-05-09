@@ -43,7 +43,7 @@
 		<property name="driverClass" value="com.mysql.jdbc.Driver" />
 		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/zjgsu?autoReconnect=true&amp;zeroDateTimeBehavior=convertToNull" />
 		<property name="username" value="root" />
-		<property name="password" value="!#jiadong" />
+		<property name="password" value="" />
 
 		<!-- 分区数 ，默认值2，最小1，推荐3-4，视应用而定 -->
 		<property name="partitionCount" value="2" />

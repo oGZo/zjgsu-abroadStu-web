@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
 
-<coverage line-rate="0.0" branch-rate="0.0" lines-covered="0" lines-valid="244" branches-covered="0" branches-valid="96" complexity="1.8115942028985508" version="2.1.1" timestamp="1462805355864">
+<coverage line-rate="0.0" branch-rate="0.0" lines-covered="0" lines-valid="244" branches-covered="0" branches-valid="96" complexity="1.8115942028985508" version="2.1.1" timestamp="1462806803142">
 	<sources>
 		<source>--source</source>
-		<source>/Users/JIADONG/workspace/zjgsu-abroadStu-web/backend/zjgsu-abroadStu/abroadStu-service/src/main/java</source>
+		<source>/Users/sanqi/workspace/zjgsu-abroadStu-web/backend/zjgsu-abroadStu/abroadStu-service/src/main/java</source>
 	</sources>
 	<packages>
 		<package name="com.zjgsu.abroadStu.service" line-rate="0.0" branch-rate="0.0" complexity="1.096774193548387">

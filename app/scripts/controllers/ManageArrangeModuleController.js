@@ -254,6 +254,8 @@ define(['app'], function (app) {
                 });
                 $("td.timeItem").mousemove(function(){
                     if(isPress){
+
+                        var me = $(this);
                         if(flag==0){
                             //创建一个div
                             entity.clear();
@@ -279,7 +281,7 @@ define(['app'], function (app) {
                             //timeParam.endDate = today;
                             timeParam.startTime = startTime;
                             timeParam.endTime = endTime;
-                            timeParam.week = tdInfo.index;
+                            timeParam.week = me.parent().find('.timeItem').index(me);
                             entity.timeParam = timeParam;
                         }else if(flag==1){
                             var id = parseInt($(this).parent().attr("id"));
@@ -288,7 +290,7 @@ define(['app'], function (app) {
                             var height = tdInfo.top-startTdInfo.top+tdInfo.height+1-3-3-15;
                             $("#"+selectItemId+" .content").height(height);
                             timeParam.endTime = endTime;
-                            timeParam.week = tdInfo.index;
+                            timeParam.week = me.parent().find('.timeItem').index(me);
                             entity.timeParam = timeParam;
                             //设置显示时间
                             var time = '第'+entity.timeParam.startTime+"-"+entity.timeParam.endTime+'节';
@@ -547,26 +549,10 @@ define(['app'], function (app) {
 
                     var param = {
                         suc : function(id){
+                            YB.info({
+                                content : '安排成功'
+                            })
                             $scope.choice(angular.copy($scope.currentCourse));
-                            //if(id!=""){
-                            //    $("#"+selectItemId).removeClass("temp");
-                            //    $("#"+selectItemId).width($("#"+selectItemId).width()-8);
-                            //    //设置title
-                            //    $("#"+selectItemId+" .content td").text(val);
-                            //    //设置一个隐含域，用于存储活动的ID，便于查看，修改，删除等操作
-                            //    var hiddenField = '<input type="hidden" class="activityId" value="'+id+'">';
-                            //    $(hiddenField).appendTo($("#"+selectItemId));
-                            //    //添加点击事件
-                            //    $("#"+selectItemId).click(function(){
-                            //        entity.clear();
-                            //        var position = {};
-                            //        position.left = $(this).offset().left;
-                            //        position.top = $(this).offset().top+15;
-                            //        var id = $(this).find(".activityId").val();
-                            //        entity.viewActivity(position,id);
-                            //    });
-                            //    entity.clear();
-                            //}
                         }
                     };
                     $.extend(param,obj);
@@ -819,7 +805,7 @@ define(['app'], function (app) {
                     $("#"+selectItemId).css({left:startTdInfo.left+'px',top:startTop+'px'});
                     $("#"+selectItemId).width(startTdInfo.width-7);
                     $("#"+selectItemId+" .content").height(endTdInfo.top-startTdInfo.top+startTdInfo.height-5-15);
-                    $("#"+selectItemId+" .head").text(activity.title);
+                    $("#"+selectItemId+" .head").html(activity.title);
                     $("#"+selectItemId).removeClass("temp");
                     YB.log(activity);
                     YB.log('------')
@@ -830,12 +816,31 @@ define(['app'], function (app) {
                     $(hiddenField).appendTo($("#"+selectItemId));
                     //添加点击事件
                     $("#"+selectItemId).click(function(){
-                        entity.clear();
-                        var position = {};
-                        position.left = $(this).offset().left;
-                        position.top = $(this).offset().top+15;
+                        //entity.clear();
+                        //var position = {};
+                        //position.left = $(this).offset().left;
+                        //position.top = $(this).offset().top+15;
                         var id = $(this).find(".activityId").val();
-                        entity.viewActivity(position,id);
+                        //entity.viewActivity(position,id);
+                        YB.confirm({
+                            title : '',
+                            hint : '确认要删除吗',
+                            ok : function(){
+                                Ajax({
+                                    loadDom :$('.J_student_list'),
+                                    method: 'post',
+                                    data: {
+                                        id : id
+                                    },
+                                    url: 'admin/deleteArrange',
+                                    suc: function (res) {
+                                        YB.info({
+                                            'content' : '删除成功'
+                                        })
+                                    }
+                                })
+                            }
+                        })
                     });
                 }
             },
