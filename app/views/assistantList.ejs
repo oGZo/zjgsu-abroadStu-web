@@ -11,7 +11,7 @@
                     <% for(var i = 0,arrLength = arr.length; i < arrLength; i++){ %>
                         <% var item = arr[i]; %>
                         <li>
-                            <label ><input  type="<%=  singleSelectFlag?'radio':'checkbox' %>" name="assistantUserId" value="<%= item.id %>"  data-value="<%= item.name %>" <% if (currentIds.indexOf(item.id)>-1) { %> checked="checked" <% } %> /> <%= item.name %></label>
+                            <label ><input  type="<%=  singleSelectFlag?'radio':'checkbox' %>" name="assistantUserId" value="<%= item.id %>"  data-value="<%= item.name %>" <% if (currentIds.indexOf(item.id)>-1) { %> checked="checked" <% } %> /> <%= item.name %></label><span><%= item.jobNumber||'' %></span>
                         </li>
                     <% } %>
                     </ul>

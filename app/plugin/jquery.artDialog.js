@@ -584,6 +584,7 @@ artDialog.fn = artDialog.prototype = {
 			'top:0;left:0;z-index:-1;filter:alpha(opacity=0)"></iframe>');
 			
 		lockMask.stop();
+		lockMask.parent().addClass('lock-bg');
 		lockMask.bind('click', function () {
 			that._reset();
 		}).bind('dblclick', function () {

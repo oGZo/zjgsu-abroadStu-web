@@ -176,31 +176,18 @@ define(['app'], function (app) {
                 $("td.timeItem").click(function(){
                     entity.clear();
                     var me = $(this);
-                    var id = parseInt($(this).parent().attr("id"));
-                    var startTime = entity.idToTime(id);
-                    var endTime = entity.idToTime(id);
+                    var id = parseInt(me.parent().attr("id"));
+                    var startTime = id;
+                    var endTime = id;
                     //创建一个selectItem
                     var selectItemId = entity.selectItem();
-                    var tdInfo = entity.getTdInfo($(this));
-                    if(tdInfo==null){
-                        alert("获得时间信息失败");
-                        return;
-                    }
+                    var tdInfo = entity.getTdInfo(me);
                     //设置位置及大小
                     $("#"+selectItemId).css({left:tdInfo.left+'px',top:tdInfo.top+'px'});
                     $("#"+selectItemId).width(tdInfo.width+1);
                     $("#"+selectItemId+" .content").height(tdInfo.height-3-15);
                     $("#"+selectItemId+" .head").text('第'+id+"节");
-                    //组织要保存的时间信息
-                    var obj = $('#'+id).eq(tdInfo.index);
                     var timeParam = {};
-                    //timeParam.startDate = today;
-                    //timeParam.endDate = today;
-                    timeParam.startTime = id;
-                    timeParam.endTime = id;
-                    timeParam.week = tdInfo.index + 1;
-                    entity.timeParam = timeParam;
-
                     //创建一个弹出窗口
                     var popItemId = entity.popItem();
                     //设置弹出框的位置
@@ -212,10 +199,13 @@ define(['app'], function (app) {
                     var timeTile = "第"+id+"节";
                     var index = me.parent().find('.timeItem').index(me);
                     timeParam.week = index+1;
+                    timeParam.startTime = startTime;
+                    timeParam.endTime = endTime;
+                    entity.timeParam = timeParam;
                     entity.activityAddItem(popItemId,timeTile,selectItemId,{
-                        week : index+1,
-                        startTime : startTime,
-                        endTime : endTime
+                        week : timeParam.week,
+                        startTime : timeParam.startTime,
+                        endTime : timeParam.endTime
                     });
                 });
 
@@ -259,7 +249,7 @@ define(['app'], function (app) {
                         if(flag==0){
                             //创建一个div
                             entity.clear();
-                            var id = parseInt($(this).parent().attr("id"));
+                            var id = parseInt(me.parent().attr("id"));
                             var startTime = id;
                             var endTime = id;
                             //创建一个selectItem
@@ -276,12 +266,9 @@ define(['app'], function (app) {
                             $("#"+selectItemId).width(tdInfo.width+1);
                             $("#"+selectItemId+" .content").height(tdInfo.height-3-15);
                             $("#"+selectItemId+" .head").text('第'+startTime+'节');
-                            //var today = items[tdInfo.index];
-                            //timeParam.startDate = today;
-                            //timeParam.endDate = today;
                             timeParam.startTime = startTime;
                             timeParam.endTime = endTime;
-                            timeParam.week = me.parent().find('.timeItem').index(me);
+                            timeParam.week = me.parent().find('.timeItem').index(me)+1;
                             entity.timeParam = timeParam;
                         }else if(flag==1){
                             var id = parseInt($(this).parent().attr("id"));
@@ -290,7 +277,7 @@ define(['app'], function (app) {
                             var height = tdInfo.top-startTdInfo.top+tdInfo.height+1-3-3-15;
                             $("#"+selectItemId+" .content").height(height);
                             timeParam.endTime = endTime;
-                            timeParam.week = me.parent().find('.timeItem').index(me);
+                            timeParam.week = me.parent().find('.timeItem').index(me)+1;
                             entity.timeParam = timeParam;
                             //设置显示时间
                             var time = '第'+entity.timeParam.startTime+"-"+entity.timeParam.endTime+'节';
@@ -441,15 +428,15 @@ define(['app'], function (app) {
                 var top = position.top-230;
                 if(top<=0){
                     top=0;
-                    $("#vPic").css("display","none");
+                    //$("#vPic").css("display","none");
                 }
                 if((left+410)>$("body").width()){
                     left=$("body").width()-410;
-                    $("#vPic").css("display","none");
+                    //$("#vPic").css("display","none");
                 }
                 if(left<=0){
                     left=0;
-                    $("#vPic").css("display","none");
+                    //$("#vPic").css("display","none");
                 }
                 $("#"+popItemId).css({left:left+'px',top:top+'px'});
                 $("#vPic").css({left:(left+100)+'px',top:(top+135)+'px'});
@@ -540,10 +527,15 @@ define(['app'], function (app) {
                 var entity = this;
                 var item = [];
                 item.push('<div>');
-                item.push('<table class="contentTable"><tr><td class="label">时间：</td><td class="time">'+time+'</td></tr><tr><td class="label">内容：</td><td><div><button class="btn btn-default J_selectCourse">选择课程</button><p class="content"></p></div><div><button class="btn btn-default J_selectTeacher">选择教师</button><p class="content"></p></div><div><button class="btn btn-default J_selectClassroom">选择教室</button><p class="content"></p></div><div><button class="btn btn-default J_selectStudent">选择学生</button><p class="content"></p></div></td></tr></table>');
-                item.push('<div class="operate"><div  class="btn btn-success J_arrangeCourseBtn">确定</div></div>');
+                item.push('<table class="contentTable"><tr><td class="time" colspan="8">'+time+'</td></tr><tr><td><div><button class="btn btn-default btn-sm J_selectCourse">选择课程</button><p class="content"></p></div></td><td><div><button class="btn btn-default btn-sm J_selectTeacher">选择教师</button><p class="content"></p></div></td><td><div><button class="btn btn-sm btn-default J_selectClassroom">选择教室</button><p class="content"></p></div></td><td><div><button class="btn btn-default btn-sm J_selectStudent">选择学生</button><p class="content"></p></div></td></tr></table>');
+                item.push('<div class="operate"><div  class="btn btn-success btn-sm J_arrangeCourseBtn">确定</div></div>');
                 item.push('</div>');
                 $(item.join('')).appendTo($("#"+popItemId+" .MC"));
+
+                currentTeachers = [];
+                currentStudentMap = {};
+                currentCourseId = null;
+                currentClassroomId = null;
                 //为创建活动按钮添加点击事件
                 $(".J_arrangeCourseBtn").click(function(){
 
@@ -809,7 +801,7 @@ define(['app'], function (app) {
                     $("#"+selectItemId).removeClass("temp");
                     YB.log(activity);
                     YB.log('------')
-                    var content = [activity.weeks,'第' + activity.startTime + '-' + activity.endTime + '节',activity.classroom,activity.teachers].join('<br/>');
+                    var content = [activity.weeks+'第' + activity.startTime + '-' + activity.endTime + '节',activity.classroom,activity.teachers].join('<br/>');
                     $("#"+selectItemId+" .content td").html(content);
                     //设置一个隐含域，用于存储活动的ID，便于查看，修改，删除等操作
                     var hiddenField = '<input type="hidden" class="activityId" value="'+activity.id+'">';
@@ -834,6 +826,7 @@ define(['app'], function (app) {
                                     },
                                     url: 'admin/deleteArrange',
                                     suc: function (res) {
+                                        $scope.choice(angular.copy($scope.currentCourse));
                                         YB.info({
                                             'content' : '删除成功'
                                         })
@@ -1114,6 +1107,14 @@ define(['app'], function (app) {
                 $('.J_selectStudent').siblings('.content').html(studentNames.join(','));
                 $('.J_student_list_area').hide();
             })
+        //$('body').on('click',function(e){
+        //    var me = $(e.target);
+        //    if(!me.closest('.timeItem').length&&!me.closest('.popItem').length&&!me.closest('.aui_outer').length&&!me.closest('.lock-bg').length){
+        //        $('.popItem').remove();
+        //        $('#vPic').remove();
+        //        $('.selectItem.temp').remove();
+        //    }
+        //})
     }]);
     app.controller('StudentListModuleController', ['$scope','$rootScope', '$cookieStore', '$controller','$compile','$timeout','Ajax','$location','$window',function ($scope, $rootScope,$cookieStore,$controller,$compile,$timeout,Ajax,$location,$window) {
         var search = $location.search();

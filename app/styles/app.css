@@ -181,7 +181,7 @@
 .nav-left {
   position: absolute;
   left: 0;
-  top: 45px;
+  top: 55px;
 }
 
 .g-border {
@@ -387,7 +387,7 @@ li {
   position: absolute;
   width: 420px;
   height: 160px;
-  z-index: 200;
+  z-index: 1000;
 }
 .popItem .close {
   position: absolute;
@@ -471,9 +471,6 @@ li {
   height: 12px;
   width: 280px;
   line-height: 12px;
-}
-.popItem .operate {
-  margin-top: 25px;
 }
 .popItem .createButton {
   float: left;
@@ -769,7 +766,35 @@ li {
 }
 .J_student_list_area .main {
   position: relative;
-  background: #1abc9c;
+  padding: 20px;
+  background: #ffffff;
+}
+.J_student_list_area .main .table > tbody > tr > td {
+  padding: 3px;
+}
+.contentTable .content {
+  font-size: 12px;
+  width: 100px;
+  height: 20px;
+  overflow: hidden;
+}
+.selectItem .content {
+  overflow: auto;
+}
+.table_weeks {
+  border-top: solid 1px #ddd;
+}
+.arrange-table-area {
+  margin-top: 60px;
 }
 
+.J_student_info dl {
+  line-height: 20px;
+}
+.J_student_info dl dt {
+  float: left;
+}
+.J_student_info dl dd {
+  margin-left: 80px;
+}
 

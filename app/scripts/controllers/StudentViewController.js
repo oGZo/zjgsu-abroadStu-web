@@ -33,7 +33,7 @@ define(['app','controllers/StudentInfoModuleController','controllers/StudentCour
             });
             currentController&&currentController.render&&currentController.render();
         }
-        $scope.selectModule($location.search().moduleId)
+        $scope.selectModule($location.search().moduleId||1);
         }
     ]);
 });

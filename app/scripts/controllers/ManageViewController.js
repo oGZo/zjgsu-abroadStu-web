@@ -15,7 +15,7 @@ define(['app','controllers/ManageStudentModuleController','controllers/ManageCou
             },
             {
                 moduleId : 3,
-                title : '排课',
+                title : '安排课程',
                 controller : ManageArrangeController
             },
             {

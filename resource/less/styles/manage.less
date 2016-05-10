@@ -179,7 +179,7 @@ li{
   position:absolute;
   width:420px;
   height:160px;
-  z-index:200;
+  z-index:1000;
 }
 .popItem .close{
   position:absolute;
@@ -266,7 +266,7 @@ li{
   line-height:12px;
 }
 .popItem .operate{
-  margin-top:25px;
+  //margin-top:10px;
 }
 
 .popItem .createButton{
@@ -564,8 +564,12 @@ li{
     opacity:0.4;
   }
   .main {
-     position: relative;
-      background: @g-main-color;
+      position: relative;
+      padding:20px;
+      background: #ffffff;
+    .table>tbody>tr>td{
+      padding:3px;
+    }
   }
   position:absolute;
   display: none;
@@ -579,4 +583,20 @@ li{
   overflow: auto;
   margin-left: -350px;
   margin-top: -250px;
+}
+.contentTable .content {
+  font-size:12px;
+  width:100px;
+  height:20px;
+  overflow: hidden;
+
+}
+.selectItem .content {
+  overflow: auto;
+}
+.table_weeks {
+  border-top:solid 1px #ddd;
+}
+.arrange-table-area {
+  margin-top:60px;
 }

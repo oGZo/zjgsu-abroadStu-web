@@ -2,152 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="39ed0159-a32f-40d3-9f34-317357bbb3ac" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_yibao_abroadStu_model_1_0_SNAPSHOT.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-model/target/abroadStu-model-1.0-SNAPSHOT-sources.jar" afterPath="$PROJECT_DIR$/../abroadStu-model/target/abroadStu-model-1.0-SNAPSHOT-sources.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-model/target/abroadStu-model-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/../abroadStu-model/target/abroadStu-model-1.0-SNAPSHOT.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-model/target/classes/com/zjgsu/abroadStu/model/common/ResponseTool.class" afterPath="$PROJECT_DIR$/../abroadStu-model/target/classes/com/zjgsu/abroadStu/model/common/ResponseTool.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-model/target/cobertura/cobertura.ser" afterPath="$PROJECT_DIR$/../abroadStu-model/target/cobertura/cobertura.ser" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-model/target/generated-classes/cobertura/com/zjgsu/abroadStu/model/common/ResponseTool.class" afterPath="$PROJECT_DIR$/../abroadStu-model/target/generated-classes/cobertura/com/zjgsu/abroadStu/model/common/ResponseTool.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-persist/target/abroadStu-persist-1.0-SNAPSHOT-sources.jar" afterPath="$PROJECT_DIR$/../abroadStu-persist/target/abroadStu-persist-1.0-SNAPSHOT-sources.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-persist/target/abroadStu-persist-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/../abroadStu-persist/target/abroadStu-persist-1.0-SNAPSHOT.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-service/target/abroadStu-service-1.0-SNAPSHOT-sources.jar" afterPath="$PROJECT_DIR$/../abroadStu-service/target/abroadStu-service-1.0-SNAPSHOT-sources.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-service/target/abroadStu-service-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/../abroadStu-service/target/abroadStu-service-1.0-SNAPSHOT.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-service/target/cobertura/cobertura.ser" afterPath="$PROJECT_DIR$/../abroadStu-service/target/cobertura/cobertura.ser" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-service/target/generated-classes/cobertura/com/zjgsu/abroadStu/service/common/ExcelOperate.class" afterPath="$PROJECT_DIR$/../abroadStu-service/target/generated-classes/cobertura/com/zjgsu/abroadStu/service/common/ExcelOperate.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-web/target/cobertura/cobertura.ser" afterPath="$PROJECT_DIR$/../abroadStu-web/target/cobertura/cobertura.ser" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-web/target/zjgsu-abroadStu-sources.jar" afterPath="$PROJECT_DIR$/../abroadStu-web/target/zjgsu-abroadStu-sources.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-web/target/zjgsu-abroadStu.war" afterPath="$PROJECT_DIR$/../abroadStu-web/target/zjgsu-abroadStu.war" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-web/target/zjgsu-abroadStu/WEB-INF/lib/abroadStu-model-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/../abroadStu-web/target/zjgsu-abroadStu/WEB-INF/lib/abroadStu-model-1.0-SNAPSHOT.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-web/target/zjgsu-abroadStu/WEB-INF/lib/abroadStu-persist-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/../abroadStu-web/target/zjgsu-abroadStu/WEB-INF/lib/abroadStu-persist-1.0-SNAPSHOT.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-web/target/zjgsu-abroadStu/WEB-INF/lib/abroadStu-service-1.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/../abroadStu-web/target/zjgsu-abroadStu/WEB-INF/lib/abroadStu-service-1.0-SNAPSHOT.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-model/target/generated-classes/cobertura/cobertura.properties" afterPath="$PROJECT_DIR$/../abroadStu-model/target/generated-classes/cobertura/cobertura.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-model/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/../abroadStu-model/target/maven-archiver/pom.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-model/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterPath="$PROJECT_DIR$/../abroadStu-model/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/com.zjgsu.abroadStu.model.Admin.html" afterPath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/com.zjgsu.abroadStu.model.Admin.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/com.zjgsu.abroadStu.model.Classroom.html" afterPath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/com.zjgsu.abroadStu.model.Classroom.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/com.zjgsu.abroadStu.model.CourseInstance.html" afterPath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/com.zjgsu.abroadStu.model.CourseInstance.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/com.zjgsu.abroadStu.model.CourseStudent.html" afterPath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/com.zjgsu.abroadStu.model.CourseStudent.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/com.zjgsu.abroadStu.model.CourseTeacher.html" afterPath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/com.zjgsu.abroadStu.model.CourseTeacher.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/com.zjgsu.abroadStu.model.CourseTemplate.html" afterPath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/com.zjgsu.abroadStu.model.CourseTemplate.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/com.zjgsu.abroadStu.model.Profession.html" afterPath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/com.zjgsu.abroadStu.model.Profession.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/com.zjgsu.abroadStu.model.Student.html" afterPath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/com.zjgsu.abroadStu.model.Student.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/com.zjgsu.abroadStu.model.Teacher.html" afterPath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/com.zjgsu.abroadStu.model.Teacher.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/com.zjgsu.abroadStu.model.common.Constants.html" afterPath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/com.zjgsu.abroadStu.model.common.Constants.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/com.zjgsu.abroadStu.model.common.MD5.html" afterPath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/com.zjgsu.abroadStu.model.common.MD5.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/com.zjgsu.abroadStu.model.common.ResponseTool.html" afterPath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/com.zjgsu.abroadStu.model.common.ResponseTool.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/com.zjgsu.abroadStu.model.common.XMLTool.html" afterPath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/com.zjgsu.abroadStu.model.common.XMLTool.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/com.zjgsu.abroadStu.model.http.CourseInstanceDTO.html" afterPath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/com.zjgsu.abroadStu.model.http.CourseInstanceDTO.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/com.zjgsu.abroadStu.model.http.ResponseCodeList.html" afterPath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/com.zjgsu.abroadStu.model.http.ResponseCodeList.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/com.zjgsu.abroadStu.model.http.ResponseModel.html" afterPath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/com.zjgsu.abroadStu.model.http.ResponseModel.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/com.zjgsu.abroadStu.model.http.StudentRequestParam.html" afterPath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/com.zjgsu.abroadStu.model.http.StudentRequestParam.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/coverage.xml" afterPath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/coverage.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/css/help.css" afterPath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/css/help.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/css/main.css" afterPath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/css/main.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/css/sortabletable.css" afterPath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/css/sortabletable.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/css/source-viewer.css" afterPath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/css/source-viewer.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/css/tooltip.css" afterPath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/css/tooltip.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/frame-summary-com.zjgsu.abroadStu.model.common.html" afterPath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/frame-summary-com.zjgsu.abroadStu.model.common.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/frame-summary-com.zjgsu.abroadStu.model.html" afterPath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/frame-summary-com.zjgsu.abroadStu.model.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/frame-summary-com.zjgsu.abroadStu.model.http.html" afterPath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/frame-summary-com.zjgsu.abroadStu.model.http.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/frame-summary.html" afterPath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/frame-summary.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/help.html" afterPath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/help.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/index.html" afterPath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/js/customsorttypes.js" afterPath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/js/customsorttypes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/js/popup.js" afterPath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/js/popup.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/js/sortabletable.js" afterPath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/js/sortabletable.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/js/stringbuilder.js" afterPath="$PROJECT_DIR$/../abroadStu-model/target/site/cobertura/js/stringbuilder.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../app/plugin/jquery.artDialog.js" afterPath="$PROJECT_DIR$/../../../app/plugin/jquery.artDialog.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../app/scripts/controllers/ManageArrangeModuleController.js" afterPath="$PROJECT_DIR$/../../../app/scripts/controllers/ManageArrangeModuleController.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../app/scripts/controllers/ManageViewController.js" afterPath="$PROJECT_DIR$/../../../app/scripts/controllers/ManageViewController.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../app/scripts/controllers/StudentViewController.js" afterPath="$PROJECT_DIR$/../../../app/scripts/controllers/StudentViewController.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../app/styles/app.css" afterPath="$PROJECT_DIR$/../../../app/styles/app.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../app/views/assistantList.ejs" afterPath="$PROJECT_DIR$/../../../app/views/assistantList.ejs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../app/views/manageArrange.html" afterPath="$PROJECT_DIR$/../../../app/views/manageArrange.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-persist/abroadStu-persist.iml" afterPath="$PROJECT_DIR$/../abroadStu-persist/abroadStu-persist.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-persist/target/generated-classes/cobertura/cobertura.properties" afterPath="$PROJECT_DIR$/../abroadStu-persist/target/generated-classes/cobertura/cobertura.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-persist/target/generated-classes/cobertura/com/zjgsu/abroadStu/persistence/ClassroomMapper.xml" afterPath="$PROJECT_DIR$/../abroadStu-persist/target/generated-classes/cobertura/com/zjgsu/abroadStu/persistence/ClassroomMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-persist/target/generated-classes/cobertura/com/zjgsu/abroadStu/persistence/TeacherMapper.xml" afterPath="$PROJECT_DIR$/../abroadStu-persist/target/generated-classes/cobertura/com/zjgsu/abroadStu/persistence/TeacherMapper.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-persist/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/../abroadStu-persist/target/maven-archiver/pom.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-persist/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterPath="$PROJECT_DIR$/../abroadStu-persist/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-persist/target/site/cobertura/com.zjgsu.abroadStu.persistence.AdminMapper.html" afterPath="$PROJECT_DIR$/../abroadStu-persist/target/site/cobertura/com.zjgsu.abroadStu.persistence.AdminMapper.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-persist/target/site/cobertura/com.zjgsu.abroadStu.persistence.ClassroomMapper.html" afterPath="$PROJECT_DIR$/../abroadStu-persist/target/site/cobertura/com.zjgsu.abroadStu.persistence.ClassroomMapper.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-persist/target/site/cobertura/com.zjgsu.abroadStu.persistence.CourseMapper.html" afterPath="$PROJECT_DIR$/../abroadStu-persist/target/site/cobertura/com.zjgsu.abroadStu.persistence.CourseMapper.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-persist/target/site/cobertura/com.zjgsu.abroadStu.persistence.StudentMapper.html" afterPath="$PROJECT_DIR$/../abroadStu-persist/target/site/cobertura/com.zjgsu.abroadStu.persistence.StudentMapper.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-persist/target/site/cobertura/com.zjgsu.abroadStu.persistence.TeacherMapper.html" afterPath="$PROJECT_DIR$/../abroadStu-persist/target/site/cobertura/com.zjgsu.abroadStu.persistence.TeacherMapper.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-persist/target/site/cobertura/coverage.xml" afterPath="$PROJECT_DIR$/../abroadStu-persist/target/site/cobertura/coverage.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-persist/target/site/cobertura/css/help.css" afterPath="$PROJECT_DIR$/../abroadStu-persist/target/site/cobertura/css/help.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-persist/target/site/cobertura/css/main.css" afterPath="$PROJECT_DIR$/../abroadStu-persist/target/site/cobertura/css/main.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-persist/target/site/cobertura/css/sortabletable.css" afterPath="$PROJECT_DIR$/../abroadStu-persist/target/site/cobertura/css/sortabletable.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-persist/target/site/cobertura/css/source-viewer.css" afterPath="$PROJECT_DIR$/../abroadStu-persist/target/site/cobertura/css/source-viewer.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-persist/target/site/cobertura/css/tooltip.css" afterPath="$PROJECT_DIR$/../abroadStu-persist/target/site/cobertura/css/tooltip.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-persist/target/site/cobertura/frame-summary-com.zjgsu.abroadStu.persistence.html" afterPath="$PROJECT_DIR$/../abroadStu-persist/target/site/cobertura/frame-summary-com.zjgsu.abroadStu.persistence.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-persist/target/site/cobertura/frame-summary.html" afterPath="$PROJECT_DIR$/../abroadStu-persist/target/site/cobertura/frame-summary.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-persist/target/site/cobertura/help.html" afterPath="$PROJECT_DIR$/../abroadStu-persist/target/site/cobertura/help.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-persist/target/site/cobertura/index.html" afterPath="$PROJECT_DIR$/../abroadStu-persist/target/site/cobertura/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-persist/target/site/cobertura/js/customsorttypes.js" afterPath="$PROJECT_DIR$/../abroadStu-persist/target/site/cobertura/js/customsorttypes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-persist/target/site/cobertura/js/popup.js" afterPath="$PROJECT_DIR$/../abroadStu-persist/target/site/cobertura/js/popup.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-persist/target/site/cobertura/js/sortabletable.js" afterPath="$PROJECT_DIR$/../abroadStu-persist/target/site/cobertura/js/sortabletable.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-persist/target/site/cobertura/js/stringbuilder.js" afterPath="$PROJECT_DIR$/../abroadStu-persist/target/site/cobertura/js/stringbuilder.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-service/target/generated-classes/cobertura/applicationContext.xml" afterPath="$PROJECT_DIR$/../abroadStu-service/target/generated-classes/cobertura/applicationContext.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-service/target/generated-classes/cobertura/cobertura.properties" afterPath="$PROJECT_DIR$/../abroadStu-service/target/generated-classes/cobertura/cobertura.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-service/target/generated-classes/cobertura/database.properties" afterPath="$PROJECT_DIR$/../abroadStu-service/target/generated-classes/cobertura/database.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-service/target/generated-classes/cobertura/settings.properties" afterPath="$PROJECT_DIR$/../abroadStu-service/target/generated-classes/cobertura/settings.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-service/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/../abroadStu-service/target/maven-archiver/pom.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-service/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterPath="$PROJECT_DIR$/../abroadStu-service/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-service/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterPath="$PROJECT_DIR$/../abroadStu-service/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/com.zjgsu.abroadStu.service.AdminService.html" afterPath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/com.zjgsu.abroadStu.service.AdminService.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/com.zjgsu.abroadStu.service.AdminServiceImpl.html" afterPath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/com.zjgsu.abroadStu.service.AdminServiceImpl.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/com.zjgsu.abroadStu.service.ClassroomService.html" afterPath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/com.zjgsu.abroadStu.service.ClassroomService.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/com.zjgsu.abroadStu.service.ClassroomServiceImpl.html" afterPath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/com.zjgsu.abroadStu.service.ClassroomServiceImpl.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/com.zjgsu.abroadStu.service.CourseService.html" afterPath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/com.zjgsu.abroadStu.service.CourseService.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/com.zjgsu.abroadStu.service.CourseServiceImpl.html" afterPath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/com.zjgsu.abroadStu.service.CourseServiceImpl.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/com.zjgsu.abroadStu.service.StudentService.html" afterPath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/com.zjgsu.abroadStu.service.StudentService.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/com.zjgsu.abroadStu.service.StudentServiceImpl.html" afterPath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/com.zjgsu.abroadStu.service.StudentServiceImpl.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/com.zjgsu.abroadStu.service.TeacherService.html" afterPath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/com.zjgsu.abroadStu.service.TeacherService.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/com.zjgsu.abroadStu.service.TeacherServiceImpl.html" afterPath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/com.zjgsu.abroadStu.service.TeacherServiceImpl.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/com.zjgsu.abroadStu.service.common.ExcelOperate.html" afterPath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/com.zjgsu.abroadStu.service.common.ExcelOperate.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/com.zjgsu.abroadStu.service.common.IpAddr.html" afterPath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/com.zjgsu.abroadStu.service.common.IpAddr.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/com.zjgsu.abroadStu.service.common.JedisSetService.html" afterPath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/com.zjgsu.abroadStu.service.common.JedisSetService.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/com.zjgsu.abroadStu.service.common.JedisSetServiceImp.html" afterPath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/com.zjgsu.abroadStu.service.common.JedisSetServiceImp.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/coverage.xml" afterPath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/coverage.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/css/help.css" afterPath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/css/help.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/css/main.css" afterPath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/css/main.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/css/sortabletable.css" afterPath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/css/sortabletable.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/css/source-viewer.css" afterPath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/css/source-viewer.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/css/tooltip.css" afterPath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/css/tooltip.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/frame-summary-com.zjgsu.abroadStu.service.common.html" afterPath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/frame-summary-com.zjgsu.abroadStu.service.common.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/frame-summary-com.zjgsu.abroadStu.service.html" afterPath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/frame-summary-com.zjgsu.abroadStu.service.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/frame-summary.html" afterPath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/frame-summary.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/help.html" afterPath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/help.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/index.html" afterPath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/js/customsorttypes.js" afterPath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/js/customsorttypes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/js/popup.js" afterPath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/js/popup.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/js/sortabletable.js" afterPath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/js/sortabletable.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/js/stringbuilder.js" afterPath="$PROJECT_DIR$/../abroadStu-service/target/site/cobertura/js/stringbuilder.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-web/src/main/resources/env/dev/database.properties" afterPath="$PROJECT_DIR$/../abroadStu-web/src/main/resources/env/dev/database.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-web/src/main/resources/env/gm/database.properties" afterPath="$PROJECT_DIR$/../abroadStu-web/src/main/resources/env/gm/database.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-web/src/main/resources/env/production/database.properties" afterPath="$PROJECT_DIR$/../abroadStu-web/src/main/resources/env/production/database.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-web/src/main/resources/env/test/database.properties" afterPath="$PROJECT_DIR$/../abroadStu-web/src/main/resources/env/test/database.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-web/target/generated-classes/cobertura/cobertura.properties" afterPath="$PROJECT_DIR$/../abroadStu-web/target/generated-classes/cobertura/cobertura.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-web/target/maven-archiver/pom.properties" afterPath="$PROJECT_DIR$/../abroadStu-web/target/maven-archiver/pom.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-web/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterPath="$PROJECT_DIR$/../abroadStu-web/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-web/target/site/cobertura/com.zjgsu.abroadStu.web.controller.AdminController.html" afterPath="$PROJECT_DIR$/../abroadStu-web/target/site/cobertura/com.zjgsu.abroadStu.web.controller.AdminController.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-web/target/site/cobertura/com.zjgsu.abroadStu.web.controller.AuthenticationFilter.html" afterPath="$PROJECT_DIR$/../abroadStu-web/target/site/cobertura/com.zjgsu.abroadStu.web.controller.AuthenticationFilter.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-web/target/site/cobertura/com.zjgsu.abroadStu.web.controller.StudentController.html" afterPath="$PROJECT_DIR$/../abroadStu-web/target/site/cobertura/com.zjgsu.abroadStu.web.controller.StudentController.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-web/target/site/cobertura/com.zjgsu.abroadStu.web.controller.TeacherController.html" afterPath="$PROJECT_DIR$/../abroadStu-web/target/site/cobertura/com.zjgsu.abroadStu.web.controller.TeacherController.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-web/target/site/cobertura/com.zjgsu.abroadStu.web.controller.UserController.html" afterPath="$PROJECT_DIR$/../abroadStu-web/target/site/cobertura/com.zjgsu.abroadStu.web.controller.UserController.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-web/target/site/cobertura/com.zjgsu.abroadStu.web.controller.XssFilter.html" afterPath="$PROJECT_DIR$/../abroadStu-web/target/site/cobertura/com.zjgsu.abroadStu.web.controller.XssFilter.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-web/target/site/cobertura/com.zjgsu.abroadStu.web.controller.XssHttpServletRequestWrapper.html" afterPath="$PROJECT_DIR$/../abroadStu-web/target/site/cobertura/com.zjgsu.abroadStu.web.controller.XssHttpServletRequestWrapper.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-web/target/site/cobertura/coverage.xml" afterPath="$PROJECT_DIR$/../abroadStu-web/target/site/cobertura/coverage.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-web/target/site/cobertura/css/help.css" afterPath="$PROJECT_DIR$/../abroadStu-web/target/site/cobertura/css/help.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-web/target/site/cobertura/css/main.css" afterPath="$PROJECT_DIR$/../abroadStu-web/target/site/cobertura/css/main.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-web/target/site/cobertura/css/sortabletable.css" afterPath="$PROJECT_DIR$/../abroadStu-web/target/site/cobertura/css/sortabletable.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-web/target/site/cobertura/css/source-viewer.css" afterPath="$PROJECT_DIR$/../abroadStu-web/target/site/cobertura/css/source-viewer.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-web/target/site/cobertura/css/tooltip.css" afterPath="$PROJECT_DIR$/../abroadStu-web/target/site/cobertura/css/tooltip.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-web/target/site/cobertura/frame-summary-com.zjgsu.abroadStu.web.controller.html" afterPath="$PROJECT_DIR$/../abroadStu-web/target/site/cobertura/frame-summary-com.zjgsu.abroadStu.web.controller.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-web/target/site/cobertura/frame-summary.html" afterPath="$PROJECT_DIR$/../abroadStu-web/target/site/cobertura/frame-summary.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-web/target/site/cobertura/help.html" afterPath="$PROJECT_DIR$/../abroadStu-web/target/site/cobertura/help.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-web/target/site/cobertura/index.html" afterPath="$PROJECT_DIR$/../abroadStu-web/target/site/cobertura/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-web/target/site/cobertura/js/customsorttypes.js" afterPath="$PROJECT_DIR$/../abroadStu-web/target/site/cobertura/js/customsorttypes.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-web/target/site/cobertura/js/popup.js" afterPath="$PROJECT_DIR$/../abroadStu-web/target/site/cobertura/js/popup.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-web/target/site/cobertura/js/sortabletable.js" afterPath="$PROJECT_DIR$/../abroadStu-web/target/site/cobertura/js/sortabletable.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-web/target/site/cobertura/js/stringbuilder.js" afterPath="$PROJECT_DIR$/../abroadStu-web/target/site/cobertura/js/stringbuilder.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-web/target/zjgsu-abroadStu/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/../abroadStu-web/target/zjgsu-abroadStu/META-INF/MANIFEST.MF" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-persist/src/main/java/com/zjgsu/abroadStu/persistence/CourseMapper.xml" afterPath="$PROJECT_DIR$/../abroadStu-persist/src/main/java/com/zjgsu/abroadStu/persistence/CourseMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../abroadStu-persist/target/classes/com/zjgsu/abroadStu/persistence/CourseMapper.xml" afterPath="$PROJECT_DIR$/../abroadStu-persist/target/classes/com/zjgsu/abroadStu/persistence/CourseMapper.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../resource/less/global.less" afterPath="$PROJECT_DIR$/../../../resource/less/global.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../resource/less/styles/manage.less" afterPath="$PROJECT_DIR$/../../../resource/less/styles/manage.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../../resource/less/styles/student.less" afterPath="$PROJECT_DIR$/../../../resource/less/styles/student.less" />
     </list>
     <ignored path="abroadStu-parent.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -249,7 +118,9 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1065">
               <caret line="81" column="43" selection-start-line="81" selection-start-column="43" selection-end-line="81" selection-end-column="43" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -257,8 +128,8 @@
       <file leaf-file-name="database.properties" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../abroadStu-web/src/main/resources/env/test/database.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
+            <state relative-caret-position="75">
+              <caret line="5" column="100" selection-start-line="4" selection-start-column="42" selection-end-line="5" selection-end-column="100" />
               <folding />
             </state>
           </provider>
@@ -998,12 +869,12 @@
       <workItem from="1462243225978" duration="387000" />
       <workItem from="1462534452065" duration="7965000" />
       <workItem from="1462802400143" duration="1138000" />
-      <workItem from="1462806788675" duration="433000" />
+      <workItem from="1462806788675" duration="843000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="121383000" />
+    <option name="totallyTimeSpent" value="121793000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -1019,7 +890,7 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.46385542" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.46385542" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2746988" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1316,7 +1187,7 @@
         <state relative-caret-position="0">
           <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1354,7 +1225,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1065">
           <caret line="81" column="43" selection-start-line="81" selection-start-column="43" selection-end-line="81" selection-end-column="43" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1452,8 +1325,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../abroadStu-web/src/main/resources/env/test/database.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
+        <state relative-caret-position="75">
+          <caret line="5" column="100" selection-start-line="4" selection-start-column="42" selection-end-line="5" selection-end-column="100" />
           <folding />
         </state>
       </provider>
