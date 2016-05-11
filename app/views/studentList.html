@@ -7,7 +7,7 @@
             <div class="form-group">
                 <input type="text" maxlength="20" ng-model="params.passportNumber" class="form-control" placeholder="护照号">
             </div>
-            <button type="button" class="btn btn-default" ng-click="query()">搜索</button>
+            <button type="button" class="btn btn-success" ng-click="query()">搜索</button>
         </form>
     </div>
     <table class="table table-bordered">
@@ -38,5 +38,7 @@
     </table>
 </div>
 
-
 <pagination total-items="bigTotalItems" ng-change="pageChanged(bigCurrentPage)"  ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages"></pagination>
+<div>
+    已选学生: <span ng-repeat="student in currentStudentMap">{{student.firstName + student.secondName}} </span>
+</div>

@@ -1,6 +1,31 @@
 .g-border {
   border: 1px solid #ddd;
 }
+/*---滚动条默认显示样式--*/
+::-webkit-scrollbar-thumb {
+  background-color: #ddd;
+  height: 50px;
+  outline-offset: -2px;
+  outline: 2px solid #fff;
+  -webkit-border-radius: 4px;
+  border: 2px solid #fff;
+}
+/*---鼠标点击滚动条显示样式--*/
+::-webkit-scrollbar-thumb:hover {
+  background-color: #ddd;
+  height: 50px;
+  -webkit-border-radius: 4px;
+}
+/*---滚动条大小--*/
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+/*---滚动框背景样式--*/
+::-webkit-scrollbar-track-piece {
+  background-color: #fff;
+  -webkit-border-radius: 0;
+}
 .g-font-red {
   color: #E74C3C;
 }
@@ -61,9 +86,16 @@
 }
 .login-screen h4 {
   text-align: center;
+  padding: 20px 0;
 }
 .form-group-rows .radio {
   color: #000000;
+}
+.nav-pills > li > a {
+  border-radius: 0;
+  cursor: pointer;
+  text-align: center;
+  font-size: 16px;
 }
 .navbar {
   background-color: #1abc9c;
@@ -85,7 +117,7 @@
   color: #ffffff;
   cursor: pointer;
 }
-.manage-area {
+.content-area {
   margin-left: 200px;
 }
 .table-condition {
@@ -177,11 +209,15 @@
   left: 0;
   opacity: 0;
 }
+.table {
+  font-size: 12px;
+}
 
 .nav-left {
   position: absolute;
   left: 0;
-  top: 55px;
+  top: 53px;
+  width: 160px;
 }
 
 .g-border {
@@ -272,14 +308,12 @@ li {
 }
 .table_weeks {
   text-align: center;
-  background: #E3E9FF;
   font: 11px Arial, Sans-serif;
-  color: #2200CC;
+  font-weight: bold;
 }
 .table_weeks td {
-  padding-top: 5px;
-  padding-bottom: 3px;
-  height: 15px;
+  padding: 6px 0;
+  height: 30px;
 }
 .allDay td {
   height: 15px;
@@ -310,7 +344,6 @@ li {
 }
 .timeTable .solid td {
   border-top: 1px solid #DDDDDD;
-  border-left: 1px solid #DDDDDD;
   border-right: 1px solid #DDDDDD;
   height: 30px;
 }
@@ -332,19 +365,21 @@ li {
 .selectItem {
   position: absolute;
   cursor: pointer;
+  border-radius: 4px;
+  overflow: hidden;
 }
 .selectItem .head {
   height: 15px;
-  background: #465679;
-  border-right: solid #465679 1px;
-  border-left: solid #465679 1px;
+  background: #16a085;
+  border-right: solid #16a085 1px;
+  border-left: solid #16a085 1px;
   font: 11px Arial, Sans-serif;
   color: white;
 }
 .selectItem .content {
-  background: #7589b8;
-  border-right: solid #465679 1px;
-  border-left: solid #465679 1px;
+  background: #1abc9c;
+  border-right: solid #16a085 1px;
+  border-left: solid #16a085 1px;
   font: 11px Arial, Sans-serif;
   color: white;
 }
@@ -366,7 +401,7 @@ li {
   background: url(../images/activity/RT.gif);
 }
 .selectItem table .TC {
-  background: #465679;
+  background: #16a085;
 }
 .selectItem table .BL {
   width: 3px;
@@ -379,8 +414,8 @@ li {
   background: url(../images/activity/RB.gif);
 }
 .selectItem table .BC {
-  background: #7589b8;
-  border-bottom: solid #465679 1px;
+  background: #1abc9c;
+  border-bottom: solid #16a085 1px;
 }
 /***********************������ӵ�����css��ʽ*******************************/
 .popItem {
@@ -388,6 +423,10 @@ li {
   width: 420px;
   height: 160px;
   z-index: 1000;
+  border-radius: 20px;
+  overflow: hidden;
+  border: solid 1px #ddd;
+  background-color: #ffffff;
 }
 .popItem .close {
   position: absolute;
@@ -404,24 +443,19 @@ li {
 .popItem .TL {
   width: 25px;
   height: 25px;
-  background: url(../images/activity/add_LT.gif);
 }
 .popItem .TR {
   width: 25px;
   height: 25px;
-  background: url(../images/activity/add_RT.gif);
 }
 .popItem .TC {
-  border-top: 1px solid #ababab;
   background: white;
 }
 .popItem .ML {
   background: white;
-  border-left: #ababab 1px solid;
 }
 .popItem .MR {
   background: white;
-  border-right: #ababab 1px solid;
 }
 .popItem .MC {
   height: 108px;
@@ -430,16 +464,13 @@ li {
 .popItem .BL {
   width: 25px;
   height: 25px;
-  background: url(../images/activity/add_LB.gif);
 }
 .popItem .BC {
-  border-bottom: 1px solid #ababab;
   background: white;
 }
 .popItem .BR {
   width: 25px;
   height: 25px;
-  background: url(../images/activity/add_RB.gif);
 }
 .vPic {
   position: absolute;
@@ -581,7 +612,7 @@ li {
 }
 .dayItem_all .TM {
   height: 3px;
-  background: #465679;
+  background: #16a085;
 }
 .dayItem_all .TR {
   width: 3px;
@@ -591,18 +622,18 @@ li {
 .dayItem_all .ML {
   height: 3px;
   width: 3px;
-  background: #465679;
+  background: #16a085;
 }
 .dayItem_all .MM {
   height: 8px;
-  background: #465679;
+  background: #16a085;
   text-align: left;
   font-size: 7px;
   word-break: break-all;
 }
 .dayItem_all .MR {
   height: 8px;
-  background: #465679;
+  background: #16a085;
 }
 .dayItem_all .BL {
   width: 3px;
@@ -611,7 +642,7 @@ li {
 }
 .dayItem_all .BM {
   height: 3px;
-  background: #465679;
+  background: #16a085;
 }
 .dayItem_all .BR {
   width: 3px;
@@ -642,16 +673,16 @@ li {
 }
 .dayItem_head .TM {
   height: 3px;
-  background: #465679;
+  background: #16a085;
 }
 .dayItem_head .ML {
   height: 3px;
   width: 3px;
-  background: #465679;
+  background: #16a085;
 }
 .dayItem_head .MM {
   height: 8px;
-  background: #465679;
+  background: #16a085;
   text-align: left;
   font-size: 7px;
   word-break: break-all;
@@ -663,7 +694,7 @@ li {
 }
 .dayItem_head .BM {
   height: 3px;
-  background: #465679;
+  background: #16a085;
 }
 /****************����ͼItems(β)**********************/
 .dayItem_tail {
@@ -684,7 +715,7 @@ li {
 }
 .dayItem_tail .TM {
   height: 3px;
-  background: #465679;
+  background: #16a085;
 }
 .dayItem_tail .TR {
   width: 3px;
@@ -693,15 +724,15 @@ li {
 }
 .dayItem_tail .MM {
   height: 8px;
-  background: #465679;
+  background: #16a085;
 }
 .dayItem_tail .MR {
   height: 8px;
-  background: #465679;
+  background: #16a085;
 }
 .dayItem_tail .BM {
   height: 3px;
-  background: #465679;
+  background: #16a085;
 }
 .dayItem_tail .BR {
   width: 3px;
@@ -727,42 +758,20 @@ li {
 }
 .dayItem_body .TM {
   height: 3px;
-  background: #465679;
+  background: #16a085;
 }
 .dayItem_body .MM {
   height: 8px;
-  background: #465679;
+  background: #16a085;
 }
 .dayItem_body .BM {
   height: 3px;
-  background: #465679;
+  background: #16a085;
 }
 .timeItemTitle {
   width: 40px;
   text-align: center;
-}
-.J_student_list_area {
-  position: absolute;
-  display: none;
-  top: 50%;
-  left: 50%;
-  width: 700px;
-  height: 500px;
-  z-index: 999;
-  box-sizing: border-box;
-  padding: 20px;
-  overflow: auto;
-  margin-left: -350px;
-  margin-top: -250px;
-}
-.J_student_list_area .cover {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #000000;
-  opacity: 0.4;
+  font-size: 14px;
 }
 .J_student_list_area .main {
   position: relative;
@@ -781,11 +790,16 @@ li {
 .selectItem .content {
   overflow: auto;
 }
-.table_weeks {
-  border-top: solid 1px #ddd;
-}
 .arrange-table-area {
   margin-top: 60px;
+  border: solid 1px #ddd;
+  border-bottom: solid 1px #ddd;
+}
+.timeItem {
+  width: 12%;
+}
+.btn-group .dropdown-menu {
+  margin-top: 0;
 }
 
 .J_student_info dl {

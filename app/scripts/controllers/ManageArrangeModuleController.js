@@ -124,7 +124,7 @@ define(['app'], function (app) {
                 }
                 table_weeks.push('</tr>');
                 $(table_weeks.join('')).appendTo($("#"+id));
-                $('<tr class="headBottomLine" id="headBottomLine"><td colspan="10"></td></tr>').appendTo($("#"+id));
+                //$('<tr class="headBottomLine" id="headBottomLine"><td colspan="10"></td></tr>').appendTo($("#"+id));
                 //得到父窗口的宽度，然后计算每个td的宽度
                 var parentWidth = $("#"+entity.renderTo).width();
                 $("td.week-day").each(function(){
@@ -396,10 +396,10 @@ define(['app'], function (app) {
                 var id = this.random();
                 var div = [];
                 div.push('<div id="'+id+'" class="selectItem temp">');
-                div.push('<table><tr><td class="TL"></td><td class="TC"></td><td class="TR"></td></tr></table>');
+                //div.push('<table><tr><td class="TL"></td><td class="TC"></td><td class="TR"></td></tr></table>');
                 div.push('<div id="head" class="head"></div>');
                 div.push('<div id="content" class="content"><table><tr><td></td></tr></table></div>');
-                div.push('<table><tr><td class="BL"></td><td class="BC"></td><td class="BR"></td></tr></table>');
+                //div.push('<table><tr><td class="BL"></td><td class="BC"></td><td class="BR"></td></tr></table>');
                 div.push('</div>');
                 $(div.join('')).appendTo($("#"+entity.renderTo));
                 return id;
@@ -417,7 +417,7 @@ define(['app'], function (app) {
                 $(div).appendTo($("#"+entity.renderTo));
                 $('<div id="vPic" class="vPic temp"></div>').appendTo($("#"+entity.renderTo));
                 //添加一个关闭事件
-                $("#"+id+" .close").click(function(){
+                $("#"+id).on('click','.J_closeBtn,.close',function(){
                     entity.clear();
                 });
                 return id;
@@ -528,7 +528,7 @@ define(['app'], function (app) {
                 var item = [];
                 item.push('<div>');
                 item.push('<table class="contentTable"><tr><td class="time" colspan="8">'+time+'</td></tr><tr><td><div><button class="btn btn-default btn-sm J_selectCourse">选择课程</button><p class="content"></p></div></td><td><div><button class="btn btn-default btn-sm J_selectTeacher">选择教师</button><p class="content"></p></div></td><td><div><button class="btn btn-sm btn-default J_selectClassroom">选择教室</button><p class="content"></p></div></td><td><div><button class="btn btn-default btn-sm J_selectStudent">选择学生</button><p class="content"></p></div></td></tr></table>');
-                item.push('<div class="operate"><div  class="btn btn-success btn-sm J_arrangeCourseBtn">确定</div></div>');
+                item.push('<div class="operate"><div  class="btn btn-success btn-sm J_arrangeCourseBtn">确定</div> <div  class="btn btn-default btn-sm J_closeBtn">取消</div></div>');
                 item.push('</div>');
                 $(item.join('')).appendTo($("#"+popItemId+" .MC"));
 
@@ -991,6 +991,30 @@ define(['app'], function (app) {
                         renderPage();
                     }
                     function renderPage(){
+                        art.dialog({
+                            content : '<div class="J_student_list_area"><div class="list-area"></div></div>',
+                            width : 700,
+                            height : 300,
+                            lock : true,
+                            ok : function(){
+                                var studentNames = [];
+                                $.each(currentStudentMap,function(i,v){
+                                    v.name = v.firstName + v.secondName;
+                                    studentNames.push(v.name);
+                                });
+                                if(!studentNames.length){
+                                    YB.info({
+                                        content : '请选择学生'
+                                    })
+                                    return;
+                                }
+                                $('.J_selectStudent').siblings('.content').html(studentNames.join(','));
+                                $('.J_student_list_area').hide();
+                            },
+                            cancel : function(){
+
+                            }
+                        });
                         //alert(4);
                         var html = YB.studentListHtml;
                         var dialog = angular.element(html);
@@ -1088,25 +1112,25 @@ define(['app'], function (app) {
                     })
                 })
             })
-            $('.J_closeSelectStudent').on('click',function(e){
-                currentStudentMap = {};
-                $('.J_student_list_area').hide();
-            })
-            $('.J_sureSelectStudent').on('click',function(e){
-                var studentNames = [];
-                $.each(currentStudentMap,function(i,v){
-                    v.name = v.firstName + v.secondName;
-                    studentNames.push(v.name);
-                });
-                if(!studentNames.length){
-                    YB.info({
-                        content : '请选择学生'
-                    })
-                    return;
-                }
-                $('.J_selectStudent').siblings('.content').html(studentNames.join(','));
-                $('.J_student_list_area').hide();
-            })
+            //$('.J_closeSelectStudent').on('click',function(e){
+            //    currentStudentMap = {};
+            //    $('.J_student_list_area').hide();
+            //})
+            //$('.J_sureSelectStudent').on('click',function(e){
+            //    var studentNames = [];
+            //    $.each(currentStudentMap,function(i,v){
+            //        v.name = v.firstName + v.secondName;
+            //        studentNames.push(v.name);
+            //    });
+            //    if(!studentNames.length){
+            //        YB.info({
+            //            content : '请选择学生'
+            //        })
+            //        return;
+            //    }
+            //    $('.J_selectStudent').siblings('.content').html(studentNames.join(','));
+            //    $('.J_student_list_area').hide();
+            //})
         //$('body').on('click',function(e){
         //    var me = $(e.target);
         //    if(!me.closest('.timeItem').length&&!me.closest('.popItem').length&&!me.closest('.aui_outer').length&&!me.closest('.lock-bg').length){

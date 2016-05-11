@@ -59,14 +59,15 @@ li{
 }
 .table_weeks {
   text-align:center;
-  background:#E3E9FF;
+  //background:#E3E9FF;
   font: 11px Arial,Sans-serif;
-  color: #2200CC;
+  //color: #2200CC;
+  font-weight:bold;
 }
 .table_weeks td {
-  padding-top:5px;
-  padding-bottom:3px;
-  height:15px;
+  padding:6px 0;
+  //padding-bottom:3px;
+  height:30px;
 }
 .week-title {
 
@@ -101,7 +102,7 @@ li{
 
 .timeTable .solid td {
   border-top: 1px solid #DDDDDD;
-  border-left: 1px solid #DDDDDD;
+  //border-left: 1px solid #DDDDDD;
   border-right: 1px solid #DDDDDD;
   height:30px;
 }
@@ -124,19 +125,21 @@ li{
 .selectItem {
   position:absolute;
   cursor:pointer;
+  border-radius: 4px;
+  overflow: hidden;
 }
 .selectItem .head {
   height:15px;
-  background:#465679;
-  border-right:solid #465679 1px;
-  border-left:solid #465679 1px;
+  background:#16a085;
+  border-right:solid #16a085 1px;
+  border-left:solid #16a085 1px;
   font: 11px Arial,Sans-serif;
   color:white;
 }
 .selectItem .content {
-  background:#7589b8;
-  border-right:solid #465679 1px;
-  border-left:solid #465679 1px;
+  background:#1abc9c;
+  border-right:solid #16a085 1px;
+  border-left:solid #16a085 1px;
   font: 11px Arial,Sans-serif;
   color:white;
 }
@@ -158,7 +161,7 @@ li{
   background:url(../images/activity/RT.gif);
 }
 .selectItem table .TC {
-  background:#465679;
+  background:#16a085;
 }
 .selectItem table .BL {
   width:3px;
@@ -171,8 +174,8 @@ li{
   background:url(../images/activity/RB.gif);
 }
 .selectItem table .BC {
-  background:#7589b8;
-  border-bottom:solid #465679 1px;
+  background:#1abc9c;
+  border-bottom:solid #16a085 1px;
 }
 /***********************������ӵ�����css��ʽ*******************************/
 .popItem {
@@ -180,6 +183,10 @@ li{
   width:420px;
   height:160px;
   z-index:1000;
+  border-radius: 20px;
+  overflow: hidden;
+  border: solid 1px #ddd;
+  background-color:@g-white;
 }
 .popItem .close{
   position:absolute;
@@ -196,24 +203,24 @@ li{
 .popItem .TL {
   width:25px;
   height:25px;
-  background:url(../images/activity/add_LT.gif);
+  //background:url(../images/activity/add_LT.gif);
 }
 .popItem .TR {
   width:25px;
   height:25px;
-  background:url(../images/activity/add_RT.gif);
+  //background:url(../images/activity/add_RT.gif);
 }
 .popItem .TC {
-  border-top:1px solid #ababab;
+  //border-top:1px solid #ababab;
   background:white;
 }
 .popItem .ML {
   background:white;
-  border-left:#ababab 1px solid;
+  //border-left:#ababab 1px solid;
 }
 .popItem .MR {
   background:white;
-  border-right:#ababab 1px solid;
+  //border-right:#ababab 1px solid;
 }
 .popItem .MC {
   height:108px;
@@ -223,16 +230,16 @@ li{
 .popItem .BL {
   width:25px;
   height:25px;
-  background:url(../images/activity/add_LB.gif);
+  //background:url(../images/activity/add_LB.gif);
 }
 .popItem .BC {
-  border-bottom:1px solid #ababab;
+  //border-bottom:1px solid #ababab;
   background:white;
 }
 .popItem .BR {
   width:25px;
   height:25px;
-  background:url(../images/activity/add_RB.gif);
+  //background:url(../images/activity/add_RB.gif);
 }
 .vPic {
   position:absolute;
@@ -382,7 +389,7 @@ li{
 }
 .dayItem_all .TM {
   height:3px;
-  background:#465679;
+  background:#16a085;
 }
 .dayItem_all .TR {
   width:3px;
@@ -392,18 +399,18 @@ li{
 .dayItem_all .ML {
   height:3px;
   width:3px;
-  background:#465679;
+  background:#16a085;
 }
 .dayItem_all .MM {
   height:8px;
-  background:#465679;
+  background:#16a085;
   text-align:left;
   font-size:7px;
   word-break:break-all;
 }
 .dayItem_all .MR {
   height:8px;
-  background:#465679;
+  background:#16a085;
 }
 .dayItem_all .BL {
   width:3px;
@@ -412,7 +419,7 @@ li{
 }
 .dayItem_all .BM {
   height:3px;
-  background:#465679;
+  background:#16a085;
 }
 .dayItem_all .BR {
   width:3px;
@@ -445,16 +452,16 @@ li{
 }
 .dayItem_head .TM {
   height:3px;
-  background:#465679;
+  background:#16a085;
 }
 .dayItem_head .ML {
   height:3px;
   width:3px;
-  background:#465679;
+  background:#16a085;
 }
 .dayItem_head .MM {
   height:8px;
-  background:#465679;
+  background:#16a085;
   text-align:left;
   font-size:7px;
   word-break:break-all;
@@ -466,7 +473,7 @@ li{
 }
 .dayItem_head .BM {
   height:3px;
-  background:#465679;
+  background:#16a085;
 }
 
 /****************����ͼItems(β)**********************/
@@ -489,7 +496,7 @@ li{
 }
 .dayItem_tail .TM {
   height:3px;
-  background:#465679;
+  background:#16a085;
 }
 .dayItem_tail .TR {
   width:3px;
@@ -498,15 +505,15 @@ li{
 }
 .dayItem_tail .MM {
   height:8px;
-  background:#465679;
+  background:#16a085;
 }
 .dayItem_tail .MR {
   height:8px;
-  background:#465679;
+  background:#16a085;
 }
 .dayItem_tail .BM {
   height:3px;
-  background:#465679;
+  background:#16a085;
 }
 .dayItem_tail .BR {
   width:3px;
@@ -533,20 +540,21 @@ li{
 }
 .dayItem_body .TM {
   height:3px;
-  background:#465679;
+  background:#16a085;
 }
 .dayItem_body .MM {
   height:8px;
-  background:#465679;
+  background:#16a085;
 }
 .dayItem_body .BM {
   height:3px;
-  background:#465679;
+  background:#16a085;
 }
 
 .timeItemTitle {
   width:40px;
   text-align: center;
+  font-size:14px;
 }
 
 
@@ -554,15 +562,15 @@ li{
   //position: relative;
 }
 .J_student_list_area {
-  .cover {
-    position: fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background-color:#000000;
-    opacity:0.4;
-  }
+  //.cover {
+  //  position: fixed;
+  //  top:0;
+  //  left:0;
+  //  width:100%;
+  //  height:100%;
+  //  background-color:#000000;
+  //  opacity:0.4;
+  //}
   .main {
       position: relative;
       padding:20px;
@@ -571,18 +579,18 @@ li{
       padding:3px;
     }
   }
-  position:absolute;
-  display: none;
-  top: 50%;
-  left: 50%;
-  width: 700px;
-  height: 500px;
-  z-index: 999;
-  box-sizing: border-box;
-  padding: 20px;
-  overflow: auto;
-  margin-left: -350px;
-  margin-top: -250px;
+  //position:absolute;
+  //display: none;
+  //top: 50%;
+  //left: 50%;
+  //width: 700px;
+  //height: 500px;
+  //z-index: 999;
+  //box-sizing: border-box;
+  //padding: 20px;
+  //overflow: auto;
+  //margin-left: -350px;
+  //margin-top: -250px;
 }
 .contentTable .content {
   font-size:12px;
@@ -595,8 +603,16 @@ li{
   overflow: auto;
 }
 .table_weeks {
-  border-top:solid 1px #ddd;
+  //border-top:solid 1px #ddd;
 }
 .arrange-table-area {
   margin-top:60px;
+  border:solid 1px #ddd;
+  border-bottom:solid 1px #ddd;
+}
+.timeItem {
+  width:12%;
+}
+.btn-group .dropdown-menu {
+  margin-top:0;
 }

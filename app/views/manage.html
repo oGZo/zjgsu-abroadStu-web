@@ -3,7 +3,7 @@
         <li role="presentation" ng-repeat="nav in navList" class="{{nav.moduleId == currentId?'active':''}}" ng-click="selectModule(nav.moduleId)"><a>{{nav.title}}</a></li>
     </ul>
 </div>
-<div class="container manage-area J_manage">
+<div class="content-area manage-area J_manage">
     <div ng-show="currentId==1" class="J_manage_student" ng-controller="ManageStudentController">
 
     </div>

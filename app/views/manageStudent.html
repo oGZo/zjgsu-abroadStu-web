@@ -41,6 +41,9 @@
             <td ng-bind="row.phone"></td>
             <td ng-bind="row.email"></td>
         </tr>
+        <tr ng-show="!rows.length">
+            <td colspan="8">暂无学生</td>
+        </tr>
         </tbody>
     </table>
 </div>

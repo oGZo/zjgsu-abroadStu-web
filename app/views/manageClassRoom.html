@@ -1,12 +1,13 @@
 
-<form action="" class="upload-area" id="upload-classroom-form">
-    <button class="btn btn-success ">上传教室</button>
-    <input type="file" name="uploadFile" class="upload-input" id="updateClassroomData">
-</form>
-<a class="btn btn-success " href="http://7xrr3l.com1.z0.glb.clouddn.com/classroomTemplate.xlsx">下载模板</a>
-
 <div class="table-area J_classroom_list">
     <table class="table table-bordered">
+        <caption>
+            <form action="" class="upload-area" id="upload-classroom-form">
+                <button class="btn btn-success ">上传教室</button>
+                <input type="file" name="uploadFile" class="upload-input" id="updateClassroomData">
+            </form>
+            <a class="btn btn-success " href="http://7xrr3l.com1.z0.glb.clouddn.com/classroomTemplate.xlsx">下载模板</a>
+        </caption>
         <thead>
         <tr>
             <th>楼名</th>
@@ -18,9 +19,10 @@
             <td ng-bind="row.building"></td>
             <td ng-bind="row.roomNumber"></td>
         </tr>
+        <tr ng-show="!rows.length">
+            <td colspan="2">暂无教室</td>
+        </tr>
         </tbody>
     </table>
 </div>
-
-
 <pagination total-items="bigTotalItems" ng-change="pageChanged(bigCurrentPage)"  ng-model="bigCurrentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages"></pagination>

@@ -1,12 +1,15 @@
 <div class="table-area J_teacher_list">
-    <div class="table-condition">
-        <form action=""  class="upload-area" id="upload-teacher-form">
-            <button class="btn btn-success" type="button">上传教师</button>
-            <input type="file" name="uploadFile" class="upload-input" id="updateTeacherData">
-        </form>
-        <a class="btn btn-success " href="http://7xrr3l.com1.z0.glb.clouddn.com/teacherTemplate.xlsx">下载模板</a>
-    </div>
+    <!--<div class="table-condition">-->
+        <!---->
+    <!--</div>-->
     <table class="table table-bordered">
+        <caption>
+            <form action=""  class="upload-area" id="upload-teacher-form">
+                <button class="btn btn-success" type="button">上传教师</button>
+                <input type="file" name="uploadFile" class="upload-input" id="updateTeacherData">
+            </form>
+            <a class="btn btn-success " href="http://7xrr3l.com1.z0.glb.clouddn.com/teacherTemplate.xlsx">下载模板</a>
+        </caption>
         <thead>
         <tr>
             <th>工号</th>
@@ -21,6 +24,9 @@
             <td ng-bind="row.name"></td>
             <td ng-bind="row.phone"></td>
             <td ng-bind="row.email"></td>
+        </tr>
+        <tr ng-show="!rows.length">
+            <td colspan="4">暂无教师</td>
         </tr>
         </tbody>
     </table>

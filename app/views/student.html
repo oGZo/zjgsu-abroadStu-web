@@ -1,9 +1,9 @@
 <div class="nav-left">
-    <ul class="nav av-pills nav-stacked nav-pills-stacked-example">
+    <ul class="nav nav-pills nav-stacked nav-pills-stacked-example">
         <li role="presentation" ng-repeat="nav in navList" class="{{nav.moduleId == currentId?'active':''}}" ng-click="selectModule(nav.moduleId)"><a>{{nav.title}}</a></li>
     </ul>
 </div>
-<div class="container">
+<div class="content-area">
     <div ng-show="currentId==1" class="J_student_info" ng-controller="StudentInfoController">
 
     </div>
